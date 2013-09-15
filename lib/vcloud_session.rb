@@ -14,4 +14,3 @@ class VcloudSession
   end
 end
 
-#'4-3-37-b5567e'
