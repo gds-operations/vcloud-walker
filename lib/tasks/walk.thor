@@ -1,26 +1,23 @@
-require 'thor'
-require 'json'
-require 'fog'
-Dir[File.expand_path("../../**/*.rb", __FILE__)].each {|f| require f }
+require File.expand_path("../../walk/walk.rb", __FILE__)
 
 class Walk < Thor
   map "-L" => :list
 
   desc "catalogs", "describe all catalogs within given organization"
   def catalogs organization_id
-    catalogs = ::Walk::Catalog.new(organization_id).show
+    catalogs = ::Walk::Catalogs.new(organization_id).to_summary
     print_json catalogs
   end
 
   desc "vdcs", "describe all vdcs within given organization"   # [4]
   def vdcs organization_id
-    vdcs = ::Walk::Vdc.new(organization_id).show
+    vdcs = ::Walk::Vdcs.new(organization_id).to_summary
     print_json vdcs
   end
 
   desc "networks", "describe all networks within given organization"   # [4]
   def networks organization_id
-    networks = ::Walk::Network.new(organization_id).show
+    networks = ::Walk::Networks.new(organization_id).to_summary
     print_json networks
   end
 
