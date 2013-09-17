@@ -1,5 +1,5 @@
 specdir=File.dirname(__FILE__)
-Dir[File.join(specdir,'../lib/**/*.rb')].each {|f| require f }
+require File.join(specdir,'../lib/walk/walk.rb')
 
 require 'rspec'
 require 'rspec/mocks'
