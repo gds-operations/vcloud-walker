@@ -5,8 +5,8 @@ require "tasks/version"
 Gem::Specification.new do |s|
   s.name        = "vcloud-walker"
   s.version     = VcloudWalker::VERSION
-  s.authors     = ["Sneha Somwanshi"]
-  s.email       = ["snehasomwanshi@gmail.com"]
+  s.authors     = ["Sneha Somwanshi", "Dan Abel"]
+  s.email       = ["snehasomwanshi@gmail.com", "dabel@thoughtworks.com"]
   s.homepage    = "https://github.com/alphagov/vcloud-walker"
   s.summary     = %q{command line tool to describe vcloud entities}
   s.description = %q{Vcloud-walker is a command line tool , to describe different vcloud entities.
