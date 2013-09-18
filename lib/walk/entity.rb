@@ -9,7 +9,7 @@ module Walk
       h= {}
       instance_variables.each {|atr|
         atr_value = self.instance_variable_get(atr)
-        if atr_value.is_a?(Walk::Collection) || atr_value.is_a?(Array)
+        if atr_value.is_a?(Walk::Collection)
           h[atr.to_s.delete("@")] = atr_value.to_summary
         else
           h[atr.to_s.delete("@")] = atr_value
