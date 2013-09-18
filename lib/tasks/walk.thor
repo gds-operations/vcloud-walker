@@ -21,6 +21,12 @@ class Walk < Thor
     print_json networks
   end
 
+  desc "edgegateways", "describe settings within edge gateways"
+  def edgegateways
+    edgegateways = ::Walk::EdgeGateways.new(organization_id).to_summary
+    print_json edgegateways
+  end
+
   private
   def print_json vcloud_entity
     print JSON.pretty_generate(vcloud_entity)
