@@ -37,7 +37,6 @@ describe Walk::Entity do
     collection = [ mock(:name => 'collection 1'), mock(:name => 'collection 2') ]
     test_class = Walk::TestClass.new(mock(:description => 'test class desc', :collection => collection))
 
-    test_class.to_summary.should ==
-         {"test_data"=>[{"name"=>"collection 1"}, {"name"=>"collection 2"}], "description"=>"test class desc"}
+    test_class.to_summary.should == {:test_data=>[ {:name=>"collection 1"}, {:name=>"collection 2"}], :description=>"test class desc"}
   end
 end
