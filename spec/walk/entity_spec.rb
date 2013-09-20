@@ -34,8 +34,8 @@ end
 
 describe Walk::Entity do
   it 'should be able to nested collections inside entities' do
-    collection = [ mock(:name => 'collection 1'), mock(:name => 'collection 2') ]
-    test_class = Walk::TestClass.new(mock(:description => 'test class desc', :collection => collection))
+    collection = [ double(:name => 'collection 1'), double(:name => 'collection 2') ]
+    test_class = Walk::TestClass.new(double(:description => 'test class desc', :collection => collection))
 
     test_class.to_summary.should == {:test_data=>[ {:name=>"collection 1"}, {:name=>"collection 2"}], :description=>"test class desc"}
   end

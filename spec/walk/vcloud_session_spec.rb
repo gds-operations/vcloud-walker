@@ -14,7 +14,7 @@ describe VcloudSession do
       ENV['API_USERNAME'] = 'correct-user'
       ENV['API_PASSWORD'] = 'correct-password'
 
-      mock_session = mock(:fog_session)
+      mock_session = double(:fog_session)
       Fog::Compute::VcloudDirector.should_receive(:new)
                                   .with(:vcloud_director_host => 'api.vcd.portal.skyscapecloud.com',
                                         :vcloud_director_username => 'correct-user',
