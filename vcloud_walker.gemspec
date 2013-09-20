@@ -23,9 +23,12 @@ Gem::Specification.new do |s|
   s.license = 'MIT'
 
   s.add_development_dependency "rake"
-  s.add_development_dependency 'json', '~> 1.8.0'
-  s.add_development_dependency 'thor', '~> 0.18.1'
   s.add_development_dependency 'rspec', '~> 2.14.1'
   s.add_development_dependency 'rspec-mocks', '~> 2.14.3'
   s.add_development_dependency "gem_publisher", "~> 1.3.0"
+  s.add_runtime_dependency 'json', '~> 1.8.0'
+  s.add_runtime_dependency 'thor', '~> 0.18.1'
+  #we should add fog dependency once we have our pull requests on fog repo are accepted.
+  # Using older version of fog will fail to walk VSE related stuff
+  #s.add_runtime_dependency 'fog', '~> 1.15.0'
 end
