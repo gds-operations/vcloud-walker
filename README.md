@@ -1,21 +1,20 @@
 # VCloud Walker
 
-We used thor to build a command line tool.
+Vcloud-walker is a command line tool, to describe different vcloud entities.
 
-to get list of commands: `bundle exec thor list`
+To find usage, run `bundle exec thor list`.
 
-then you can issue a command such as walk. 
+You can issue following commands 
 
-`bundle exec thor walk:vdcs`
+`bundle exec thor vcloud_walk:catalogs`      # describe all catalogs within given organization
+`bundle exec thor vcloud_walk:edgegateways`  # describe settings within edge gateways
+`bundle exec thor vcloud_walk:networks`      # describe all networks within given organization
+`bundle exec thor vcloud_walk:vdcs`          # describe all vdcs within given organization
 
-`bundle exec thor walk:catalogs`
+You need your credentials for your vmware environment:
 
-`bundle exec thor walk:networks`
-
-`bundle exec thor walk:edgegateways`
-
-you will also need your user details in your environment:
-
-    API_USERNAME
+    API_USERNAME(which is vcloud-user-id@organisation-id)
+    
     API_PASSWORD
-
+    
+The output is in JSON format
