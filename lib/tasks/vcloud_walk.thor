@@ -1,6 +1,6 @@
 require File.expand_path("../../walk/walk.rb", __FILE__)
 
-class Walk < Thor
+class VcloudWalk < Thor
   map "-L" => :list
 
   desc "catalogs", "describe all catalogs within given organization"
@@ -36,4 +36,6 @@ class Walk < Thor
     ENV['API_USERNAME'].split('@').last
   end
 end
+
+
 
