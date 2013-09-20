@@ -1,7 +1,7 @@
 require_relative '../spec_helper'
 require 'rspec/mocks'
 
-describe 'VcloudSession' do
+describe VcloudSession do
   context "session creation" do
 
     it "should throw argument error if username and password are not found" do

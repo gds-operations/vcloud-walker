@@ -7,7 +7,7 @@ class VcloudSession
   def self.instance
     raise ArgumentError.new('API credentials not found !') unless ENV['API_USERNAME'] && ENV['API_PASSWORD']
 
-    @@session ||= Fog::Compute::VcloudDirector.new(
+    Fog::Compute::VcloudDirector.new(
         :vcloud_director_host => API_URL,
         :vcloud_director_username => ENV['API_USERNAME'],
         :vcloud_director_password => ENV['API_PASSWORD'],
