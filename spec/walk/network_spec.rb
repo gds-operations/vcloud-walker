@@ -1,6 +1,5 @@
 require_relative '../spec_helper'
 require 'rspec/mocks'
-require 'fabrication'
 require 'fog'
 
 describe Walk::Networks do
