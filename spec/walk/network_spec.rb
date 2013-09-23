@@ -15,7 +15,7 @@ describe Walk::Networks do
 
     Fog::Compute::VcloudDirector.should_receive(:new).and_return(session)
     mock_fog_network = mock_fog_network_object()
-    org.should_receive(:networks).and_return(mock(:all => [mock_fog_network, mock_fog_network]))
+    org.should_receive(:networks).and_return(double(:all => [mock_fog_network, mock_fog_network]))
 
     networks = Walk::Networks.new('4-3-51-7942a4')
 
@@ -26,7 +26,7 @@ describe Walk::Networks do
   it "should handle having no networks" do
 
     Fog::Compute::VcloudDirector.should_receive(:new).and_return(session)
-    org.should_receive(:networks).and_return(mock(:all => []))
+    org.should_receive(:networks).and_return(double(:all => []))
 
     networks = Walk::Networks.new('4-3-51-7942a4')
 
@@ -40,7 +40,7 @@ describe Walk::Networks do
     mock_fog_network = mock_fog_network_object
     expect(mock_fog_network).to receive(:dns1).and_return('sausage')
 
-    org.should_receive(:networks).and_return(mock(:all => [mock_fog_network]))
+    org.should_receive(:networks).and_return(double(:all => [mock_fog_network]))
 
     networks = Walk::Networks.new('4-3-51-7942a4')
 
