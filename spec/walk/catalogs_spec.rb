@@ -8,7 +8,7 @@ describe Walk::Catalogs do
 
     it "should walk catalogs within given org" do
       Fog::Compute::VcloudDirector.should_receive(:new).with(any_args()).once.and_return(session)
-
+      set_login_credential
       mock_item = double(:catalog_item,
                        :id => "12345",
                        :name => 'ubuntu 11.04',

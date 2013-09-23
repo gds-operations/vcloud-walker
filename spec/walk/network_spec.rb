@@ -7,6 +7,10 @@ describe Walk::Networks do
   let(:organizations) { double(:get_by_name => org) }
   let(:session) { double(:fog_api_session, :organizations => organizations) }
 
+  before(:each) do
+    set_login_credential
+  end
+
   it "should walk all networks within given org" do
 
     Fog::Compute::VcloudDirector.should_receive(:new).and_return(session)
