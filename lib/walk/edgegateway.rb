@@ -14,10 +14,11 @@ module Walk
   end
 
   class EdgeGateway < Entity
-    attr_accessor :id, :configuration
+    attr_accessor :id, :configuration, :name
 
     def initialize edge_gateway
       self.id = edge_gateway.id
+      self.name = edge_gateway.name
       self.configuration = edge_gateway.configuration
     end
 
