@@ -12,7 +12,9 @@ describe Walk::Vdcs do
     it "should summarize vdc within given org" do
       Fog::Compute::VcloudDirector.should_receive(:new).with(any_args()).and_return(api_session)
       organizations.should_receive(:get_by_name).with("4-3-51-7942a4").and_return(org)
-      org.should_receive(:vdcs).and_return(mock_vdcs)
+
+      vdcs = StubCollectionBuilders.vdcs(StubVdc.new.vapps([mock_vapp]).build)
+      org.should_receive(:vdcs).and_return(vdcs)
 
       vdc_summary = Walk::Vdcs.new('4-3-51-7942a4').to_summary
       vdc_summary.should == [
@@ -34,61 +36,44 @@ describe Walk::Vdcs do
            :quotas => {:network => 20, :nic => 0, :vm => 150}, :compute_capacity => {:storage => "200"}}]
     end
 
-  private
-
-  def mock_vdcs
-    vapp = mock_vapp
-    double('Fog::Compute::VcloudDirector::Vdcs', :all => [mock_vdc(vapp)])
-  end
-
-  def mock_vdc(vapp)
-    double(:vdc,
-           :id => 'vdc-1',
-           :description => 'vdc-1-description',
-           :name => 'atomic reactor data centre',
-           :network_quota => 20,
-           :nic_quota => 0,
-           :vm_quota => 150,
-           :compute_capacity => {:storage => '200'},
-           :vapps => double('Fog::Compute::VcloudDirector::Vapps', :all => [vapp]))
-  end
+    private
 
 
-  def mock_vapp
-    double(:vapp,
-         :vms => double('Fog::Compute::VcloudDirector::Vms',
-                      :all => [mock_vm],
-         ),
-         :name => "vapp-atomic-centre",
-         :status => 'on',
-         :description => 'hosts the atomic centre app',
-         :network_config => {
-             network_name: 'Default',
-             is_deployed: true,
-             :description => 'the default vapp network',
-             :Configuration => {},
-             parent_network: 'Default'},
-         :deployed => true,
-         :network_section => {'ovf_name' => 'vdc_default_network'},
+    def mock_vapp
+      double(:vapp,
+             :vms => double('Fog::Compute::VcloudDirector::Vms',
+                            :all => [mock_vm],
+             ),
+             :name => "vapp-atomic-centre",
+             :status => 'on',
+             :description => 'hosts the atomic centre app',
+             :network_config => {
+                 network_name: 'Default',
+                 is_deployed: true,
+                 :description => 'the default vapp network',
+                 :Configuration => {},
+                 parent_network: 'Default'},
+             :deployed => true,
+             :network_section => {'ovf_name' => 'vdc_default_network'},
 
-    )
-  end
+      )
+    end
 
-  def mock_vm
-    double('Fog::Compute::VcloudDirector::Vm',
-         :id => 'vm-1',
-         :status => 'on',
-         :ip_address => '192.100.1.0',
-         :cpu => 4,
-         :memory => 4096,
-         :operating_system => 'Ubuntu Linux (64-bit)',
-         :hard_disks => {"Hard disk 1" => 51200},
-         :network => double(:network,
-                          :network => 'Default',
-                          :mac_address => '00:50:56:01:09:44',
-                          :ip_address_allocation_mode => 'MANUAL'
-         )
-    )
-  end
+    def mock_vm
+      double('Fog::Compute::VcloudDirector::Vm',
+             :id => 'vm-1',
+             :status => 'on',
+             :ip_address => '192.100.1.0',
+             :cpu => 4,
+             :memory => 4096,
+             :operating_system => 'Ubuntu Linux (64-bit)',
+             :hard_disks => {"Hard disk 1" => 51200},
+             :network => double(:network,
+                                :network => 'Default',
+                                :mac_address => '00:50:56:01:09:44',
+                                :ip_address_allocation_mode => 'MANUAL'
+             )
+      )
+    end
   end
 end

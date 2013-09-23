@@ -1,8 +1,10 @@
 specdir=File.dirname(__FILE__)
-require File.join(specdir,'../lib/walk/walk.rb')
+require File.join(specdir, '../lib/walk/walk.rb')
 
 require 'rspec'
 require 'rspec/mocks'
+require_relative 'stubs/stubs.rb'
+
 
 def set_login_credential username = 'some-username', password = 'some-password'
   ENV['API_USERNAME'] = username
