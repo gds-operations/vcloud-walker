@@ -23,6 +23,17 @@ describe Walk::Networks do
   end
 
 
+  it "should be happy with one network" do
+
+    Fog::Compute::VcloudDirector.should_receive(:new).and_return(session)
+    mock_fog_network = mock_fog_network_object()
+    org.should_receive(:networks).and_return(double(:all => [mock_fog_network]))
+
+    networks = Walk::Networks.new('4-3-51-7942a4')
+
+    networks.count.should == 1
+  end
+
   it "should handle having no networks" do
 
     Fog::Compute::VcloudDirector.should_receive(:new).and_return(session)
