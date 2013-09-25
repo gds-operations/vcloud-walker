@@ -1,0 +1,90 @@
+[
+    {
+        "id": "074aea1e-a5e9-4dd1-a028-40db8c98d237",
+        "name": "GDS Networking API Testing (IL0-DEVTEST-BASIC)",
+        "description": "",
+        "vapps": [
+            {
+                "name": "vcloud-walker-contract-testing-vapp",
+                "status": "4",
+                "description": "",
+                "deployed": true,
+                "network_config": [
+                    {
+                        "network_name": "Default",
+                        "is_deployed": "true",
+                        "description": "",
+                        "config": {
+                            "ipscopes": {
+                                "IpScope": {
+                                    "IsInherited": "true",
+                                    "Gateway": "192.168.2.1",
+                                    "Netmask": "255.255.255.240",
+                                    "Dns1": "8.8.8.8",
+                                    "Dns2": "8.8.4.4",
+                                    "DnsSuffix": "tester.default",
+                                    "IsEnabled": "true",
+                                    "IpRanges": {
+                                        "IpRange": {
+                                            "StartAddress": "192.168.2.2",
+                                            "EndAddress": "192.168.2.14"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "parent_network": "Default"
+                    }
+                ],
+                "network_section": {
+                    "ovf_name": "Default",
+                    "ovf:Description": ""
+                },
+                "vms": [
+                    {
+                        "id": "vm-21d44fa7-1443-4027-af1d-e9754d119412",
+                        "status": "on",
+                        "ip_address": "fe80:0:0:0:250:56ff:fe01:ad8",
+                        "cpu": 1,
+                        "memory": 256,
+                        "operating_system": "Ubuntu Linux (64-bit)",
+                        "disks": [
+                            {
+                                "name": "Hard disk 1",
+                                "size": 11265
+                            }
+                        ],
+                        "network": {
+                            "network": "Default",
+                            "mac_address": "00:50:56:01:0a:d8",
+                            "ip_address_allocation_mode": "DHCP"
+                        }
+                    }
+                ]
+            }
+        ],
+        "quotas": {
+            "network": 20,
+            "nic": 0,
+            "vm": 100
+        },
+        "compute_capacity": {
+            "Cpu": {
+                "Units": "MHz",
+                "Allocated": "0",
+                "Limit": "0",
+                "Reserved": "0",
+                "Used": "2000",
+                "Overhead": "0"
+            },
+            "Memory": {
+                "Units": "MB",
+                "Allocated": "0",
+                "Limit": "0",
+                "Reserved": "0",
+                "Used": "256",
+                "Overhead": "21"
+            }
+        }
+    }
+]

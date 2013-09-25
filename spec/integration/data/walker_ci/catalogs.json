@@ -1,0 +1,215 @@
+[
+    {
+        "id": "bf3dc47a-4138-4154-91ba-d0fde3c94f32",
+        "name": "walker-ci",
+        "description": "",
+        "items": [
+            {
+                "id": "13afd303-1a70-4040-a508-e56cf2d1f483",
+                "name": "ubuntu-precise-image-2",
+                "description": "",
+                "vapp_template_id": "vappTemplate-c390e7a9-b8d5-402b-b71f-7cbeea545621"
+            },
+            {
+                "id": "89946d4a-7371-4a00-9775-73569bb62299",
+                "name": "ubuntu-precise-201309091031",
+                "description": "",
+                "vapp_template_id": "vappTemplate-0015359d-07ca-442a-9314-fbb52536cb8a"
+            }
+        ]
+    },
+    {
+        "id": "9999c6c8-52f9-4460-b0ad-219c322b3964",
+        "name": "Windows Templates",
+        "description": "",
+        "items": [
+            {
+                "id": "11760eb3-a4a3-415d-9274-ee195ae2d587",
+                "name": "Windows_2008_R2_STD_50GB_LargeHighMem_v1.0.2",
+                "description": "Public templatePassword \"Windows#1\"\n------------------------------------------------\nSkyscape Windows 2008 R2\nLarge High Memory Machine Size - 8 vCPU 32GB RAM\n50GB HDD\nv1.0.2",
+                "vapp_template_id": "vappTemplate-b01c681b-e66f-46fb-b0ec-aec37fad7d9c"
+            },
+            {
+                "id": "19d115de-1d19-42d7-8abc-57f7f8554086",
+                "name": "Windows_2008_R2_ENT_50GB_Medium_v1.0.2",
+                "description": "Public templatePassword \"Windows#1\"\n------------------------------------------------\nSkyscape Windows 2008 R2\nMedium Machine Size - 4 vCPU 8GB RAM\n50GB HDD\nv1.0.2",
+                "vapp_template_id": "vappTemplate-699c8fbb-8850-4ce2-a361-006c73a5b686"
+            },
+            {
+                "id": "38b641ce-b648-4227-a838-4fb2034b5918",
+                "name": "Windows_2008_R2_STD_50GB_MediumHighMem_v1.0.2",
+                "description": "Public templatePassword \"Windows#1\"\n------------------------------------------------\nSkyscape Windows 2008 R2\nMedium High Memory Machine Size - 4 vCPU 8GB RAM\n50GB HDD\nv1.0.2",
+                "vapp_template_id": "vappTemplate-30348aad-0a01-4a3a-a7f2-079e9fea1073"
+            },
+            {
+                "id": "424cfeec-1f0e-4298-a3a7-6754b09dfb0a",
+                "name": "Windows_2008_R2_ENT_50GB_Small_v1.0.2",
+                "description": "Public templatePassword \"Windows#1\"\n------------------------------------------------\nSkyscape Windows 2008 R2\nSmall Machine Size - 2 vCPU 4GB RAM\n50GB HDD\nv1.0.2",
+                "vapp_template_id": "vappTemplate-9a007f23-8c7c-4d5f-b395-58b9d14a14dc"
+            },
+            {
+                "id": "42c66690-884e-4c18-8432-dbeb280c80e7",
+                "name": "Windows_2008_R2_STD_50GB_Large_v1.0.2",
+                "description": "Public templatePassword \"Windows#1\"\n------------------------------------------------\nSkyscape Windows 2008 R2\nLarge Machine Size - 8 vCPU 16GB RAM\n50GB HDD\nv1.0.2",
+                "vapp_template_id": "vappTemplate-8bdda9d6-536d-4261-b654-87411ceb1147"
+            },
+            {
+                "id": "4735baf4-5401-43e2-8db3-34efbba39769",
+                "name": "Windows_2008_R2_ENT_50GB_MediumHighMem_v1.0.2",
+                "description": "Public templatePassword \"Windows#1\"\n------------------------------------------------\nSkyscape Windows 2008 R2\nMedium High Memory Machine Size - 4 vCPU 16GB RAM\n50GB HDD\nv1.0.2",
+                "vapp_template_id": "vappTemplate-74d6564b-7289-42e6-8610-4ed63b8e03c4"
+            },
+            {
+                "id": "4a897343-f989-4d66-88fb-fcfc74644b7e",
+                "name": "Windows_2008_R2_ENT_50GB_Tiny_v1.0.2",
+                "description": "Public templatePassword \"Windows#1\"\n------------------------------------------------\nSkyscape Windows 2008 R2\nTiny Machine Size - 1 vCPU 2GB RAM\n50GB HDD\nv1.0.2",
+                "vapp_template_id": "vappTemplate-4eee71ff-8ae4-446e-b139-3f1ea9a2836a"
+            },
+            {
+                "id": "90187d62-f8fc-40eb-88dd-5c1c1a9d3f27",
+                "name": "Windows_2008_R2_ENT_50GB_LargeHighMem_v1.0.2",
+                "description": "Public templatePassword \"Windows#1\"\n------------------------------------------------\nSkyscape Windows 2008 R2\nLarge High Memory Machine Size - 8 vCPU 32GB RAM\n50GB HDD\nv1.0.2",
+                "vapp_template_id": "vappTemplate-03eadbca-9da9-48c2-9dd0-32bff6b6b2b2"
+            },
+            {
+                "id": "b23f4068-617e-411e-9557-81412cfc32cd",
+                "name": "Windows_2008_R2_STD_50GB_Medium_v1.0.2",
+                "description": "Public templatePassword \"Windows#1\"\n------------------------------------------------\nSkyscape Windows 2008 R2\nMedium Machine Size - 4 vCPU 8GB RAM\n50GB HDD\nv1.0.2",
+                "vapp_template_id": "vappTemplate-5f4af00e-83b8-4428-9039-08df2be6f2e2"
+            },
+            {
+                "id": "c5a17947-4e64-49a1-a7a9-8885c1337161",
+                "name": "Windows_2008_R2_STD_50GB_Tiny_v1.0.2",
+                "description": "Public templatePassword \"Windows#1\"\n------------------------------------------------\nSkyscape Windows 2008 R2\nTiny Machine Size - 1 vCPU 2GB RAM\n50GB HDD\nv1.0.2",
+                "vapp_template_id": "vappTemplate-f6344a8c-8ae8-4230-b772-df1b56739f83"
+            },
+            {
+                "id": "e2f25b08-e90d-4a32-a99d-001a66e8c097",
+                "name": "Windows_2008_R2_STD_50GB_Small_v1.0.2",
+                "description": "Public templatePassword \"Windows#1\"\n------------------------------------------------\nSkyscape Windows 2008 R2\nSmall Machine Size - 2 vCPU 4GB RAM\n50GB HDD\nv1.0.2",
+                "vapp_template_id": "vappTemplate-2ac30989-308b-4532-b3e8-f4f057c55df9"
+            },
+            {
+                "id": "e9364e88-a619-47b6-b6af-96cfc6a3c313",
+                "name": "Windows_2008_R2_ENT_50GB_Large_v1.0.2",
+                "description": "Public templatePassword \"Windows#1\"\n------------------------------------------------\nSkyscape Windows 2008 R2\nLarge Machine Size - 8 vCPU 16GB RAM\n50GB HDD\nv1.0.2",
+                "vapp_template_id": "vappTemplate-6b1fc4f4-5387-4f23-89a1-8bb2626088df"
+            }
+        ]
+    },
+    {
+        "id": "15f1b59e-5615-4dad-a2d9-1b0e694a544d",
+        "name": "Skyscape Catalogue",
+        "description": "",
+        "items": [
+            {
+                "id": "08c8a43a-a251-44f6-b132-01991718f3f0",
+                "name": "Ubuntu 12.04 Desktop",
+                "description": "",
+                "vapp_template_id": "8a4fa8a5-ee71-485c-8290-29a06e7ec45b"
+            },
+            {
+                "id": "0aee4ee0-b4ce-4de8-8345-9cc71e554628",
+                "name": "Ubuntu 12.04 Server-copy-3582de06-c3db-49bf-bebc-44f74d59d0df",
+                "description": "",
+                "vapp_template_id": "dd263228-4e65-4e1b-9b09-33124f17cec2"
+            },
+            {
+                "id": "3b4edb29-7187-4630-9221-33bac262c41c",
+                "name": "Skyscape_RedHat_6_4_x64_50GB_Medium_HighMem_v1.0.1",
+                "description": "Skyscape RedHat v6.4 x64Medium High Memory Machine Size - 4vCPU 16GB RAM\n50GB HDD\nv1.0.1",
+                "vapp_template_id": "vappTemplate-194c9690-a2a3-459b-bd2e-b41945a0b2e0"
+            },
+            {
+                "id": "47a59292-fa96-4f8b-9070-1cb9811f6323",
+                "name": "Ubuntu 13.04 Desktop",
+                "description": "",
+                "vapp_template_id": "30805a96-c578-49f2-bd78-fee573b4da06"
+            },
+            {
+                "id": "4b28201c-53d6-4e71-92ea-8feda1e50288",
+                "name": "Skyscape_CentOS_6_4_x64_50GB_Medium_v1.0.1",
+                "description": "",
+                "vapp_template_id": "vappTemplate-1eac7ba3-4260-4702-bb52-ec0c3f9e640a"
+            },
+            {
+                "id": "4faa3861-a68f-4181-afd1-840ca9a2a95f",
+                "name": "Skyscape_CentOS_6_4_x64_50GB_Medium_HighMem_v1.0.1",
+                "description": "",
+                "vapp_template_id": "vappTemplate-214f3528-7a45-45e7-b425-e831fa7c6863"
+            },
+            {
+                "id": "4faef4b7-55f7-44fa-853d-87721cafa11c",
+                "name": "Skyscape_CentOS_6_4_x64_50GB_Large_HighMem_v1.0.1",
+                "description": "",
+                "vapp_template_id": "vappTemplate-1f582474-915a-42e7-b211-c8e4a385893b"
+            },
+            {
+                "id": "4fc18fcd-f691-43cb-b263-47a2f68f2faf",
+                "name": "Skyscape_CentOS_6_4_x64_50GB_Small_v1.0.1",
+                "description": "",
+                "vapp_template_id": "vappTemplate-41761f48-5539-44f2-bb6c-79c107c746b9"
+            },
+            {
+                "id": "598b420a-0f98-424c-bbd1-d04262eadb60",
+                "name": "Skyscape_CentOS_6_4_x64_50GB_Tiny_v1.0.1",
+                "description": "",
+                "vapp_template_id": "vappTemplate-207117c3-ee0f-4301-ae3f-0e026481a363"
+            },
+            {
+                "id": "6117c131-2e06-40d3-b2c4-a3f066cf7bad",
+                "name": "RHEL 6.4 Server",
+                "description": "",
+                "vapp_template_id": "141ccf1b-60ac-4dde-9474-d8fb189b5c53"
+            },
+            {
+                "id": "71b6124a-9564-42a6-b721-020122852d91",
+                "name": "Skyscape_RedHat_6_4_x64_50GB_Large_v1.0.1",
+                "description": "Skyscape RedHat v6.4 x64Large Machine Size - 8vCPU 16GB RAM\n50GB HDD\nv1.0.1",
+                "vapp_template_id": "vappTemplate-1139e6ce-e5df-4dc2-969d-c547caf44c23"
+            },
+            {
+                "id": "7ba4c4c3-c0b7-4283-9156-a6bca6854d8b",
+                "name": "Skyscape_CentOS_6_4_x64_50GB_Large_v1.0.1",
+                "description": "",
+                "vapp_template_id": "vappTemplate-2e10a540-1a27-45cf-9abe-264f53e24967"
+            },
+            {
+                "id": "7d82afb8-09b4-47a2-87e9-eba95e27e312",
+                "name": "Ubuntu 13.04 Server-copy-e5575e3c-c86e-44f5-ac59-066bb92ea08f",
+                "description": "",
+                "vapp_template_id": "46a4e637-7f40-44e8-8724-5ac8463ff600"
+            },
+            {
+                "id": "9ac8faac-9fe5-4f5d-9a36-5d1c9058e65c",
+                "name": "Skyscape_RedHat_6_4_x64_50GB_Large_HighMem_v1.0.1",
+                "description": "Skyscape RedHat v6.4 x64Large High Memory Machine Size - 8vCPU 32GB RAM\n50GB HDD\nv1.0.1",
+                "vapp_template_id": "vappTemplate-d5f5202a-1953-498c-b30e-e87a79102d11"
+            },
+            {
+                "id": "a099774f-1910-4b36-8c2f-88a1c9c7106f",
+                "name": "Skyscape_RedHat_6_4_x64_50GB_Tiny_v1.0.1",
+                "description": "Skyscape RedHat v6.4 x64Tiny Machine Size - 1vCPU 2GB RAM\n50GB HDD\nv1.0.1",
+                "vapp_template_id": "vappTemplate-b480cd0b-718c-4929-88a0-ebb4ae266e6e"
+            },
+            {
+                "id": "a54715d4-07e0-40af-990e-2955ae32f989",
+                "name": "Skyscape_RedHat_6_4_x64_50GB_Small_v1.0.1",
+                "description": "Skyscape RedHat v6.4 x64Small Machine Size - 2vCPU 4GB RAM\n50GB HDD\nv1.0.1",
+                "vapp_template_id": "vappTemplate-e566b131-d694-4c47-84db-57ee484447fc"
+            },
+            {
+                "id": "a6738672-5421-4350-a01c-0dec84d7739e",
+                "name": "RHEL 6.3 Server-copy-472deef4-91db-43fc-a534-dc0b84180ec7",
+                "description": "",
+                "vapp_template_id": "2353d4a2-5125-442f-b841-4b7e1a4c187a"
+            },
+            {
+                "id": "e128fd25-472e-46d8-b6b3-b217462c9c6c",
+                "name": "Skyscape_RedHat_6_4_x64_50GB_Medium_v1.0.1",
+                "description": "Skyscape RedHat v6.4 x64Medium Machine Size - 4vCPU 8GB RAM\n50GB HDD\nv1.0.1",
+                "vapp_template_id": "vappTemplate-493c6bd1-8cfe-4fc0-ab1d-e848ebd5f1a3"
+            }
+        ]
+    }
+]
