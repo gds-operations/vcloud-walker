@@ -17,7 +17,10 @@ module Walk
       self.cpu = vm.cpu
       self.memory = vm.memory
       self.operating_system = vm.operating_system
-      self.disks = vm.hard_disks
+      self.disks = vm.hard_disks.collect { |disks_hash|
+        disk = disks_hash.first
+        {:name => disk.first, :size => disk.last}
+      }
       self.network = vm_network(vm.network) if vm.network
     end
 

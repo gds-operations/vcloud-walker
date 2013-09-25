@@ -30,7 +30,7 @@ describe Walk::Vdcs do
                                      :config => {:ipscopes => nil}, :parent_network => nil}],
                 :network_section => {"ovf_name" => "vdc_default_network"},
                 :vms => [{:id => "vm-1", :status => "on", :ip_address => "192.100.1.0", :cpu => 4, :memory => 4096,
-                          :operating_system => "Ubuntu Linux (64-bit)", :disks => {"Hard disk 1" => 51200},
+                          :operating_system => "Ubuntu Linux (64-bit)", :disks => [{:name=>"Hard disk 1", :size=>51200}],
                           :network => {:network => "Default", :mac_address => "00:50:56:01:09:44",
                                        :ip_address_allocation_mode => "MANUAL"}}]}],
            :quotas => {:network => 20, :nic => 0, :vm => 150}, :compute_capacity => {:storage => "200"}}]
@@ -67,7 +67,7 @@ describe Walk::Vdcs do
              :cpu => 4,
              :memory => 4096,
              :operating_system => 'Ubuntu Linux (64-bit)',
-             :hard_disks => {"Hard disk 1" => 51200},
+             :hard_disks => [ {"Hard disk 1" => 51200} ],
              :network => double(:network,
                                 :network => 'Default',
                                 :mac_address => '00:50:56:01:09:44',
