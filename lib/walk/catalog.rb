@@ -1,12 +1,12 @@
 module Walk
   class Catalog < Entity
 
-    attr_accessor :id, :name, :description, :items
+    attr_reader :id, :name, :description, :items
     def initialize(catalog)
-      self.id = catalog.id
-      self.name = catalog.name
-      self.description = catalog.description
-      self.items = CatalogItems.new(catalog.catalog_items.all(false))
+      @id = catalog.id
+      @name = catalog.name
+      @description = catalog.description
+      @items = CatalogItems.new(catalog.catalog_items.all(false))
     end
 
   end

@@ -1,12 +1,12 @@
 module Walk
   class CatalogItem < Entity
-    attr_accessor :id, :name, :description, :vapp_template_id
+    attr_reader :id, :name, :description, :vapp_template_id
 
     def initialize item
-      self.id = item.id
-      self.name = item.name
-      self.description = item.description
-      self.vapp_template_id = item.vapp_template_id
+      @id = item.id
+      @name = item.name
+      @description = item.description
+      @vapp_template_id = item.vapp_template_id
     end
   end
 

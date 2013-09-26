@@ -18,4 +18,5 @@ module Walk
       h
     end
   end
+
 end

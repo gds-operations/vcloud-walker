@@ -8,20 +8,20 @@ module Walk
   end
 
   class Vm < Entity
-    attr_accessor :id, :status, :ip_address, :cpu, :memory, :operating_system, :disks, :network
+    attr_reader :id, :status, :ip_address, :cpu, :memory, :operating_system, :disks, :network
     
     def initialize vm
-      self.id = vm.id
-      self.status = vm.status
-      self.ip_address = vm.ip_address
-      self.cpu = vm.cpu
-      self.memory = vm.memory
-      self.operating_system = vm.operating_system
-      self.disks = vm.hard_disks.collect { |disks_hash|
+      @id = vm.id
+      @status = vm.status
+      @ip_address = vm.ip_address
+      @cpu = vm.cpu
+      @memory = vm.memory
+      @operating_system = vm.operating_system
+      @disks = vm.hard_disks.collect { |disks_hash|
         disk = disks_hash.first
         {:name => disk.first, :size => disk.last}
       }
-      self.network = vm_network(vm.network) if vm.network
+      @network = vm_network(vm.network) if vm.network
     end
 
     def vm_network(vm_network)

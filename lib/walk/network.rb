@@ -13,19 +13,19 @@ module Walk
 
 
   class Network < Entity
-    attr_accessor :id, :name, :description, :is_inherited, :gateway, :netmask, :dns1, :dns2, :dns_suffix, :ip_ranges
+    attr_reader :id, :name, :description, :is_inherited, :gateway, :netmask, :dns1, :dns2, :dns_suffix, :ip_ranges
 
     def initialize org_network
-      self.id = org_network.id
-      self.name = org_network.name
-      self.description = org_network.description
-      self.is_inherited = org_network.is_inherited
-      self.gateway = org_network.gateway
-      self.netmask = org_network.netmask
-      self.dns1 = org_network.dns1
-      self.dns2 = org_network.dns2
-      self.dns_suffix = org_network.dns_suffix
-      self.ip_ranges = org_network.ip_ranges
+      @id = org_network.id
+      @name = org_network.name
+      @description = org_network.description
+      @is_inherited = org_network.is_inherited
+      @gateway = org_network.gateway
+      @netmask = org_network.netmask
+      @dns1 = org_network.dns1
+      @dns2 = org_network.dns2
+      @dns_suffix = org_network.dns_suffix
+      @ip_ranges = org_network.ip_ranges
     end
 
   end
