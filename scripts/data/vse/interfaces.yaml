@@ -1,0 +1,3 @@
+interfaces:
+  walker_ci_network: 'https://api.vcd.portal.skyscapecloud.com/api/network/network/ffa5aa5a-a5a1-4cdb-891f-1a92af7ef550'
+  walker_ci_vse: 'https://api.vcd.portal.skyscapecloud.com/api/admin/network/44265cc3-6d63-4ea9-ac72-4905b5aa65d8'
