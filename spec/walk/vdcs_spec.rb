@@ -32,7 +32,7 @@ describe Walk::Vdcs do
                 :vms => [{:id => "vm-1", :status => "on", :ip_address => "192.100.1.0", :cpu => 4, :memory => 4096,
                           :operating_system => "Ubuntu Linux (64-bit)", :disks => [{:name=>"Hard disk 1", :size=>51200}],
                           :network => {:network => "Default", :mac_address => "00:50:56:01:09:44",
-                                       :ip_address_allocation_mode => "MANUAL"}}]}],
+                                       :ip_address_allocation_mode => "MANUAL", :network_connections => [:connection_1, :connection2 ]}}]}],
            :quotas => {:network => 20, :nic => 0, :vm => 150}, :compute_capacity => {:storage => "200"}}]
     end
 
@@ -71,8 +71,8 @@ describe Walk::Vdcs do
              :network => double(:network,
                                 :network => 'Default',
                                 :mac_address => '00:50:56:01:09:44',
-                                :ip_address_allocation_mode => 'MANUAL'
-             )
+                                :ip_address_allocation_mode => 'MANUAL',
+                                :network_connections => [:connection_1, :connection2 ] )
       )
     end
   end

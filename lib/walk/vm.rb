@@ -27,6 +27,7 @@ module Walk
     def vm_network(vm_network)
       {
           :network => vm_network.network,
+          :network_connections =>  vm_network.network_connections,
           :mac_address => vm_network.mac_address,
           :ip_address_allocation_mode => vm_network.ip_address_allocation_mode
       } if vm_network
