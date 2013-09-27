@@ -7,13 +7,13 @@
             {
                 "name": "vcloud-walker-contract-testing-vapp",
                 "status": "4",
-                "description": "",
+                "description": "this app is sued to run integration tests for vcloud-walker",
                 "deployed": true,
                 "network_config": [
                     {
                         "network_name": "Default",
                         "is_deployed": "true",
-                        "description": "",
+                        "description": "The nat network",
                         "config": {
                             "ipscopes": {
                                 "IpScope": {
@@ -37,14 +37,14 @@
                     }
                 ],
                 "network_section": {
-                    "ovf_name": "Default",
-                    "ovf:Description": ""
+                        "ovf_name": "Default",
+                        "ovf:Description": "The nat network"
                 },
                 "vms": [
                     {
-                        "id": "vm-21d44fa7-1443-4027-af1d-e9754d119412",
+                        "id": "vm-d19d84a5-c950-4497-a638-23eccc4226a5",
                         "status": "on",
-                        "ip_address": "fe80:0:0:0:250:56ff:fe01:ad8",
+                        "ip_address": "192.168.2.2",
                         "cpu": 1,
                         "memory": 256,
                         "operating_system": "Ubuntu Linux (64-bit)",
@@ -56,8 +56,19 @@
                         ],
                         "network": {
                             "network": "Default",
-                            "mac_address": "00:50:56:01:0a:d8",
-                            "ip_address_allocation_mode": "DHCP"
+                            "network_connections": [
+                                {
+                                    "network": "Default",
+                                    "needs_customization": true,
+                                    "network_connection_index": 0,
+                                    "ip_address": "192.168.2.2",
+                                    "is_connected": true,
+                                    "mac_address": "00:50:56:01:0b:1a",
+                                    "ip_address_allocation_mode": "MANUAL"
+                                }
+                            ],
+                            "mac_address": "00:50:56:01:0b:1a",
+                            "ip_address_allocation_mode": "MANUAL"
                         }
                     }
                 ]

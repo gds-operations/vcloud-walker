@@ -11,7 +11,8 @@ end
 
 def create_vapp vdc, network, template
   options = { vdc_id: vdc.id,
-              network_id: network.id }
+              network_id: network.id,
+              :description => 'this app is sued to run integration tests for vcloud-walker'}
   template.instantiate(vdc,'vcloud-walker-contract-testing-vapp', options)
   vapp = vdc.vapps.get_by_name('vcloud-walker-contract-testing-vapp')
   vm = vapp.vms.first
