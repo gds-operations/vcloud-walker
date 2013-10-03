@@ -14,5 +14,9 @@ class VcloudSession
         :vcloud_director_api_version => API_VERSION,
         :connection_options => {:omit_default_port => true, :connect_timeout => TIMEOUT, :read_timeout => TIMEOUT})
   end
+
+  def self.get_vapp vapp_id
+    instance.get_vapp(vapp_id).body
+  end
 end
 

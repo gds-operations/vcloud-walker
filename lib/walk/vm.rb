@@ -1,37 +1,50 @@
 module Walk
   class Vms < Collection
     def initialize vms
-      vms.each do |vdc|
-        self << Walk::Vm.new(vdc)
+      vms = [vms] unless vms.is_a? Array
+      vms.each do |vm|
+        self << Walk::Vm.new(vm)
       end
     end
   end
 
+
   class Vm < Entity
-    attr_reader :id, :status, :ip_address, :cpu, :memory, :operating_system, :disks, :network
-    
+    attr_reader :id, :status, :cpu, :memory, :operating_system, :disks, :primary_network_connection_index
+
     def initialize vm
-      @id = vm.id
-      @status = vm.status
-      @ip_address = vm.ip_address
-      @cpu = vm.cpu
-      @memory = vm.memory
-      @operating_system = vm.operating_system
-      @disks = vm.hard_disks.collect { |disks_hash|
-        disk = disks_hash.first
-        {:name => disk.first, :size => disk.last}
-      }
-      @network = vm_network(vm.network) if vm.network
+      [:id, :status].each do |key|
+        instance_variable_set("@#{key.downcase}", vm[key])
+      end
+      @operating_system = vm[:'ovf:OperatingSystemSection'][:'ovf:Description']
+      @network_connections = vm[:NetworkConnectionSection][:NetworkConnection] if vm[:NetworkConnectionSection]
+      @primary_network_connection_index = vm[:NetworkConnectionSection][:PrimaryNetworkConnectionIndex]
+      extract_compute_capacity vm[:'ovf:VirtualHardwareSection'][:'ovf:Item']
     end
 
-    def vm_network(vm_network)
-      {
-          :network => vm_network.network,
-          :network_connections =>  vm_network.network_connections,
-          :mac_address => vm_network.mac_address,
-          :ip_address_allocation_mode => vm_network.ip_address_allocation_mode
-      } if vm_network
+    private
+
+    def extract_compute_capacity ovf_resources
+      %w(cpu memory disks).each { |resource| send("extract_#{resource}", ovf_resources) } unless ovf_resources.empty?
+
+    end
+
+    def extract_cpu(resources)
+      @cpu = resources.detect { |element| element[:'rasd:Description']=='Number of Virtual CPUs' }[:'rasd:ElementName']
+    end
+
+    def extract_memory(resources)
+      @memory = resources.detect { |element| element[:'rasd:Description']=='Memory Size' }[:'rasd:ElementName']
+    end
+
+    def extract_disks(resources)
+      disk_resources = resources.select { |element| element[:'rasd:Description']=='Hard disk' }
+
+      @disks = disk_resources.collect do |d|
+        {:name => d[:'rasd:ElementName'], :size => d[:'rasd:HostResource'][:'ns12_capacity'].to_i}
+      end
     end
 
   end
 end
+

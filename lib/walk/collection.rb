@@ -5,5 +5,6 @@ module Walk
          element.to_summary
       end
     end
+
   end
 end

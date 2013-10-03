@@ -10,9 +10,8 @@ describe Walk::Vdcs do
 
       vdc_summaries.count.should == 1
       vdc_summary = vdc_summaries.first
-
       expected_summary = Data.Load('walker_ci', 'vdcs').first
-      %w(:vapps :quotas :name :id :description).each do |k|
+      [:vapps, :quotas, :name, :id, :description].each do |k|
         vdc_summary[k].should == expected_summary[k]
       end
 
