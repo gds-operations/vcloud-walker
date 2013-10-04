@@ -2,14 +2,14 @@ module Walk
   class VApp < Entity
     attr_reader :id, :name, :status, :description, :network_config, :vms, :deployed, :network_section
 
-    def initialize vapp
+    def initialize fog_vapp
       [:name, :status, :deployed, :id, :Description].each do |key|
-        instance_variable_set("@#{key.downcase}", vapp[key])
+        instance_variable_set("@#{key.downcase}", fog_vapp[key])
       end
 
-      @network_config = extract_network_config(vapp[:NetworkConfigSection][:NetworkConfig])
-      @network_section = vapp[:'ovf:NetworkSection'][:'ovf:Network']
-      @vms = Walk::Vms.new(vapp[:Children][:Vm])
+      @network_config = extract_network_config(fog_vapp[:NetworkConfigSection][:NetworkConfig])
+      @network_section = fog_vapp[:'ovf:NetworkSection'][:'ovf:Network']
+      @vms = Walk::Vms.new(fog_vapp[:Children][:Vm])
 
     end
 
@@ -34,7 +34,7 @@ module Walk
   class VApps < Collection
     def initialize ids
       ids.each do |vapp_id|
-        vapp = VcloudSession.get_vapp(vapp_id)
+        vapp = FogInterface.get_vapp(vapp_id)
         self << Walk::VApp.new(vapp)
       end
     end

@@ -1,23 +1,24 @@
 module Walk
   class Catalog < Entity
-
     attr_reader :id, :name, :description, :items
-    def initialize(catalog)
-      @id = catalog.id
-      @name = catalog.name
-      @description = catalog.description
-      @items = CatalogItems.new(catalog.catalog_items.all(false))
+
+    def initialize(fog_catalog)
+      @id = fog_catalog.id
+      @name = fog_catalog.name
+      @description = fog_catalog.description
+      @items = CatalogItems.new(fog_catalog.catalog_items.all(false))
     end
 
   end
 
   class Catalogs < Collection
-    def initialize organisation_id
-      org = Organization.get_by_id(organisation_id)
-      org.catalogs.all(false).each do |catalog|
+
+    def initialize fog_catalogs
+      fog_catalogs.each do |catalog|
         self << Walk::Catalog.new(catalog)
       end
     end
+
   end
 
 end

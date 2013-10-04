@@ -3,63 +3,51 @@ require 'rspec/mocks'
 require 'fog'
 
 describe Walk::Networks do
-  let(:org) { double(:fog_org, :id => '4-3-51-7942a4') }
-  let(:organizations) { double(:get_by_name => org) }
-  let(:session) { double(:fog_api_session, :organizations => organizations) }
 
-  before(:each) do
-    set_login_credential
-  end
+  context "Summary" do
+    before(:each) do
+      set_login_credential
+    end
 
-  it "should walk all networks within given org" do
+    it "should walk all networks within given org" do
 
-    Fog::Compute::VcloudDirector.should_receive(:new).and_return(session)
-    mock_fog_network = mock_fog_network_object()
-    org.should_receive(:networks).and_return(double(:all => [mock_fog_network, mock_fog_network]))
+      mock_fog_network = mock_fog_network_object()
 
-    networks = Walk::Networks.new('4-3-51-7942a4')
+      networks = Walk::Networks.new([mock_fog_network, mock_fog_network])
 
-    networks.count.should == 2
-  end
+      networks.count.should == 2
+    end
 
 
-  it "should be happy with one network" do
+    it "should be happy with one network" do
 
-    Fog::Compute::VcloudDirector.should_receive(:new).and_return(session)
-    mock_fog_network = mock_fog_network_object()
-    org.should_receive(:networks).and_return(double(:all => [mock_fog_network]))
+      mock_fog_network = mock_fog_network_object()
 
-    networks = Walk::Networks.new('4-3-51-7942a4')
+      networks = Walk::Networks.new([mock_fog_network])
 
-    networks.count.should == 1
-  end
+      networks.count.should == 1
+    end
 
-  it "should handle having no networks" do
+    it "should handle having no networks" do
+      networks = Walk::Networks.new([])
 
-    Fog::Compute::VcloudDirector.should_receive(:new).and_return(session)
-    org.should_receive(:networks).and_return(double(:all => []))
-
-    networks = Walk::Networks.new('4-3-51-7942a4')
-
-    networks.count.should == 0
-  end
+      networks.count.should == 0
+    end
 
 
-  it "should map parameters of a network to the local entity" do
-    Fog::Compute::VcloudDirector.should_receive(:new).and_return(session)
+    it "should map parameters of a network to the local entity" do
+      mock_fog_network = mock_fog_network_object
+      expect(mock_fog_network).to receive(:dns1).and_return('sausage')
 
-    mock_fog_network = mock_fog_network_object
-    expect(mock_fog_network).to receive(:dns1).and_return('sausage')
+      networks = Walk::Networks.new([mock_fog_network])
 
-    org.should_receive(:networks).and_return(double(:all => [mock_fog_network]))
+      networks.count.should == 1
+      networks.first.id.should == :network_id_1
+      networks.first.name.should == :name
+      networks.first.dns_suffix == :dns_suffix
+      networks.first.dns1 == 'sausage'
 
-    networks = Walk::Networks.new('4-3-51-7942a4')
-
-    networks.count.should == 1
-    networks.first.id.should == :network_id_1
-    networks.first.name.should == :name
-    networks.first.dns_suffix == :dns_suffix
-    networks.first.dns1 == 'sausage'
+    end
 
   end
 
