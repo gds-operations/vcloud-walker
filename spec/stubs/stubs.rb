@@ -32,8 +32,8 @@ class StubVdc
                                  :vm_quota => 150,
                                  :compute_capacity => {:storage => '200'}
     )
-    vdc.stub(:edgeGateways).and_return(Fog::MockCollection.new(@edge_gateways))
-    vdc.stub(:vapps).and_return(Fog::MockCollection.new(@vapps))
+    vdc.stub(:edgeGateways).and_return( @edge_gateways )
+    vdc.stub(:vapps).and_return( @vapps)
     vdc
   end
 end
@@ -41,23 +41,6 @@ end
 
 class StubCollectionBuilders
   def self.vdcs(vdc)
-    RSpec::Mocks::Mock.new('Fog::Compute::VcloudDirector::Vdcs', :all => [vdc])
+   [vdc]
   end
 end
-
-module Fog
-  class MockCollection
-    def initialize collection
-      @collection = collection
-    end
-
-    def all lazy_load
-      @collection
-    end
-
-    def map &blk
-      @collection.map(&blk)
-    end
-  end
-end
-
