@@ -2,9 +2,8 @@ module Walk
 
   class Networks < Walk::Collection
 
-    def initialize(organisation_id)
-      org = Organization.get_by_id(organisation_id)
-      org.networks.all(false).each do |org_network|
+    def initialize fog_networks
+      fog_networks.each do |org_network|
         self << Walk::Network.new(org_network)
       end
     end

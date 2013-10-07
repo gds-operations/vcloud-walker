@@ -6,7 +6,7 @@ describe Walk::Vdcs do
   context 'walk an organization' do
 
     it 'should describe vdcs' do
-      vdc_summaries = Walk::Vdcs.new('4-3-51-7942a4').to_summary
+      vdc_summaries = VcloudWalk.new.vdcs
 
       vdc_summaries.count.should == 1
       vdc_summary = vdc_summaries.first
@@ -20,12 +20,12 @@ describe Walk::Vdcs do
     end
 
     it "should describe networks" do
-      network_summary = Walk::Networks.new('4-3-51-7942a4').to_summary
+      network_summary = VcloudWalk.new.networks
       network_summary.should == Data.Load('walker_ci', 'networks')
     end
 
     it "should describe catalogs" do
-      catalog_summary = Walk::Catalogs.new('4-3-51-7942a4').to_summary
+      catalog_summary = VcloudWalk.new.catalogs
 
       expected_catalog_summary = Data.Load('walker_ci', 'catalogs')
 

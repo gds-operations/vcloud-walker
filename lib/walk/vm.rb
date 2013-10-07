@@ -1,8 +1,8 @@
 module Walk
   class Vms < Collection
-    def initialize vms
-      vms = [vms] unless vms.is_a? Array
-      vms.each do |vm|
+    def initialize fog_vams
+      fog_vams = [fog_vams] unless fog_vams.is_a? Array
+      fog_vams.each do |vm|
         self << Walk::Vm.new(vm)
       end
     end
@@ -12,14 +12,14 @@ module Walk
   class Vm < Entity
     attr_reader :id, :status, :cpu, :memory, :operating_system, :disks, :primary_network_connection_index
 
-    def initialize vm
+    def initialize fog_vm
       [:id, :status].each do |key|
-        instance_variable_set("@#{key.downcase}", vm[key])
+        instance_variable_set("@#{key.downcase}", fog_vm[key])
       end
-      @operating_system = vm[:'ovf:OperatingSystemSection'][:'ovf:Description']
-      @network_connections = vm[:NetworkConnectionSection][:NetworkConnection] if vm[:NetworkConnectionSection]
-      @primary_network_connection_index = vm[:NetworkConnectionSection][:PrimaryNetworkConnectionIndex]
-      extract_compute_capacity vm[:'ovf:VirtualHardwareSection'][:'ovf:Item']
+      @operating_system = fog_vm[:'ovf:OperatingSystemSection'][:'ovf:Description']
+      @network_connections = fog_vm[:NetworkConnectionSection][:NetworkConnection] if fog_vm[:NetworkConnectionSection]
+      @primary_network_connection_index = fog_vm[:NetworkConnectionSection][:PrimaryNetworkConnectionIndex]
+      extract_compute_capacity fog_vm[:'ovf:VirtualHardwareSection'][:'ovf:Item']
     end
 
     private
