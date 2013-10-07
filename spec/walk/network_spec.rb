@@ -11,7 +11,7 @@ describe Walk::Networks do
 
     it "should walk all networks within given org" do
 
-      mock_fog_network = mock_fog_network_object()
+      mock_fog_network = mock_fog_network_object
 
       networks = Walk::Networks.new([mock_fog_network, mock_fog_network])
 
@@ -21,7 +21,7 @@ describe Walk::Networks do
 
     it "should be happy with one network" do
 
-      mock_fog_network = mock_fog_network_object()
+      mock_fog_network = mock_fog_network_object
 
       networks = Walk::Networks.new([mock_fog_network])
 
