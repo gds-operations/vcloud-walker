@@ -5,8 +5,8 @@ class ConfigureWalkerCiVse < Thor
   map "-L" => :list
 
   API_URL = 'https://api.vcd.portal.skyscapecloud.com/api'
-  WALKER_ORG_ID = '4-3-51-7942a4'
-  EDGE_GATEWAY_UUID = 'c1b44ae3-7858-4c54-8fcd-fdc913d8314e'
+  WALKER_ORG_ID = '4-3-59-7cb276'
+  EDGE_GATEWAY_UUID = '27805d5d-868b-4678-b30b-11e14ad34eca'
 
   desc 'configures the walker CI VSE', 'configures lb, nat and firewall rules'
 

@@ -1,6 +1,6 @@
 firewall do
   EXTERNAL_IPS = %w(80.194.77.90)
-  LOAD_BALANCER_IP = '37.26.89.188'
+  LOAD_BALANCER_IP = '37.26.90.83'
 
   #opening ssh access from aviation housee
   EXTERNAL_IPS.each do |ip|
