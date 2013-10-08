@@ -1,15 +1,15 @@
 [
     {
-        "id": "074aea1e-a5e9-4dd1-a028-40db8c98d237",
-        "name": "GDS Networking API Testing (IL0-DEVTEST-BASIC)",
-        "description": "",
+        "id": "67ad90fc-4ebe-4e2c-b131-6abab8087b8d",
+        "name": "vCloud CI (IL2-DEVTEST-BASIC)",
+        "description": "vCloud CI (IL2-DEVTEST-BASIC)",
         "vapps": [
             {
-                "id": "urn:vcloud:vapp:e6db5703-0f33-4c65-8e1f-f54ae0ff2864",
                 "name": "vcloud-walker-contract-testing-vapp",
                 "status": "4",
-                "description": "this app is sued to run integration tests for vcloud-walker",
                 "deployed": "true",
+                "id": "urn:vcloud:vapp:d353a9a8-e2a9-4507-8656-ebf498a5931f",
+                "description": "this app is used to run integration tests for vcloud-walker",
                 "network_config": [
                     {
                         "network_name": "Default",
@@ -18,23 +18,23 @@
                         "config": {
                             "ipscopes": {
                                 "IpScope": {
-                                    "IsInherited": "true",
-                                    "Gateway": "192.168.2.1",
-                                    "Netmask": "255.255.255.240",
-                                    "Dns1": "8.8.8.8",
-                                    "Dns2": "8.8.4.4",
-                                    "DnsSuffix": "tester.default",
+                                    "IsInherited": "false",
+                                    "Gateway": "192.168.254.1",
+                                    "Netmask": "255.255.255.0",
                                     "IsEnabled": "true",
                                     "IpRanges": {
                                         "IpRange": {
-                                            "StartAddress": "192.168.2.2",
-                                            "EndAddress": "192.168.2.14"
+                                            "StartAddress": "192.168.254.100",
+                                            "EndAddress": "192.168.254.199"
                                         }
+                                    },
+                                    "AllocatedIpAddresses": {
+                                        "IpAddress": "192.168.254.100"
                                     }
                                 }
                             }
                         },
-                        "parent_network": "Default"
+                        "parent_network": null
                     }
                 ],
                 "network_section": {
@@ -43,16 +43,16 @@
                 },
                 "vms": [
                     {
-                        "id": "urn:vcloud:vm:d19d84a5-c950-4497-a638-23eccc4226a5",
+                        "id": "urn:vcloud:vm:c31ecfcf-5cb0-417c-958c-0d0180cf7e2a",
                         "status": "4",
                         "operating_system": "Ubuntu Linux (64-bit)",
                         "network_connections": {
                             "network": "Default",
                             "needsCustomization": "true",
                             "NetworkConnectionIndex": "0",
-                            "IpAddress": "192.168.2.2",
+                            "IpAddress": "192.168.254.100",
                             "IsConnected": "true",
-                            "MACAddress": "00:50:56:01:0b:1a",
+                            "MACAddress": "00:50:56:01:0c:30",
                             "IpAddressAllocationMode": "MANUAL"
                         },
                         "primary_network_connection_index": "0",
@@ -71,7 +71,7 @@
         "quotas": {
             "network": 20,
             "nic": 0,
-            "vm": 100
+            "vm": 0
         },
         "compute_capacity": {
             "Cpu": {
