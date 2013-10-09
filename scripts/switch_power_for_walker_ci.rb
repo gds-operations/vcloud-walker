@@ -8,8 +8,8 @@ end
 
 power_mode = ARGV[0]
 
-org = Walk::Organization.get_by_id('4-3-51-7942a4')
-vdc = org.vdcs.get_by_name('GDS Networking API Testing (IL0-DEVTEST-BASIC)')
+org = Walk::Organization.get_by_id('4-3-59-7cb276')
+vdc = org.vdcs.get_by_name('vCloud CI (IL2-DEVTEST-BASIC)')
 vapp = vdc.vapps.get_by_name 'vcloud-walker-contract-testing-vapp'
 response = vapp.send("power_#{power_mode}")
 
