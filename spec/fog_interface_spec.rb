@@ -8,7 +8,7 @@ describe FogInterface do
     let(:session) { double(:fog_session, :org_name => 'org-123', :organizations => organizations) }
 
     before(:each) do
-      VcloudSession.should_receive(:instance).with(any_args()).and_return(session)
+      VcloudSession.should_receive(:instance).with(any_args()).at_least(:once).and_return(session)
       organizations.should_receive(:get_by_name).and_return(org)
     end
 
@@ -41,18 +41,53 @@ describe FogInterface do
       vdcs.should == mock_vdcs
     end
 
-    it "should get edge gateways for given org id" do
-      mock_gateways_for_vdc1 = [double(:gateway1), double(:gateway2)]
-      mock_vdc1 = double(:vdc, :edgeGateways => double(:gateways, :all => mock_gateways_for_vdc1))
+    it "should get edge gateways for given org" do
+      mock_vdc1 = double(:vdc, :id => 1)
+      vdc_1_search_result = double('Excon::Response', :body => {:EdgeGatewayRecord => {:href => '/sausage'}})
 
-      mock_gateways_for_vdc2 = [double(:gateway3)]
-      mock_vdc2 = double(:vdc, :edgeGateways => double(:gateways, :all => mock_gateways_for_vdc2))
+      org.should_receive(:vdcs).and_return(double(:vdcs, :all => [ mock_vdc1 ]))
+      session.should_receive(:get_edge_gateways).with(1).and_return(vdc_1_search_result)
+      session.should_receive(:get_edge_gateway).with('sausage').and_return(double(:eg, :body => :eg1))
+
+      edge_gateways = FogInterface.get_edge_gateways
+
+      edge_gateways.count.should == 1
+      edge_gateways.should == [:eg1]
+    end
+
+    it "should get edge gateways for given org with complex set up of 2 vdcs and 3 edge gateways" do
+      mock_vdc1 = double(:vdc, :id => 1)
+      vdc_1_search_result = double('Excon::Response', :body => {:EdgeGatewayRecord => {:href => '/sausage'}})
+      mock_vdc2 = double(:vdc, :id => 2)
+      vdc_2_search_result = double('Excon::Response', :body => {:EdgeGatewayRecord => [{:href => '/beans'}, {:href => '/hashbrown'}]})
+
       org.should_receive(:vdcs).and_return(double(:vdcs, :all => [ mock_vdc1, mock_vdc2 ]))
+
+      session.should_receive(:get_edge_gateways).with(1).and_return(vdc_1_search_result)
+      session.should_receive(:get_edge_gateways).with(2).and_return(vdc_2_search_result)
+      session.should_receive(:get_edge_gateway).with('sausage').and_return(double(:eg, :body => :eg1))
+      session.should_receive(:get_edge_gateway).with('beans').and_return(double(:eg, :body => :eg2))
+      session.should_receive(:get_edge_gateway).with('hashbrown').and_return(double(:eg, :body => :eg3))
 
       edge_gateways = FogInterface.get_edge_gateways
 
       edge_gateways.count.should == 3
-      edge_gateways.should == mock_gateways_for_vdc1 + mock_gateways_for_vdc2
+      edge_gateways.should == [:eg1, :eg2, :eg3]
     end
+
+    it "get_edge_gateways should be happy if there are no edge gateways" do
+      mock_vdc1 = double(:vdc, :id => 1)
+
+      # no edge gateways means no entries to find in the results, just some other noise
+      vdc_1_search_result = double('Excon::Response', :body => {:Link => {:href => 's'}})
+
+      org.should_receive(:vdcs).and_return(double(:vdcs, :all => [ mock_vdc1 ]))
+      session.should_receive(:get_edge_gateways).with(1).and_return(vdc_1_search_result)
+
+      edge_gateways = FogInterface.get_edge_gateways
+
+      edge_gateways.count.should == 0
+    end
+
   end
 end
