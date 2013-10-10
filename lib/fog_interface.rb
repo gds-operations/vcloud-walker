@@ -15,11 +15,18 @@ class FogInterface
     org.networks.all(false)
   end
 
+  # we use the request here as we don't yet have a model for Edge Gateways
   def self.get_edge_gateways
-    org = get_org
-    org.vdcs.all(false).collect do |vdc|
-      vdc.edgeGateways.all(false)
-    end.flatten
+    session = VcloudSession.instance
+    get_vdcs.collect do |vdc|
+      data = session.get_edge_gateways(vdc.id).body
+      if data[:EdgeGatewayRecord]
+        edge_gateways = data[:EdgeGatewayRecord].is_a?(Hash) ? [data[:EdgeGatewayRecord]] : data[:EdgeGatewayRecord]
+        edge_gateways.map do |edgeGateway|
+         session.get_edge_gateway(edgeGateway[:href].split('/').last).body
+        end
+      end
+    end.flatten.compact
   end
 
   # service-layer

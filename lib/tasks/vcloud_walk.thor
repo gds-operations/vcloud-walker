@@ -24,7 +24,7 @@ class VcloudWalk < Thor
   desc "edgegateways", "describe settings within edge gateways"
   def edgegateways
     fog_gateways = FogInterface.get_edge_gateways
-    print_json ::Walk::EdgeGateways.new(fog_gateways).to_summary
+    print_json fog_gateways
   end
 
   private
