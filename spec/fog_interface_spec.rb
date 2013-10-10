@@ -43,10 +43,10 @@ describe FogInterface do
 
     it "should get edge gateways for given org" do
       mock_vdc1 = double(:vdc, :id => 1)
-      vdc_1_search_result = double('Excon::Response', :body => {:EdgeGatewayRecord => {:href => '/sausage'}})
+      get_edge_gateway_result = double('Excon::Response', :body => {:EdgeGatewayRecord => {:href => '/sausage'}})
 
       org.should_receive(:vdcs).and_return(double(:vdcs, :all => [ mock_vdc1 ]))
-      session.should_receive(:get_edge_gateways).with(1).and_return(vdc_1_search_result)
+      session.should_receive(:get_edge_gateways).with(1).and_return(get_edge_gateway_result)
       session.should_receive(:get_edge_gateway).with('sausage').and_return(double(:eg, :body => :eg1))
 
       edge_gateways = FogInterface.get_edge_gateways
@@ -57,14 +57,14 @@ describe FogInterface do
 
     it "should get edge gateways for given org with complex set up of 2 vdcs and 3 edge gateways" do
       mock_vdc1 = double(:vdc, :id => 1)
-      vdc_1_search_result = double('Excon::Response', :body => {:EdgeGatewayRecord => {:href => '/sausage'}})
+      get_edge_gateway_vdc_1_result = double('Excon::Response', :body => {:EdgeGatewayRecord => {:href => '/sausage'}})
       mock_vdc2 = double(:vdc, :id => 2)
-      vdc_2_search_result = double('Excon::Response', :body => {:EdgeGatewayRecord => [{:href => '/beans'}, {:href => '/hashbrown'}]})
+      get_edge_gateway_vdc_2_result = double('Excon::Response', :body => {:EdgeGatewayRecord => [{:href => '/beans'}, {:href => '/hashbrown'}]})
 
       org.should_receive(:vdcs).and_return(double(:vdcs, :all => [ mock_vdc1, mock_vdc2 ]))
 
-      session.should_receive(:get_edge_gateways).with(1).and_return(vdc_1_search_result)
-      session.should_receive(:get_edge_gateways).with(2).and_return(vdc_2_search_result)
+      session.should_receive(:get_edge_gateways).with(1).and_return(get_edge_gateway_vdc_1_result)
+      session.should_receive(:get_edge_gateways).with(2).and_return(get_edge_gateway_vdc_2_result)
       session.should_receive(:get_edge_gateway).with('sausage').and_return(double(:eg, :body => :eg1))
       session.should_receive(:get_edge_gateway).with('beans').and_return(double(:eg, :body => :eg2))
       session.should_receive(:get_edge_gateway).with('hashbrown').and_return(double(:eg, :body => :eg3))
