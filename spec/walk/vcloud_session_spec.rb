@@ -18,9 +18,7 @@ describe VcloudSession do
       Fog::Compute::VcloudDirector.should_receive(:new)
                                   .with(:vcloud_director_host => 'api.vcd.portal.skyscapecloud.com',
                                         :vcloud_director_username => 'correct-user',
-                                        :vcloud_director_password => 'correct-password',
-                                        :vcloud_director_api_version => '5.1',
-                                        :connection_options => {:omit_default_port => true, :connect_timeout => 200, :read_timeout => 200})
+                                        :vcloud_director_password => 'correct-password')
                                   .and_return(mock_session)
 
       VcloudSession.instance.should == mock_session
