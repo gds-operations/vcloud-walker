@@ -4,3 +4,4 @@ vendor/
 .idea/
 out/
 pkg/
+fog_integration_test.config
