@@ -11,10 +11,7 @@ You can issue following commands
 `bundle exec thor vcloud_walk:networks`      # describe all networks within given organization
 `bundle exec thor vcloud_walk:vdcs`          # describe all vdcs within given organization
 
-You need your credentials for your vmware environment:
+You will need credentials for your vmware environment. Vcloud-walker internally uses fog to query vmware api.
+You need to create .fog.To understand how to write .fog file, check 'Credentials' section here => http://fog.io/about/getting_started.html.
 
-    API_USERNAME(which is vcloud-user-id@organisation-id)
-    
-    API_PASSWORD
-    
 The output is in JSON format
