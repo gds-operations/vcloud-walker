@@ -2,15 +2,30 @@
 
 Vcloud-walker is a command line tool, to describe different vcloud entities.
 
-### Usage
+## Usage
 To find usage, run `bundle exec thor list`.
 
-You can issue following commands 
+You can perform following operations with walker.
 
-`bundle exec thor vcloud_walk:catalogs`      # describe all catalogs within given organization
-`bundle exec thor vcloud_walk:edgegateways`  # describe settings within edge gateways
-`bundle exec thor vcloud_walk:networks`      # describe all networks within given organization
-`bundle exec thor vcloud_walk:vdcs`          # describe all vdcs within given organization
+#### Walk vdcs :
+<pre>`bundle exec thor vcloud_walk:vdcs` </pre>         
+describes all vdcs within given organization. This include vapp, vm and network information
+<br/><br/>
+
+#### Walk catalogs:
+<pre> `bundle exec thor vcloud_walk:catalogs` </pre>     
+describes all catalogs and catalog items within given organization.
+
+  
+#### Walk organization networks : 
+<pre> `bundle exec thor vcloud_walk:networks` </pre>      
+ describes all organization networks
+
+
+#### Walk edgegateways :
+ <pre> `bundle exec thor vcloud_walk:edgegateways` </pre>   
+describes all edgegateway for given organization. Each edgegateway includes configuration for firewall, load balancer and nat services.
+
 
 ### Credentials
 
@@ -28,6 +43,6 @@ default:
   
 ### Output
 
-The output is in JSON format.
+The output is in JSON format. Find sample output look into docs/examples directory. 
 
 
