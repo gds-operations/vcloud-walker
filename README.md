@@ -15,18 +15,17 @@ describes all vdcs within given organization. This include vapp, vm and network 
 #### Walk catalogs:
 <pre> `bundle exec thor vcloud_walk:catalogs` </pre>     
 describes all catalogs and catalog items within given organization.
+<br/><br/>
 
-  
 #### Walk organization networks : 
 <pre> `bundle exec thor vcloud_walk:networks` </pre>      
- describes all organization networks
-
+describes all organization networks
+<br/><br/>
 
 #### Walk edgegateways :
- <pre> `bundle exec thor vcloud_walk:edgegateways` </pre>   
+<pre> `bundle exec thor vcloud_walk:edgegateways` </pre>   
 describes all edgegateway for given organization. Each edgegateway includes configuration for firewall, load balancer and nat services.
-
-
+<br/><br/>
 ### Credentials
 
 You will need credentials for your vmware environment. Vcloud-walker internally uses fog to query vmware api.
@@ -39,7 +38,7 @@ default:
   vcloud_director_password: 'password'
   vcloud_director_host: 'api-endpoint'
 </pre>  
-  
+<br/> 
   
 ### Output
 
