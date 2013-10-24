@@ -34,9 +34,9 @@ You need to create .fog.To understand how to write .fog file, check 'Credentials
 An example of .fog file is:
 <pre>
 default:
-  vcloud_director_username: 'user-id@org-id'
+  vcloud_director_username: 'user_id@org_id'
   vcloud_director_password: 'password'
-  vcloud_director_host: 'api-endpoint'
+  vcloud_director_host: 'api_endpoint'
 </pre>  
 <br/> 
   
