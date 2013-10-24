@@ -1,0 +1,40 @@
+[
+    {
+        "id": "bf3dc47a-4138-4154-91ba-d0fde3c94f32",
+        "name": "walker-ci",
+        "description": "",
+        "items": [
+            {
+                "id": "13afd303-1a70-4040-a508-e56cf2d1f483",
+                "name": "ubuntu-precise-image-2",
+                "description": "",
+                "vapp_template_id": "vappTemplate-c390e7a9-b8d5-402b-b71f-7cbeea545621"
+            },
+            {
+                "id": "89946d4a-7371-4a00-9775-73569bb62299",
+                "name": "ubuntu-precise-201309091031",
+                "description": "",
+                "vapp_template_id": "vappTemplate-0015359d-07ca-442a-9314-fbb52536cb8a"
+            }
+        ]
+    },
+    {
+        "id": "9999c6c8-52f9-4460-b0ad-219c322b3964",
+        "name": "Windows Templates",
+        "description": "",
+        "items": [
+            {
+                "id": "11760eb3-a4a3-415d-9274-ee195ae2d587",
+                "name": "Windows_2008_R2_STD_50GB_LargeHighMem_v1.0.2",
+                "description": "Public templatePassword \"Windows#1\"\n------------------------------------------------\nSkyscape Windows 2008 R2\nLarge High Memory Machine Size - 8 vCPU 32GB RAM\n50GB HDD\nv1.0.2",
+                "vapp_template_id": "vappTemplate-b01c681b-e66f-46fb-b0ec-aec37fad7d9c"
+            },
+            {
+                "id": "19d115de-1d19-42d7-8abc-57f7f8554086",
+                "name": "Windows_2008_R2_ENT_50GB_Medium_v1.0.2",
+                "description": "Public templatePassword \"Windows#1\"\n------------------------------------------------\nSkyscape Windows 2008 R2\nMedium Machine Size - 4 vCPU 8GB RAM\n50GB HDD\nv1.0.2",
+                "vapp_template_id": "vappTemplate-699c8fbb-8850-4ce2-a361-006c73a5b686"
+            }
+        ]
+    }
+]

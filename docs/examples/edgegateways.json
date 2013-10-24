@@ -1,0 +1,285 @@
+[
+    {
+        "xmlns": "http://www.vmware.com/vcloud/v1.5",
+        "xmlns_xsi": "http://www.w3.org/2001/XMLSchema-instance",
+        "status": "1",
+        "name": "Test Edgegateway",
+        "id": "urn:vcloud:gateway:c1b44ae3-7858-4c54-8fcd-fdc913d8314e",
+        "type": "application/vnd.vmware.admin.edgeGateway+xml",
+        "href": "https://api.vcd.portal.skyscapecloud.com/api/admin/edgeGateway/c1b44ae3-7858-4c54-8fcd-fdc913d8314e",
+        "xsi_schemaLocation": "http://www.vmware.com/vcloud/v1.5 http://api.vcd.portal.skyscapecloud.com/api/v1.5/schema/master.xsd",
+        "Link": [
+            {
+                "rel": "up",
+                "type": "application/vnd.vmware.vcloud.vdc+xml",
+                "href": "https://api.vcd.portal.skyscapecloud.com/api/vdc/074aea1e-a5e9-4dd1-a028-40db8c98d237"
+            },
+            {
+                "rel": "edgeGateway:redeploy",
+                "href": "https://api.vcd.portal.skyscapecloud.com/api/admin/edgeGateway/c1b44ae3-7858-4c54-8fcd-fdc913d8314e/action/redeploy"
+            },
+            {
+                "rel": "edgeGateway:configureServices",
+                "type": "application/vnd.vmware.admin.edgeGatewayServiceConfiguration+xml",
+                "href": "https://api.vcd.portal.skyscapecloud.com/api/admin/edgeGateway/c1b44ae3-7858-4c54-8fcd-fdc913d8314e/action/configureServices"
+            },
+            {
+                "rel": "edgeGateway:reapplyServices",
+                "href": "https://api.vcd.portal.skyscapecloud.com/api/admin/edgeGateway/c1b44ae3-7858-4c54-8fcd-fdc913d8314e/action/reapplyServices"
+            },
+            {
+                "rel": "edgeGateway:syncSyslogSettings",
+                "href": "https://api.vcd.portal.skyscapecloud.com/api/admin/edgeGateway/c1b44ae3-7858-4c54-8fcd-fdc913d8314e/action/syncSyslogServerSettings"
+            }
+        ],
+        "Description": "",
+        "Configuration": {
+            "GatewayBackingConfig": "compact",
+            "GatewayInterfaces": {
+                "GatewayInterface": [
+                    {
+                        "Name": "NetworkTest2",
+                        "DisplayName": "NetworkTest2",
+                        "Network": {
+                            "type": "application/vnd.vmware.admin.network+xml",
+                            "name": "NetworkTest2",
+                            "href": "https://api.vcd.portal.skyscapecloud.com/api/admin/network/61cf57b5-544f-4fdb-aad0-8448926f4060"
+                        },
+                        "InterfaceType": "internal",
+                        "SubnetParticipation": {
+                            "Gateway": "192.168.1.1",
+                            "Netmask": "255.255.255.240",
+                            "IpAddress": "192.168.1.1"
+                        },
+                        "ApplyRateLimit": "false",
+                        "UseForDefaultRoute": "false"
+                    },
+                    {
+                        "Name": "nft00012i2",
+                        "DisplayName": "nft00012i2",
+                        "Network": {
+                            "type": "application/vnd.vmware.admin.network+xml",
+                            "name": "nft00012i2",
+                            "href": "https://api.vcd.portal.skyscapecloud.com/api/admin/network/44265cc3-6d63-4ea9-ac72-4905b5aa65d8"
+                        },
+                        "InterfaceType": "uplink",
+                        "SubnetParticipation": {
+                            "Gateway": "37.26.89.185",
+                            "Netmask": "255.255.255.248",
+                            "IpAddress": "37.26.89.99",
+                            "IpRanges": {
+                                "IpRange": {
+                                    "StartAddress": "37.26.89.100",
+                                    "EndAddress": "37.26.89.199"
+                                }
+                            }
+                        },
+                        "ApplyRateLimit": "false",
+                        "InRateLimit": "100.0",
+                        "OutRateLimit": "100.0",
+                        "UseForDefaultRoute": "true"
+                    },
+                    {
+                        "Name": "Default",
+                        "DisplayName": "Default",
+                        "Network": {
+                            "type": "application/vnd.vmware.admin.network+xml",
+                            "name": "Default",
+                            "href": "https://api.vcd.portal.skyscapecloud.com/api/admin/network/ffa5aa5a-a5a1-4cdb-891f-1a92af7ef550"
+                        },
+                        "InterfaceType": "internal",
+                        "SubnetParticipation": {
+                            "Gateway": "192.168.2.1",
+                            "Netmask": "255.255.255.240",
+                            "IpAddress": "192.168.2.1"
+                        },
+                        "ApplyRateLimit": "false",
+                        "UseForDefaultRoute": "false"
+                    }
+                ]
+            },
+            "EdgeGatewayServiceConfiguration": {
+                "FirewallService": {
+                    "IsEnabled": "true",
+                    "DefaultAction": "allow",
+                    "LogDefaultAction": "false",
+                    "FirewallRule": [
+                        {
+                            "Id": "1",
+                            "IsEnabled": "true",
+                            "MatchOnTranslate": "false",
+                            "Description": "description",
+                            "Policy": "allow",
+                            "Protocols": {
+                                "Tcp": "true"
+                            },
+                            "Port": "22",
+                            "DestinationPortRange": "22",
+                            "DestinationIp": "internal",
+                            "SourcePort": "22",
+                            "SourcePortRange": "22",
+                            "SourceIp": "external",
+                            "EnableLogging": "false"
+                        }
+                    ]
+                },
+                "NatService": {
+                    "IsEnabled": "true",
+                    "NatRule": [
+                        {
+                            "RuleType": "SNAT",
+                            "IsEnabled": "true",
+                            "Id": "65538",
+                            "GatewayNatRule": {
+                                "Interface": {
+                                    "type": "application/vnd.vmware.admin.network+xml",
+                                    "name": "nft00012i2",
+                                    "href": "https://api.vcd.portal.skyscapecloud.com/api/admin/network/44265cc3-6d63-4ea9-ac72-4905b5aa65d8"
+                                },
+                                "OriginalIp": "192.168.2.2",
+                                "TranslatedIp": "37.26.89.189"
+                            }
+                        },
+                        {
+                            "RuleType": "DNAT",
+                            "IsEnabled": "true",
+                            "Id": "65539",
+                            "GatewayNatRule": {
+                                "Interface": {
+                                    "type": "application/vnd.vmware.admin.network+xml",
+                                    "name": "nft00012i2",
+                                    "href": "https://api.vcd.portal.skyscapecloud.com/api/admin/network/44265cc3-6d63-4ea9-ac72-4905b5aa65d8"
+                                },
+                                "OriginalIp": "37.26.89.189",
+                                "OriginalPort": "22",
+                                "TranslatedIp": "192.168.2.2",
+                                "TranslatedPort": "22",
+                                "Protocol": "tcp"
+                            }
+                        }
+                    ]
+                },
+                "LoadBalancerService": {
+                    "IsEnabled": "false",
+                    "Pool": [
+                        {
+                            "Name": "app-pool",
+                            "Description": "app pool 1",
+                            "ServicePort": [
+                                {
+                                    "IsEnabled": "true",
+                                    "Protocol": "HTTP",
+                                    "Algorithm": "ROUND_ROBIN",
+                                    "Port": "80",
+                                    "HealthCheckPort": "80",
+                                    "HealthCheck": {
+                                        "Mode": "HTTP",
+                                        "Uri": "/",
+                                        "HealthThreshold": "2",
+                                        "UnhealthThreshold": "3",
+                                        "Interval": "5",
+                                        "Timeout": "15"
+                                    }
+                                },
+                                {
+                                    "IsEnabled": "true",
+                                    "Protocol": "HTTPS",
+                                    "Algorithm": "ROUND_ROBIN",
+                                    "Port": "443",
+                                    "HealthCheckPort": "443",
+                                    "HealthCheck": {
+                                        "Mode": "SSL",
+                                        "HealthThreshold": "2",
+                                        "UnhealthThreshold": "3",
+                                        "Interval": "5",
+                                        "Timeout": "15"
+                                    }
+                                },
+                                {
+                                    "IsEnabled": "false",
+                                    "Protocol": "TCP",
+                                    "Algorithm": "ROUND_ROBIN",
+                                    "Port": "",
+                                    "HealthCheckPort": "",
+                                    "HealthCheck": {
+                                        "Mode": "TCP",
+                                        "HealthThreshold": "2",
+                                        "UnhealthThreshold": "3",
+                                        "Interval": "5",
+                                        "Timeout": "15"
+                                    }
+                                }
+                            ],
+                            "Member": [
+                                {
+                                    "IpAddress": "37.26.89.100",
+                                    "Weight": "1",
+                                    "ServicePort": [
+                                        {
+                                            "Protocol": "HTTP",
+                                            "Port": "",
+                                            "HealthCheckPort": ""
+                                        },
+                                        {
+                                            "Protocol": "HTTPS",
+                                            "Port": "",
+                                            "HealthCheckPort": ""
+                                        },
+                                        {
+                                            "Protocol": "TCP",
+                                            "Port": "",
+                                            "HealthCheckPort": ""
+                                        }
+                                    ]
+                                }
+                            ],
+                            "Operational": "false"
+                        }
+                    ],
+                    "VirtualServer": [
+                        {
+                            "IsEnabled": "true",
+                            "Name": "web-server-1",
+                            "Interface": {
+                                "type": "application/vnd.vmware.vcloud.orgVdcNetwork+xml",
+                                "name": "nft00012i2",
+                                "href": "https://api.vcd.portal.skyscapecloud.com/api/admin/network/44265cc3-6d63-4ea9-ac72-4905b5aa65d8"
+                            },
+                            "IpAddress": "37.26.89.100",
+                            "ServiceProfile": [
+                                {
+                                    "IsEnabled": "false",
+                                    "Protocol": "HTTP",
+                                    "Port": "80",
+                                    "Persistence": {
+                                        "Method": ""
+                                    }
+                                },
+                                {
+                                    "IsEnabled": "true",
+                                    "Protocol": "HTTPS",
+                                    "Port": "443",
+                                    "Persistence": {
+                                        "Method": "SSL_SESSION_ID"
+                                    }
+                                },
+                                {
+                                    "IsEnabled": "false",
+                                    "Protocol": "TCP",
+                                    "Port": "",
+                                    "Persistence": {
+                                        "Method": ""
+                                    }
+                                }
+                            ],
+                            "Logging": "false",
+                            "Pool": "app-pool"
+                        }
+                    ]
+                }
+            },
+            "HaEnabled": "false",
+            "UseDefaultRouteForDnsRelay": "false"
+        }
+    }
+]

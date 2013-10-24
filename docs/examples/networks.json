@@ -1,0 +1,53 @@
+[
+    {
+        "id": "61cf57b5-544f-4fdb-aad0-8448926f4060",
+        "name": "NetworkTest2",
+        "description": "Network Test 2",
+        "is_inherited": false,
+        "gateway": "192.168.1.1",
+        "netmask": "255.255.255.240",
+        "dns1": "8.8.8.8",
+        "dns2": "8.8.4.4",
+        "dns_suffix": "tester2.networktest",
+        "ip_ranges": [
+            {
+                "start_address": "192.168.1.2",
+                "end_address": "192.168.1.14"
+            }
+        ]
+    },
+    {
+        "id": "a3568eee-caaa-480d-8b13-f7df33e369a6",
+        "name": "NetworkTest",
+        "description": "Test network",
+        "is_inherited": false,
+        "gateway": "192.168.0.1",
+        "netmask": "255.255.255.0",
+        "dns1": "8.8.8.8",
+        "dns2": "8.8.4.4",
+        "dns_suffix": "tester.networktest",
+        "ip_ranges": [
+            {
+                "start_address": "192.168.0.2",
+                "end_address": "192.168.0.254"
+            }
+        ]
+    },
+    {
+        "id": "ffa5aa5a-a5a1-4cdb-891f-1a92af7ef550",
+        "name": "Default",
+        "description": "default network",
+        "is_inherited": false,
+        "gateway": "192.168.2.1",
+        "netmask": "255.255.255.240",
+        "dns1": "8.8.8.8",
+        "dns2": "8.8.4.4",
+        "dns_suffix": "tester.default",
+        "ip_ranges": [
+            {
+                "start_address": "192.168.2.2",
+                "end_address": "192.168.2.14"
+            }
+        ]
+    }
+]
