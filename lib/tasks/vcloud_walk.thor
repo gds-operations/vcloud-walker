@@ -5,26 +5,27 @@ class VcloudWalk < Thor
 
   desc "catalogs", "describe all catalogs within given organization"
   def catalogs
-    fog_catalogs = FogInterface.get_catalogs
-    print_json Walk::Catalogs.new(fog_catalogs).to_summary
+    print_json Walk::Organization.catalogs
   end
 
   desc "vdcs", "describe all vdcs within given organization"
   def vdcs
-    fog_vdcs = FogInterface.get_vdcs
-    print_json ::Walk::Vdcs.new(fog_vdcs).to_summary
+    print_json Walk::Organization.vdcs
   end
 
   desc "networks", "describe all networks within given organization"
   def networks
-    fog_networks = FogInterface.get_networks
-    print_json ::Walk::Networks.new(fog_networks).to_summary
+    print_json Walk::Organization.networks
   end
 
   desc "edgegateways", "describe settings within edge gateways"
   def edgegateways
-    fog_gateways = FogInterface.get_edge_gateways
-    print_json fog_gateways
+    print_json Walk::Organization.edgegateways
+  end
+
+  desc "organization", "describes entire organization"
+  def organization
+    print_json Walk::Organization.all
   end
 
   private
