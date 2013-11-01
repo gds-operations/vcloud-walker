@@ -29,6 +29,12 @@ describes all organization networks
 describes all edgegateway for given organization. Each edgegateway includes configuration for firewall, load balancer
 and nat services.
 
+#### Walk entire organization : 
+     bundle exec thor vcloud_walk:organization
+
+describes the entire organization, which includes edgegateway, catalogs,
+networks and vdcs within an organization
+
 ### Credentials
 
 You will need to specify the credentials for your vmware environment. As Vcloud-walker uses fog to query the vmware api,
