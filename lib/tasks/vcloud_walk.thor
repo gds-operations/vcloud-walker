@@ -18,7 +18,6 @@ class VcloudWalk < Thor
     print_json Walk::Organization.networks
   end
 
-
   desc "edgegateways", "describe settings within edge gateways"
   def edgegateways
     print_json Walk::Organization.edgegateways

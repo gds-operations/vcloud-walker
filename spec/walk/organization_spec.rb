@@ -1,7 +1,7 @@
 require_relative '../spec_helper'
 
 describe Walk::Organization do
-  let(:organization) { Organization.new }
+
   it "should retrieve networks" do
     fog_networks = double(:fog_networks)
     FogInterface.should_receive(:get_networks).and_return(fog_networks)
