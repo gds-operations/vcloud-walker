@@ -19,7 +19,7 @@ class FogInterface
   def self.get_edge_gateways
     vcloud = VcloudSession.instance
     get_vdcs.collect do |vdc|
-      data = vcloud.get_edge_gateways(vdc.id).body
+      data = vcloud.get_org_vdc_gateways(vdc.id).body
       if data[:EdgeGatewayRecord]
         edge_gateways = data[:EdgeGatewayRecord].is_a?(Hash) ? [data[:EdgeGatewayRecord]] : data[:EdgeGatewayRecord]
         edge_gateways.map do |edgeGateway|
