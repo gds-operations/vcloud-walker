@@ -1,0 +1,62 @@
+#!/usr/bin/env python
+
+"""
+The vcd-to-vm-csv script takes the JSON output of vcloud_walk:vdcs and returns a CSV of the
+current VMs that are deployed in that organisation.
+
+Usage:
+  vcd-to-vm-csv [<file>]
+
+Arguments:
+  <file>     A JSON file as output from vcloud-walker vcloud_walk:vdcs, otherwise read STDIN
+"""
+
+import json
+import sys
+
+from docopt import docopt
+
+if __name__ == '__main__':
+    args = docopt(__doc__)
+    output = []
+    if args['<file>'] != None:
+        vdcs = json.loads(open(args['<file>']).read())
+    else:
+        if not sys.stdin.isatty():
+            vdcs = json.loads(sys.stdin.read())
+        else:
+            print "ERROR: stdin empty and <file> not specified"
+            print ""
+            print __doc__.strip("\n")
+            sys.exit(1)
+    for vdc in vdcs:
+        vdc_name = vdc['name']
+        vdc_id   = vdc['id']
+        vapps    = vdc['vapps']
+        for vapp in vapps:
+            vapp_name = vapp['name']
+            vms = vapp['vms']
+            for vm in vms:
+                vm_os      = vm['operating_system']
+                vm_id      = vm['id']
+                vm_cpu     = vm['cpu'][0] + 'cpus'
+                vm_mem     = vm['memory'].split(' ')[0] + 'MB'
+                vm_net     = vm['network_connections']
+                if type(vm_net) is not dict:
+                    network = vm_net[0]
+                else:
+                    network = vm_net
+                vm_network = network['network']
+                vm_ip      = network['IpAddress']
+                vm_ip_mode = network['IpAddressAllocationMode']
+                vm_mac     = network['MACAddress']
+                disks = []
+                for disk in vm['disks']:
+                    disks.append("HD" + disk['name'].split(' ')[2] + ":" + str(disk['size']) + "MB")
+                vm_disks   = " ".join(disks)
+                output.append('"' + '","'.join([vapp_name, vdc_name, vm_cpu, vm_mem, vm_network, vm_ip, vm_mac, vm_disks]) + '"')
+    print '"' + '","'.join(['NAME','VDC','CPU','MEM','NETWORK','IP','MAC','DISKS']) + '"'
+    for line in sorted(output):
+        print line
+
+
