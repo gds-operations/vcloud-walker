@@ -7,7 +7,6 @@ require 'rspec/mocks'
 require 'json_spec'
 require_relative 'stubs/stubs'
 require_relative 'stubs/service_layer_stub'
-require_relative 'integration/data'
 
 
 def set_login_credential username = 'some-username', password = 'some-password'
