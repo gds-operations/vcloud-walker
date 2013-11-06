@@ -1,95 +1,93 @@
-[
-    {
-        "id": "67ad90fc-4ebe-4e2c-b131-6abab8087b8d",
-        "name": "vCloud CI (IL2-DEVTEST-BASIC)",
-        "description": "vCloud CI (IL2-DEVTEST-BASIC)",
-        "vapps": [
-            {
-                "name": "vcloud-walker-contract-testing-vapp",
-                "status": "4",
-                "deployed": "true",
-                "id": "urn:vcloud:vapp:d353a9a8-e2a9-4507-8656-ebf498a5931f",
-                "description": "this app is used to run integration tests for vcloud-walker",
-                "network_config": [
-                    {
-                        "network_name": "Default",
-                        "is_deployed": "true",
-                        "description": "The nat network",
-                        "config": {
-                            "ipscopes": {
-                                "IpScope": {
-                                    "IsInherited": "false",
-                                    "Gateway": "192.168.254.1",
-                                    "Netmask": "255.255.255.0",
-                                    "IsEnabled": "true",
-                                    "IpRanges": {
-                                        "IpRange": {
-                                            "StartAddress": "192.168.254.100",
-                                            "EndAddress": "192.168.254.199"
-                                        }
-                                    },
-                                    "AllocatedIpAddresses": {
-                                        "IpAddress": "192.168.254.100"
+{
+    "id": "67ad90fc-4ebe-4e2c-b131-6abab8087b8d",
+    "name": "vCloud CI (IL2-DEVTEST-BASIC)",
+    "description": "vCloud CI (IL2-DEVTEST-BASIC)",
+    "vapps": [
+        {
+            "name": "vcloud-walker-contract-testing-vapp",
+            "status": "4",
+            "deployed": "true",
+            "id": "urn:vcloud:vapp:d353a9a8-e2a9-4507-8656-ebf498a5931f",
+            "description": "this app is used to run integration tests for vcloud-walker",
+            "network_config": [
+                {
+                    "network_name": "Default",
+                    "is_deployed": "true",
+                    "description": "The nat network",
+                    "config": {
+                        "ipscopes": {
+                            "IpScope": {
+                                "IsInherited": "false",
+                                "Gateway": "192.168.254.1",
+                                "Netmask": "255.255.255.0",
+                                "IsEnabled": "true",
+                                "IpRanges": {
+                                    "IpRange": {
+                                        "StartAddress": "192.168.254.100",
+                                        "EndAddress": "192.168.254.199"
                                     }
+                                },
+                                "AllocatedIpAddresses": {
+                                    "IpAddress": "192.168.254.100"
                                 }
                             }
-                        },
-                        "parent_network": null
-                    }
-                ],
-                "network_section": {
-                    "ovf_name": "Default",
-                    "ovf:Description": "The nat network"
-                },
-                "vms": [
-                    {
-                        "id": "urn:vcloud:vm:c31ecfcf-5cb0-417c-958c-0d0180cf7e2a",
-                        "status": "4",
-                        "operating_system": "Ubuntu Linux (64-bit)",
-                        "network_connections": {
-                            "network": "Default",
-                            "needsCustomization": "true",
-                            "NetworkConnectionIndex": "0",
-                            "IpAddress": "192.168.254.100",
-                            "IsConnected": "true",
-                            "MACAddress": "00:50:56:01:0c:30",
-                            "IpAddressAllocationMode": "MANUAL"
-                        },
-                        "primary_network_connection_index": "0",
-                        "cpu": "1 virtual CPU(s)",
-                        "memory": "256 MB of memory",
-                        "disks": [
-                            {
-                                "name": "Hard disk 1",
-                                "size": 11265
-                            }
-                        ]
-                    }
-                ]
-            }
-        ],
-        "quotas": {
-            "network": 20,
-            "nic": 0,
-            "vm": 0
-        },
-        "compute_capacity": {
-            "Cpu": {
-                "Units": "MHz",
-                "Allocated": "0",
-                "Limit": "0",
-                "Reserved": "0",
-                "Used": "2000",
-                "Overhead": "0"
+                        }
+                    },
+                    "parent_network": null
+                }
+            ],
+            "network_section": {
+                "ovf_name": "Default",
+                "ovf:Description": "The nat network"
             },
-            "Memory": {
-                "Units": "MB",
-                "Allocated": "0",
-                "Limit": "0",
-                "Reserved": "0",
-                "Used": "256",
-                "Overhead": "21"
-            }
+            "vms": [
+                {
+                    "id": "urn:vcloud:vm:c31ecfcf-5cb0-417c-958c-0d0180cf7e2a",
+                    "status": "4",
+                    "operating_system": "Ubuntu Linux (64-bit)",
+                    "network_connections": {
+                        "network": "Default",
+                        "needsCustomization": "true",
+                        "NetworkConnectionIndex": "0",
+                        "IpAddress": "192.168.254.100",
+                        "IsConnected": "true",
+                        "MACAddress": "00:50:56:01:0c:30",
+                        "IpAddressAllocationMode": "MANUAL"
+                    },
+                    "primary_network_connection_index": "0",
+                    "cpu": "1 virtual CPU(s)",
+                    "memory": "256 MB of memory",
+                    "disks": [
+                        {
+                            "name": "Hard disk 1",
+                            "size": 11265
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "quotas": {
+        "network": 20,
+        "nic": 0,
+        "vm": 0
+    },
+    "compute_capacity": {
+        "Cpu": {
+            "Units": "MHz",
+            "Allocated": "0",
+            "Limit": "0",
+            "Reserved": "0",
+            "Used": "2000",
+            "Overhead": "0"
+        },
+        "Memory": {
+            "Units": "MB",
+            "Allocated": "0",
+            "Limit": "0",
+            "Reserved": "0",
+            "Used": "256",
+            "Overhead": "21"
         }
     }
-]
+}
