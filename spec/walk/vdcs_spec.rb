@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'fog'
 require 'rspec/mocks'
 
-describe Walk::Vdcs do
+describe Vcloud::Walker::Resource::Vdcs do
   let(:api_session) { double(:fog_session) }
 
   context 'vdcs' do
@@ -13,7 +13,7 @@ describe Walk::Vdcs do
       mock_fog_vdcs = StubCollectionBuilders.vdcs(StubVdc.new.vapps([mock_vapp]).build)
       api_session.should_receive(:get_vapp).with(1).and_return(Fog::ServiceLayerStub.mock_vapp)
 
-      vdcs_summary = Walk::Vdcs.new(mock_fog_vdcs).to_summary
+      vdcs_summary = Vcloud::Walker::Resource::Vdcs.new(mock_fog_vdcs).to_summary
       vdc_summary = vdcs_summary.first
       vdc_summary[:vapps].count.should == 1
       vdc_summary[:vapps].first[:vms].count == 1

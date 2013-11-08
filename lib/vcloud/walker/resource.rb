@@ -1,0 +1,10 @@
+require 'vcloud/walker/resource/entity'
+require 'vcloud/walker/resource/organization'
+require 'vcloud/walker/resource/collection'
+require 'vcloud/walker/resource/catalog_item'
+require 'vcloud/walker/resource/catalog'
+require 'vcloud/walker/resource/network'
+require 'vcloud/walker/resource/vapp'
+require 'vcloud/walker/resource/vdc'
+require 'vcloud/walker/resource/vm'
+

@@ -2,8 +2,6 @@ require 'spec_helper'
 require 'fog'
 require 'stringio'
 
-JsonSpec.directory = File.expand_path('../data/walker_ci', __FILE__)
-
 #######################################################################################
 #  The intention of these tests are to ensure we have confdence that our tooling will
 #   function when used, and as integration tests to cover the areas that get mocked
@@ -13,7 +11,10 @@ JsonSpec.directory = File.expand_path('../data/walker_ci', __FILE__)
 #  Most if not all edge cases should be caught by the unit tests or the Fog tests.
 #
 
-describe Walk::Vdcs do
+
+load File.join(File.expand_path('../../../lib/tasks/vcloud-walk.thor', __FILE__))
+
+describe Vcloud::Walker do
   context 'walk an organization' do
 
     it 'should integrate with fog to get vdcs' do

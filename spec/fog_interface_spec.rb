@@ -1,14 +1,14 @@
 require 'spec_helper'
 require 'rspec/mocks'
 
-describe FogInterface do
+describe Vcloud::Walker::FogInterface do
   context "GET entities" do
     let(:org) { double(:fog_org, :id => 'org-123') }
     let(:organizations) { double(:orgs) }
     let(:session) { double(:fog_session, :org_name => 'org-123', :organizations => organizations) }
 
     before(:each) do
-      VcloudSession.should_receive(:instance).with(any_args()).at_least(:once).and_return(session)
+      Vcloud::Walker::VcloudSession.should_receive(:instance).with(any_args()).at_least(:once).and_return(session)
       organizations.should_receive(:get_by_name).and_return(org)
     end
 
@@ -16,7 +16,7 @@ describe FogInterface do
       mock_catalogs = [double(:catalog1), double(:catalog2)]
       org.should_receive(:catalogs).and_return(double(:catalogs, :all => mock_catalogs))
 
-      catalogs = FogInterface.get_catalogs
+      catalogs = Vcloud::Walker::FogInterface.get_catalogs
 
       catalogs.count.should == 2
       catalogs.should == mock_catalogs
@@ -27,7 +27,7 @@ describe FogInterface do
       mock_networks = [double(:network1), double(:network2)]
       org.should_receive(:networks).and_return(double(:networks, :all => mock_networks))
 
-      networks = FogInterface.get_networks
+      networks = Vcloud::Walker::FogInterface.get_networks
       networks.count.should == 2
       networks.should == mock_networks
     end
@@ -36,7 +36,7 @@ describe FogInterface do
       mock_vdcs = [double(:vdc1), double(:vdc2), double(:vdc3)]
       org.should_receive(:vdcs).and_return(double(:vdcs, :all => mock_vdcs))
 
-      vdcs = FogInterface.get_vdcs
+      vdcs = Vcloud::Walker::FogInterface.get_vdcs
       vdcs.count.should == 3
       vdcs.should == mock_vdcs
     end
@@ -49,7 +49,7 @@ describe FogInterface do
       session.should_receive(:get_org_vdc_gateways).with(1).and_return(get_edge_gateway_result)
       session.should_receive(:get_edge_gateway).with('sausage').and_return(double(:eg, :body => :eg1))
 
-      edge_gateways = FogInterface.get_edge_gateways
+      edge_gateways = Vcloud::Walker::FogInterface.get_edge_gateways
 
       edge_gateways.count.should == 1
       edge_gateways.should == [:eg1]
@@ -69,7 +69,7 @@ describe FogInterface do
       session.should_receive(:get_edge_gateway).with('beans').and_return(double(:eg, :body => :eg2))
       session.should_receive(:get_edge_gateway).with('hashbrown').and_return(double(:eg, :body => :eg3))
 
-      edge_gateways = FogInterface.get_edge_gateways
+      edge_gateways = Vcloud::Walker::FogInterface.get_edge_gateways
 
       edge_gateways.count.should == 3
       edge_gateways.should == [:eg1, :eg2, :eg3]
@@ -84,7 +84,7 @@ describe FogInterface do
       org.should_receive(:vdcs).and_return(double(:vdcs, :all => [ mock_vdc1 ]))
       session.should_receive(:get_org_vdc_gateways).with(1).and_return(vdc_1_search_result)
 
-      edge_gateways = FogInterface.get_edge_gateways
+      edge_gateways = Vcloud::Walker::FogInterface.get_edge_gateways
 
       edge_gateways.count.should == 0
     end

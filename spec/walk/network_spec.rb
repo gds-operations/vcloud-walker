@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'rspec/mocks'
 require 'fog'
 
-describe Walk::Networks do
+describe Vcloud::Walker::Resource::Networks do
 
   context "Summary" do
     before(:each) do
@@ -13,7 +13,7 @@ describe Walk::Networks do
 
       mock_fog_network = mock_fog_network_object
 
-      networks = Walk::Networks.new([mock_fog_network, mock_fog_network])
+      networks = Vcloud::Walker::Resource::Networks.new([mock_fog_network, mock_fog_network])
 
       networks.count.should == 2
     end
@@ -23,13 +23,13 @@ describe Walk::Networks do
 
       mock_fog_network = mock_fog_network_object
 
-      networks = Walk::Networks.new([mock_fog_network])
+      networks = Vcloud::Walker::Resource::Networks.new([mock_fog_network])
 
       networks.count.should == 1
     end
 
     it "should handle having no networks" do
-      networks = Walk::Networks.new([])
+      networks = Vcloud::Walker::Resource::Networks.new([])
 
       networks.count.should == 0
     end
@@ -39,7 +39,7 @@ describe Walk::Networks do
       mock_fog_network = mock_fog_network_object
       expect(mock_fog_network).to receive(:dns1).and_return('sausage')
 
-      networks = Walk::Networks.new([mock_fog_network])
+      networks = Vcloud::Walker::Resource::Networks.new([mock_fog_network])
 
       networks.count.should == 1
       networks.first.id.should == :network_id_1
