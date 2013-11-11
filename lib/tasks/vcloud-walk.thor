@@ -1,5 +1,4 @@
-# todo is this the best option?
-require File.expand_path("../../vcloud/walker.rb", __FILE__)
+require 'vcloud/walker'
 
 class VcloudWalk < Thor
   map "-L" => :list
