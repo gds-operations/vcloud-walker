@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'rspec/mocks'
 
-describe Walk::Catalogs do
+describe Vcloud::Walker::Resource::Catalogs do
 
     it "should summarize catalogs" do
       set_login_credential
@@ -16,7 +16,7 @@ describe Walk::Catalogs do
                           :description => 'default catalog for infrastructure',
                           :catalog_items => double(:catalog_items, :all => [mock_fog_item]))
 
-      catalog_summary = Walk::Catalogs.new([mock_fog_catalog]).to_summary
+      catalog_summary = Vcloud::Walker::Resource::Catalogs.new([mock_fog_catalog]).to_summary
       catalog_summary.count.should == 1
       catalog_summary.first[:items].count.should == 1
       catalog_summary.should == [{

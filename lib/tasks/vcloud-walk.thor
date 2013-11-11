@@ -1,31 +1,32 @@
-require File.expand_path("../../walk/walk.rb", __FILE__)
+# todo is this the best option?
+require File.expand_path("../../vcloud/walker.rb", __FILE__)
 
 class VcloudWalk < Thor
   map "-L" => :list
 
   desc "catalogs", "describe all catalogs within given organization"
   def catalogs
-    print_json Walk::Organization.catalogs
+    print_json Vcloud::Walker::Resource::Organization.catalogs
   end
 
   desc "vdcs", "describe all vdcs within given organization"
   def vdcs
-    print_json Walk::Organization.vdcs
+    print_json Vcloud::Walker::Resource::Organization.vdcs
   end
 
   desc "networks", "describe all networks within given organization"
   def networks
-    print_json Walk::Organization.networks
+    print_json Vcloud::Walker::Resource::Organization.networks
   end
 
   desc "edgegateways", "describe settings within edge gateways"
   def edgegateways
-    print_json Walk::Organization.edgegateways
+    print_json Vcloud::Walker::Resource::Organization.edgegateways
   end
 
   desc "organization", "describes entire organization"
   def organization
-    print_json Walk::Organization.all
+    print_json Vcloud::Walker::Resource::Organization.all
   end
 
   private
