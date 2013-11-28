@@ -1,6 +1,4 @@
 ---
- vdcs:
- - name: 'vCloud CI (IL2-DEVTEST-BASIC)'
  vapps:
  - name: vcloud-walker-contract-testing-vapp
    vdc_name: 'vCloud CI (IL2-DEVTEST-BASIC)'

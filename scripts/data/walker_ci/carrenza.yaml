@@ -1,6 +1,4 @@
 ---
- vdcs:
- - name: 0e7t-vcloud_tools_ci-OVDC-001
  vapps:
  - name: vcloud-walker-contract-testing-vapp
    vdc_name: 0e7t-vcloud_tools_ci-OVDC-001
