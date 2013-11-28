@@ -42,19 +42,19 @@ describe Vcloud::Walker do
 
     it "should integrate with fog to get catalogs" do
 
-      catalog_summary = VcloudWalk.new.catalogs.to_json
+      catalogs_summary = VcloudWalk.new.catalogs
+      catalog_summary = catalogs_summary.detect{|c| !c[:items].empty? }.to_json
 
       # assert that there are atleast one item and that includes the essencial sections
-      catalog_summary.should have_json_path('0/id')
-      catalog_summary.should have_json_path('0/name')
-      catalog_summary.should have_json_path('0/items')
-      catalog_summary.should have_json_path('0/items/0/vapp_template_id')
+      catalog_summary.should have_json_path('id')
+      catalog_summary.should have_json_path('name')
+      catalog_summary.should have_json_path('items')
+      catalog_summary.should have_json_path('items/0/vapp_template_id')
     end
 
     it "should integrate with fog to get edge gateway data" do
 
       result = VcloudWalk.new.edgegateways.to_json
-
       # assert that there are atleast one item and that includes the essencial sections
       result.should have_json_path('0/Configuration/EdgeGatewayServiceConfiguration/FirewallService')
       result.should have_json_path('0/Configuration/EdgeGatewayServiceConfiguration/NatService')
