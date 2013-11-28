@@ -13,7 +13,7 @@ def create_vapp vdc, network, template
   options = { vdc_id: vdc.id,
               network_id: network.id,
               :description => 'this app is used to run integration tests for vcloud-walker'}
-  #template.instantiate('vcloud-walker-contract-testing-vapp', options)
+  template.instantiate('vcloud-walker-contract-testing-vapp', options)
   vapp = vdc.vapps.get_by_name('vcloud-walker-contract-testing-vapp')
   vm = vapp.vms.first
   attach_vm_to_network vm
@@ -21,12 +21,10 @@ def create_vapp vdc, network, template
 end
 
 org = Vcloud::Walker::FogInterface.get_org
-p org.networks
 network = org.networks.get_by_name('walker-ci-network')
 catalog = org.catalogs.get_by_name('walker-ci')
 template = catalog.catalog_items.get_by_name('walker-ci-template')
 vdc = org.vdcs.get_by_name('0e7t-vcloud_tools_ci-OVDC-001')
- p vdc, network, template
 create_vapp vdc, network, template
 
 
