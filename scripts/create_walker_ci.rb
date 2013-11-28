@@ -1,4 +1,4 @@
-require File.expand_path("../../lib/walk/walk.rb", __FILE__)
+require File.expand_path("../../lib/vcloud/walker.rb", __FILE__)
 
 def attach_vm_to_network vm
   network = vm.network
@@ -13,19 +13,20 @@ def create_vapp vdc, network, template
   options = { vdc_id: vdc.id,
               network_id: network.id,
               :description => 'this app is used to run integration tests for vcloud-walker'}
-  template.instantiate(vdc,'vcloud-walker-contract-testing-vapp', options)
+  #template.instantiate('vcloud-walker-contract-testing-vapp', options)
   vapp = vdc.vapps.get_by_name('vcloud-walker-contract-testing-vapp')
   vm = vapp.vms.first
   attach_vm_to_network vm
   vapp.power_on
 end
 
-org = FogInterface.get_org
-network = org.networks.get_by_name('Default')
+org = Vcloud::Walker::FogInterface.get_org
+p org.networks
+network = org.networks.get_by_name('walker-ci-network')
 catalog = org.catalogs.get_by_name('walker-ci')
-template = catalog.catalog_items.get_by_name('ubuntu-precise-201310041515')
-vdc = org.vdcs.get_by_name('vCloud CI (IL2-DEVTEST-BASIC)')
-
+template = catalog.catalog_items.get_by_name('walker-ci-template')
+vdc = org.vdcs.get_by_name('0e7t-vcloud_tools_ci-OVDC-001')
+ p vdc, network, template
 create_vapp vdc, network, template
 
 
