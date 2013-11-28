@@ -1,0 +1,17 @@
+---
+ vapps:
+ - name: vcloud-walker-contract-testing-vapp
+   vdc_name: 'vCloud CI (IL2-DEVTEST-BASIC)'
+   catalog: walker-ci
+   catalog_item: ubuntu-precise-201310041515
+   vm:
+     hardware_config:
+       memory: '1024'
+       cpu: '1'
+     extra_disks:
+     - size: '8192'
+     network_connections:
+     - name: Default
+       ip_address: 192.168.254.100
+     metadata:
+      is_webserver: true
