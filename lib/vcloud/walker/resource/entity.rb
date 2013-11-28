@@ -2,12 +2,8 @@ module Vcloud
   module Walker
     module Resource
       class Entity
-        def to_summary
-          to_hash
-        end
 
-        private
-        def to_hash
+        def to_summary
           h= {}
           instance_variables.each { |atr|
             atr_value = self.instance_variable_get(atr)
@@ -19,9 +15,8 @@ module Vcloud
           }
           h
         end
+
       end
-
     end
-
   end
 end
