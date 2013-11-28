@@ -9,8 +9,8 @@ end
 power_mode = ARGV[0]
 
 org = Vcloud::Walker::FogInterface.get_org
-vdc = org.vdcs.get_by_name('vCloud CI (IL2-DEVTEST-BASIC)')
-vapp = vdc.vapps.get_by_name 'vcloud-walker-contract-testing-vapp'
+vdc = org.vdcs.get_by_name(ENV['VDC_NAME'])
+vapp = vdc.vapps.get_by_name ENV['WALKER_CI_VAPP']
 response = vapp.send("power_#{power_mode}")
 
 response ? (puts "Turned #{power_mode} walker ci.") : (raise "unable to turn #{power_mode} walker ci")
