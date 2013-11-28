@@ -2,9 +2,9 @@ module Vcloud
   module Walker
     module Resource
       class Vms < Collection
-        def initialize fog_vams
-          fog_vams = [fog_vams] unless fog_vams.is_a? Array
-          fog_vams.each do |vm|
+        def initialize fog_vms
+          fog_vms = [fog_vms] unless fog_vms.is_a? Array
+          fog_vms.each do |vm|
             self << Resource::Vm.new(vm)
           end
         end
