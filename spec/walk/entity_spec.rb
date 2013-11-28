@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'rspec/mocks'
 
 module Vcloud
   module Walker
