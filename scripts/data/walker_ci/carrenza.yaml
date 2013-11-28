@@ -1,0 +1,19 @@
+---
+ vdcs:
+ - name: 0e7t-vcloud_tools_ci-OVDC-001
+ vapps:
+ - name: vcloud-walker-contract-testing-vapp
+   vdc_name: 0e7t-vcloud_tools_ci-OVDC-001
+   catalog: walker-ci
+   catalog_item: walker-ci-template
+   vm:
+     hardware_config:
+       memory: '1024'
+       cpu: '1'
+     extra_disks:
+     - size: '8192'
+     network_connections:
+     - name: walker-ci-network
+       ip_address: 192.168.254.100
+     metadata:
+      is_webserver: true
