@@ -25,10 +25,10 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rake"
   s.add_development_dependency 'rspec', '~> 2.14.1'
   s.add_development_dependency 'rspec-mocks', '~> 2.14.3'
-  s.add_development_dependency "gem_publisher", "~> 1.3.0"
   s.add_development_dependency "json_spec", "~> 1.1.1"
   s.add_runtime_dependency 'json', '~> 1.8.0'
   s.add_runtime_dependency 'thor', '~> 0.18.1'
   s.add_runtime_dependency 'fog', '~> 1.18.0'
   s.add_development_dependency 'simplecov', '~> 0.8.2'
+  s.add_development_dependency "jeweler", "~> 1.8.8"
 end
