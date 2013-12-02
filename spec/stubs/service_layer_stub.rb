@@ -50,5 +50,31 @@ module Fog
       }
       RSpec::Mocks::Mock.new(:fog_vapp, :body => body)
     end
+
+    def self.hardware_resources
+      [
+          {
+              :"rasd:AddressOnParent" => "0",
+              :"rasd:Description" => "Hard disk",
+              :"rasd:ElementName" => "Hard disk 1",
+              :"rasd:HostResource" => {:ns12_capacity => "11265", :ns12_busSubType => "lsilogic", :ns12_busType => "6"},
+          },
+
+          {
+              :"rasd:AddressOnParent" => "1",
+              :"rasd:Description" => "Hard disk",
+              :"rasd:ElementName" => "Hard disk 2",
+              :"rasd:HostResource" => {:ns12_capacity => "307200", :ns12_busSubType => "lsilogic", :ns12_busType => "6"}
+          },
+          {
+              :"rasd:Description" => "Number of Virtual CPUs",
+              :"rasd:ElementName" => "2 virtual CPU(s)"
+          },
+          {
+              :"rasd:Description" => "Memory Size",
+              :"rasd:ElementName" => "4096 MB of memory"
+          }
+      ]
+    end
   end
 end

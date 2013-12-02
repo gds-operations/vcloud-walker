@@ -13,7 +13,7 @@ module Vcloud
 
       class Vm < Entity
         attr_reader :id, :status, :cpu, :memory, :operating_system, :disks, :primary_network_connection_index,
-                    :vmware_tools, :virtual_system_type
+                    :vmware_tools, :virtual_system_type, :network_connections
 
         def initialize fog_vm
           [:id, :status].each do |key|
@@ -28,7 +28,6 @@ module Vcloud
         end
 
         private
-
         def extract_compute_capacity ovf_resources
           %w(cpu memory disks).each { |resource| send("extract_#{resource}", ovf_resources) } unless ovf_resources.empty?
         end
@@ -43,7 +42,6 @@ module Vcloud
 
         def extract_disks(resources)
           disk_resources = resources.select { |element| element[:'rasd:Description']=='Hard disk' }
-
           @disks = disk_resources.collect do |d|
             {:name => d[:'rasd:ElementName'], :size => d[:'rasd:HostResource'][:'ns12_capacity'].to_i}
           end
