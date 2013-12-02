@@ -12,7 +12,8 @@ module Vcloud
 
 
       class Vm < Entity
-        attr_reader :id, :status, :cpu, :memory, :operating_system, :disks, :primary_network_connection_index, :vmware_tools, :virtual_system_type
+        attr_reader :id, :status, :cpu, :memory, :operating_system, :disks, :primary_network_connection_index,
+                    :vmware_tools, :virtual_system_type
 
         def initialize fog_vm
           [:id, :status].each do |key|
