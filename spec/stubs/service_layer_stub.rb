@@ -38,7 +38,13 @@ module Fog
                                       :IpAddressAllocationMode => "MANUAL"},
 
                           },
-                          :'ovf:VirtualHardwareSection' => {:'ovf:Item' => []}
+                          :'ovf:VirtualHardwareSection' => {
+                              :'ovf:Item' => [],
+                              :"ovf:System" => {:"vssd:ElementName" => "Virtual Hardware Family", :"vssd:VirtualSystemType" => "vmx-08"}
+                          },
+                          :RuntimeInfoSection => {
+                              :VMWareTools => {:version => "2147483647"}
+                          }
                       }
               }
       }
