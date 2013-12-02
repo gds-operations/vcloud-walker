@@ -12,11 +12,9 @@ module Vcloud
           @network_config  = extract_network_config(fog_vapp[:NetworkConfigSection][:NetworkConfig])
           @network_section = fog_vapp[:'ovf:NetworkSection'][:'ovf:Network']
           @vms             = Resource::Vms.new(fog_vapp[:Children][:Vm])
-
         end
 
         private
-
         def extract_network_config network_configs
           (network_configs.is_a?(Hash) ? [network_configs] : network_configs).collect do |network_config|
             {
