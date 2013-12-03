@@ -44,7 +44,12 @@ module Fog
                           },
                           :RuntimeInfoSection => {
                               :VMWareTools => {:version => "2147483647"}
-                          }
+                          },
+                          :StorageProfile => {
+                                  :type=>"application/vnd.vmware.vcloud.vdcStorageProfile+xml",
+                                  :name=>"TEST-STORAGE-PROFILE",
+                                  :href=>"https://api.vcd.portal.skyscapecloud.com/api/vdcStorageProfile/00000000-aaaa-bbbb-aaaa-000000000000"
+                              }
                       }
               }
       }
