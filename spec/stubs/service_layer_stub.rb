@@ -17,7 +17,7 @@ module Fog
                           :status => "4", :name => "ubuntu-precise-201309091031",
                           :id => "urn:vcloud:vm:d19d84a5-c950-4497-a638-23eccc4226a5",
                           :type => "application/vnd.vmware.vcloud.vm+xml",
-                          :href => "https://api.vcd.portal.skyscapecloud.com/api/vApp/vm-d19d84a5-c950-4497-a638-23eccc4226a5",
+                          :href => "https://api.vcd.portal.examplecloud.com/api/vApp/vm-d19d84a5-c950-4497-a638-23eccc4226a5",
                           :Description => "ubuntu-precise | Version: 1.0 | Built using BoxGrinder",
                           :"ovf:OperatingSystemSection" =>
                               {
@@ -48,7 +48,7 @@ module Fog
                           :StorageProfile => {
                                   :type=>"application/vnd.vmware.vcloud.vdcStorageProfile+xml",
                                   :name=>"TEST-STORAGE-PROFILE",
-                                  :href=>"https://api.vcd.portal.skyscapecloud.com/api/vdcStorageProfile/00000000-aaaa-bbbb-aaaa-000000000000"
+                                  :href=>"https://api.vcd.portal.examplecloud.com/api/vdcStorageProfile/00000000-aaaa-bbbb-aaaa-000000000000"
                               }
                       }
               }

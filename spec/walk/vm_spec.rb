@@ -44,7 +44,7 @@ describe Vcloud::Walker::Resource::Vm do
               {
                   :type=>"application/vnd.vmware.vcloud.vdcStorageProfile+xml",
                   :name=>"TEST-STORAGE-PROFILE",
-                  :href=>"https://api.vcd.portal.skyscapecloud.com/api/vdcStorageProfile/00000000-aaaa-bbbb-aaaa-000000000000"
+                  :href=>"https://api.vcd.portal.examplecloud.com/api/vdcStorageProfile/00000000-aaaa-bbbb-aaaa-000000000000"
               }
       }
 
