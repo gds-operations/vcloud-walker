@@ -40,7 +40,7 @@ describe Vcloud::Walker::Resource::Vm do
                       ]
               },
           :RuntimeInfoSection => {:VMWareTools => {:version => "2147483647"}},
-          :StorageProfile=>
+          :StorageProfile =>
               {
                   :type=>"application/vnd.vmware.vcloud.vdcStorageProfile+xml",
                   :name=>"TEST-STORAGE-PROFILE",
@@ -67,6 +67,10 @@ describe Vcloud::Walker::Resource::Vm do
       @vm_summary.primary_network_connection_index.should == '0'
       @vm_summary.network_connections.count.should == 1
       @vm_summary.network_connections.first[:network].should == 'Default'
+    end
+
+    it "should populate storage profile" do
+      @vm_summary.storage_profile.should == "TEST-STORAGE-PROFILE"
     end
 
     context "hardware resource info" do
