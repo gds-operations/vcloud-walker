@@ -7,8 +7,8 @@ describe Vcloud::Walker::Resource::Vm do
       fog_vm = {
           :deployed => "true",
           :status => "8",
-          :name => "ubuntu-precise-201310041515",
-          :id => "urn:vcloud:vm:c31ecfcf-5cb0-417c-958c-0d0180cf7e2a",
+          :name => "ubuntu-testing-template",
+          :id => "urn:vcloud:vm:aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
           :"ovf:VirtualHardwareSection" =>
               {:"ovf:Info" => "Virtual hardware requirements",
                :"ovf:System" => {:"vssd:ElementName" => "Virtual Hardware Family", :"vssd:VirtualSystemType" => "vmx-08"},
@@ -39,7 +39,13 @@ describe Vcloud::Walker::Resource::Vm do
                           }
                       ]
               },
-          :RuntimeInfoSection => {:VMWareTools => {:version => "2147483647"}}
+          :RuntimeInfoSection => {:VMWareTools => {:version => "2147483647"}},
+          :StorageProfile =>
+              {
+                  :type=>"application/vnd.vmware.vcloud.vdcStorageProfile+xml",
+                  :name=>"TEST-STORAGE-PROFILE",
+                  :href=>"https://api.vcd.portal.examplecloud.com/api/vdcStorageProfile/00000000-aaaa-bbbb-aaaa-000000000000"
+              }
       }
 
       @vm_summary = Vcloud::Walker::Resource::Vm.new(fog_vm)
@@ -61,6 +67,10 @@ describe Vcloud::Walker::Resource::Vm do
       @vm_summary.primary_network_connection_index.should == '0'
       @vm_summary.network_connections.count.should == 1
       @vm_summary.network_connections.first[:network].should == 'Default'
+    end
+
+    it "should populate storage profile" do
+      @vm_summary.storage_profile.should == "TEST-STORAGE-PROFILE"
     end
 
     context "hardware resource info" do
