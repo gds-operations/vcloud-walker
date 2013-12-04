@@ -13,7 +13,7 @@ module Vcloud
 
       class Vm < Entity
         attr_reader :id, :status, :cpu, :memory, :operating_system, :disks, :primary_network_connection_index,
-                    :vmware_tools, :virtual_system_type, :network_connections, :storage_profile
+                    :vmware_tools, :virtual_system_type, :network_connections, :storage_profile, :storage_profile_id
 
         def initialize fog_vm
           [:id, :status].each do |key|
@@ -25,7 +25,10 @@ module Vcloud
           extract_compute_capacity fog_vm[:'ovf:VirtualHardwareSection'][:'ovf:Item']
           @vmware_tools = fog_vm[:RuntimeInfoSection][:VMWareTools]
           @virtual_system_type = extract_virtual_system_type(fog_vm[:'ovf:VirtualHardwareSection'])
-          @storage_profile = fog_vm[:StorageProfile][:name]
+          @storage_profile = {
+            :id   => fog_vm[:StorageProfile][:href].split('/').last,
+            :name => fog_vm[:StorageProfile][:name],
+          }
         end
 
         private

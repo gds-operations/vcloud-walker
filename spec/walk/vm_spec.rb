@@ -70,7 +70,11 @@ describe Vcloud::Walker::Resource::Vm do
     end
 
     it "should populate storage profile" do
-      @vm_summary.storage_profile.should == "TEST-STORAGE-PROFILE"
+      @vm_summary.storage_profile[:name].should == "TEST-STORAGE-PROFILE"
+    end
+
+    it "should populate storage profile id" do
+      @vm_summary.storage_profile[:id].should == "00000000-aaaa-bbbb-aaaa-000000000000"
     end
 
     context "hardware resource info" do
