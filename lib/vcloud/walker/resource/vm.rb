@@ -52,7 +52,7 @@ module Vcloud
 
         def extract_network_cards(resources)
           resources = resources.select {
-            |element| element[:'rasd:ResourceType'] == 10
+            |element| element[:'rasd:ResourceType'] == "10"
           }
           @network_cards = resources.collect do |r|
             {:name => r[:'rasd:ElementName'],
