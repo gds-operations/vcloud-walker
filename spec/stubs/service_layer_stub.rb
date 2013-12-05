@@ -78,7 +78,17 @@ module Fog
           {
               :"rasd:Description" => "Memory Size",
               :"rasd:ElementName" => "4096 MB of memory"
-          }
+          },
+          {
+              :'rasd:Address'     => '00:50:56:00:00:01',
+              :'rasd:AddressOnParent' => '0',
+              :'rasd:AutomaticAllocation' => true,
+              :'rasd:Description' => 'E1000 ethernet adapter on "Default"',
+              :'rasd:ElementName' => 'Network adapter 0',
+              :'rasd:InstanceID'  => '0',
+              :'rasd:ResourceSubType' => 'E1000',
+              :'rasd:ResourceType' => '10',
+          },
       ]
     end
   end
