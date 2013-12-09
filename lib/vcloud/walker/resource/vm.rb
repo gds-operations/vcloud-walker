@@ -16,7 +16,7 @@ module Vcloud
         attr_reader :id, :status, :cpu, :memory, :operating_system, :disks,
                     :primary_network_connection_index, :vmware_tools,
                     :virtual_system_type, :network_connections, :storage_profile,
-                    :storage_profile_id, :network_cards
+                    :network_cards
 
         def initialize fog_vm
           [:id, :status].each do |key|
