@@ -34,9 +34,9 @@ describe Vcloud::Walker::Resource::Vm do
                               :NetworkConnectionIndex => "0",
                               :IpAddress => "192.168.254.100",
                               :IsConnected => "true",
-                              :MACAddress => "00:50:56:01:0c:30",
+                              :MACAddress => "00:50:56:00:00:01",
                               :IpAddressAllocationMode => "MANUAL"
-                          }
+                          },
                       ]
               },
           :RuntimeInfoSection => {:VMWareTools => {:version => "2147483647"}},
@@ -92,6 +92,16 @@ describe Vcloud::Walker::Resource::Vm do
         @vm_summary.disks.first.should == {:name => "Hard disk 1", :size => 11265}
         @vm_summary.disks.last.should == {:name => "Hard disk 2", :size => 307200}
       end
+
+      it "report network card info" do
+        @vm_summary.network_cards.count.should == 1
+        @vm_summary.network_cards[0].should == {
+          :mac_address => '00:50:56:00:00:01',
+          :name => "Network adapter 0",
+          :type => "E1000"
+        }
+      end
+
     end
   end
 end

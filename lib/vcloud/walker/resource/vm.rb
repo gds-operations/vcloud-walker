@@ -12,8 +12,11 @@ module Vcloud
 
 
       class Vm < Entity
-        attr_reader :id, :status, :cpu, :memory, :operating_system, :disks, :primary_network_connection_index,
-                    :vmware_tools, :virtual_system_type, :network_connections, :storage_profile, :storage_profile_id
+
+        attr_reader :id, :status, :cpu, :memory, :operating_system, :disks,
+                    :primary_network_connection_index, :vmware_tools,
+                    :virtual_system_type, :network_connections, :storage_profile,
+                    :storage_profile_id, :network_cards
 
         def initialize fog_vm
           [:id, :status].each do |key|
@@ -33,7 +36,7 @@ module Vcloud
 
         private
         def extract_compute_capacity ovf_resources
-          %w(cpu memory disks).each { |resource| send("extract_#{resource}", ovf_resources) } unless ovf_resources.empty?
+          %w(cpu memory disks network_cards).each { |resource| send("extract_#{resource}", ovf_resources) } unless ovf_resources.empty?
         end
 
         def extract_cpu(resources)
@@ -48,6 +51,18 @@ module Vcloud
           disk_resources = resources.select { |element| element[:'rasd:Description']=='Hard disk' }
           @disks = disk_resources.collect do |d|
             {:name => d[:'rasd:ElementName'], :size => d[:'rasd:HostResource'][:'ns12_capacity'].to_i}
+          end
+        end
+
+        def extract_network_cards(resources)
+          resources = resources.select {
+            |element| element[:'rasd:ResourceType'] == "10"
+          }
+          @network_cards = resources.collect do |r|
+            {:name => r[:'rasd:ElementName'],
+             :type => r[:'rasd:ResourceSubType'],
+             :mac_address => r[:'rasd:Address'],
+            }
           end
         end
 
