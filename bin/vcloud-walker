@@ -12,7 +12,7 @@ class App
   include Methadone::CLILogging
   include Vcloud
 
-  main do |resource|
+  main do |resource_to_walk|
     print JSON.pretty_generate(Vcloud::Walker::Resource::Organization.vdcs)
   end
 
@@ -21,10 +21,10 @@ class App
   on("--debug",   "Debugging output")
   on("--no_power_on",  "Do not power on vApps (default is to power on)")
 
-  arg :resource
+  arg :resource_to_walk
 
   description '
-  vcloud-walker does something...
+  Vcloud-walker is a command line tool, to describe different VMware vCloud Director 5.1 entities. It uses Fog under the hood.
 
   See https://github.com/alphagov/vcloud-walker for more info'
 
