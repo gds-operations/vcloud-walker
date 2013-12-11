@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'bundler/setup'
+require 'optparse'
+require 'methadone'
+
+require 'vcloud/walker'
+
+class App
+  include Methadone::Main
+  include Methadone::CLILogging
+  include Vcloud
+
+  main do |resource|
+    print JSON.pretty_generate(Vcloud::Walker::Resource::Organization.vdcs)
+  end
+
+
+  on("--verbose", "Verbose output")
+  on("--debug",   "Debugging output")
+  on("--no_power_on",  "Do not power on vApps (default is to power on)")
+
+  arg :resource
+
+  description '
+  vcloud-walker does something...
+
+  See https://github.com/alphagov/vcloud-walker for more info'
+
+  version Vcloud::Walker::VERSION
+
+  go!
+end
