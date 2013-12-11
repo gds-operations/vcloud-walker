@@ -16,15 +16,20 @@ class App
     print JSON.pretty_generate(Vcloud::Walker::Resource::Organization.vdcs)
   end
 
-
   on("--verbose", "Verbose output")
   on("--debug",   "Debugging output")
-  on("--no_power_on",  "Do not power on vApps (default is to power on)")
 
   arg :resource_to_walk
 
   description '
-  Vcloud-walker is a command line tool, to describe different VMware vCloud Director 5.1 entities. It uses Fog under the hood.
+  Vcloud-walker is a command line tool, to describe different VMware vCloud Director 5.1 resources. It uses Fog under the hood.
+
+  Resources that can be walked using vcloud-walker are:
+    catalogs
+    vdcs
+    networks
+    edgegateways
+    organization
 
   See https://github.com/alphagov/vcloud-walker for more info'
 
