@@ -13,7 +13,7 @@ class App
   include Vcloud
 
   main do |resource_to_walk|
-    print JSON.pretty_generate(Vcloud::Walker::Resource::Organization.vdcs)
+    Vcloud::Walker.walk(resource_to_walk)
   end
 
   on("--verbose", "Verbose output")
