@@ -15,8 +15,8 @@ Gem::Specification.new do |s|
   s.rubyforge_project = "vcloud-walker"
 
   s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.executables   = s.files.grep(%r{^bin/}) {|f| File.basename(f)}
+  s.test_files    = s.files.grep(%r{^(test|spec|features)/})
   s.require_paths = ["lib"]
 
   s.license = 'MIT'
@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-mocks', '~> 2.14.3'
   s.add_development_dependency "json_spec", "~> 1.1.1"
   s.add_runtime_dependency 'json', '~> 1.8.0'
+  s.add_runtime_dependency 'methadone'
   s.add_runtime_dependency 'thor', '~> 0.18.1'
   s.add_runtime_dependency 'fog', '~> 1.18.0'
   s.add_development_dependency 'simplecov', '~> 0.8.2'
