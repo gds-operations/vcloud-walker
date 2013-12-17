@@ -19,9 +19,8 @@ module Vcloud
                     :network_cards
 
         def initialize fog_vm
-          [:id, :status].each do |key|
-            instance_variable_set("@#{key.downcase}", fog_vm[key])
-          end
+          @id = extract_id(fog_vm[:href])
+          @status = fog_vm[:status]
           @operating_system = fog_vm[:'ovf:OperatingSystemSection'][:'ovf:Description']
           @network_connections = fog_vm[:NetworkConnectionSection][:NetworkConnection] if fog_vm[:NetworkConnectionSection]
           @primary_network_connection_index = fog_vm[:NetworkConnectionSection][:PrimaryNetworkConnectionIndex]
@@ -33,6 +32,7 @@ module Vcloud
             :name => fog_vm[:StorageProfile][:name],
           }
         end
+
 
         private
         def extract_compute_capacity ovf_resources

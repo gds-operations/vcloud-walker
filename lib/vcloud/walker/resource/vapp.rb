@@ -5,10 +5,11 @@ module Vcloud
         attr_reader :id, :name, :status, :description, :network_config, :vms, :deployed, :network_section
 
         def initialize fog_vapp
-          [:name, :status, :deployed, :id, :Description].each do |key|
-            instance_variable_set("@#{key.downcase}", fog_vapp[key])
-          end
-
+          @name = fog_vapp[:name]
+          @status = fog_vapp[:status]
+          @description = fog_vapp[:Description]
+          @deployed = fog_vapp[:deployed]
+          @id = extract_id(fog_vapp[:href])
           @network_config  = extract_network_config(fog_vapp[:NetworkConfigSection][:NetworkConfig])
           @network_section = fog_vapp[:'ovf:NetworkSection'][:'ovf:Network']
           @vms             = Resource::Vms.new(fog_vapp[:Children][:Vm])
