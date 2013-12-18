@@ -16,6 +16,11 @@ module Vcloud
           h
         end
 
+        private
+        def extract_id(href)
+          href.split('/').last
+        end
+
       end
     end
   end
