@@ -16,7 +16,7 @@ module Vcloud
         attr_reader :id, :status, :cpu, :memory, :operating_system, :disks,
                     :primary_network_connection_index, :vmware_tools,
                     :virtual_system_type, :network_connections, :storage_profile,
-                    :network_cards
+                    :network_cards, :metadata
 
         def initialize fog_vm
           @id = extract_id(fog_vm[:href])
@@ -31,6 +31,7 @@ module Vcloud
             :id   => fog_vm[:StorageProfile][:href].split('/').last,
             :name => fog_vm[:StorageProfile][:name],
           }
+          @metadata = Vcloud::Core::Vm.get_metadata(id)
         end
 
 

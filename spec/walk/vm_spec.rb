@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Vcloud::Walker::Resource::Vm do
 
   context 'populate summary vm model' do
-    before(:all) do
+    before(:each) do
       fog_vm = {
           :deployed => "true",
           :status => "8",
@@ -48,6 +48,9 @@ describe Vcloud::Walker::Resource::Vm do
                   :href=>"https://api.vcd.portal.examplecloud.com/api/vdcStorageProfile/00000000-aaaa-bbbb-aaaa-000000000000"
               }
       }
+
+      @metadata = {:name => 'web-app-1', :shutdown => true}
+      Vcloud::Core::Vm.should_receive(:get_metadata).with("vm-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee").and_return(@metadata)
 
       @vm_summary = Vcloud::Walker::Resource::Vm.new(fog_vm)
     end
@@ -108,6 +111,12 @@ describe Vcloud::Walker::Resource::Vm do
       end
 
     end
+
+    it "report metadata" do
+      @vm_summary.metadata.count.should == 2
+      @vm_summary.metadata.should == @metadata
+    end
+
   end
 end
 
