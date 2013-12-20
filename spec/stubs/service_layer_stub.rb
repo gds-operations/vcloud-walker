@@ -69,6 +69,7 @@ module Fog
     def self.hardware_resources
       [
           {
+              :'rasd:ResourceType' =>:: Vcloud::Walker::Resource::Vm::HARDWARE_RESOURCE_TYPES[:hard_disk],
               :"rasd:AddressOnParent" => "0",
               :"rasd:Description" => "Hard disk",
               :"rasd:ElementName" => "Hard disk 1",
@@ -76,20 +77,24 @@ module Fog
           },
 
           {
+              :'rasd:ResourceType' => ::Vcloud::Walker::Resource::Vm::HARDWARE_RESOURCE_TYPES[:hard_disk],
               :"rasd:AddressOnParent" => "1",
               :"rasd:Description" => "Hard disk",
               :"rasd:ElementName" => "Hard disk 2",
               :"rasd:HostResource" => {:ns12_capacity => "307200", :ns12_busSubType => "lsilogic", :ns12_busType => "6"}
           },
           {
+              :'rasd:ResourceType' => ::Vcloud::Walker::Resource::Vm::HARDWARE_RESOURCE_TYPES[:cpu],
               :"rasd:Description" => "Number of Virtual CPUs",
               :"rasd:ElementName" => "2 virtual CPU(s)"
           },
           {
+              :'rasd:ResourceType' => ::Vcloud::Walker::Resource::Vm::HARDWARE_RESOURCE_TYPES[:memory],
               :"rasd:Description" => "Memory Size",
               :"rasd:ElementName" => "4096 MB of memory"
           },
           {
+              :'rasd:ResourceType' => ::Vcloud::Walker::Resource::Vm::HARDWARE_RESOURCE_TYPES[:network_adapter],
               :'rasd:Address'     => '00:50:56:00:00:01',
               :'rasd:AddressOnParent' => '0',
               :'rasd:AutomaticAllocation' => true,
@@ -97,7 +102,6 @@ module Fog
               :'rasd:ElementName' => 'Network adapter 0',
               :'rasd:InstanceID'  => '0',
               :'rasd:ResourceSubType' => 'E1000',
-              :'rasd:ResourceType' => '10',
           },
       ]
     end
