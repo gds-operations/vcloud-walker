@@ -5,6 +5,7 @@ require 'bundler/setup'
 require 'optparse'
 require 'methadone'
 
+require 'json'
 require 'vcloud/walker'
 
 class App
@@ -13,7 +14,7 @@ class App
   include Vcloud
 
   main do |resource_to_walk|
-    Vcloud::Walker.walk(resource_to_walk)
+    print JSON.pretty_generate Vcloud::Walker.walk(resource_to_walk)
   end
 
   on("--verbose", "Verbose output")
