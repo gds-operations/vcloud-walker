@@ -44,6 +44,15 @@ module Vcloud
 
       end
 
+      context "invalid resources" do
+
+        it "should reject input that is not a valid resouce" do
+          result_array = Vcloud::Walker.walk("invalid")
+          result_array.should be_nil
+        end
+
+      end
+
     end
 
   end
