@@ -9,6 +9,7 @@ describe Vcloud::Walker::Resource::Vm do
           :status => "8",
           :name => "ubuntu-testing-template",
           :id => "urn:vcloud:vm:aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+          :href => 'https://myvdc.carrenza.net/api/vApp/vm-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee',
           :"ovf:VirtualHardwareSection" =>
               {:"ovf:Info" => "Virtual hardware requirements",
                :"ovf:System" => {:"vssd:ElementName" => "Virtual Hardware Family", :"vssd:VirtualSystemType" => "vmx-08"},
@@ -49,6 +50,10 @@ describe Vcloud::Walker::Resource::Vm do
       }
 
       @vm_summary = Vcloud::Walker::Resource::Vm.new(fog_vm)
+    end
+
+    it 'should report id from the href' do
+      @vm_summary.id.should == 'vm-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee'
     end
 
     it "should populate vmware tool version" do

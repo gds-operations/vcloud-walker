@@ -18,10 +18,16 @@ module Vcloud
                     :virtual_system_type, :network_connections, :storage_profile,
                     :network_cards
 
+        HARDWARE_RESOURCE_TYPES = {
+            :cpu => '3',
+            :memory => '4',
+            :hard_disk => '17',
+            :network_adapter => '10'
+        }
+
         def initialize fog_vm
-          [:id, :status].each do |key|
-            instance_variable_set("@#{key.downcase}", fog_vm[key])
-          end
+          @id = extract_id(fog_vm[:href])
+          @status = fog_vm[:status]
           @operating_system = fog_vm[:'ovf:OperatingSystemSection'][:'ovf:Description']
           @network_connections = fog_vm[:NetworkConnectionSection][:NetworkConnection] if fog_vm[:NetworkConnectionSection]
           @primary_network_connection_index = fog_vm[:NetworkConnectionSection][:PrimaryNetworkConnectionIndex]
@@ -34,21 +40,22 @@ module Vcloud
           }
         end
 
+
         private
         def extract_compute_capacity ovf_resources
           %w(cpu memory disks network_cards).each { |resource| send("extract_#{resource}", ovf_resources) } unless ovf_resources.empty?
         end
 
         def extract_cpu(resources)
-          @cpu = resources.detect { |element| element[:'rasd:Description']=='Number of Virtual CPUs' }[:'rasd:ElementName']
+          @cpu = resources.detect { |element| element[:'rasd:ResourceType']== HARDWARE_RESOURCE_TYPES[:cpu] }[:'rasd:ElementName']
         end
 
         def extract_memory(resources)
-          @memory = resources.detect { |element| element[:'rasd:Description']=='Memory Size' }[:'rasd:ElementName']
+          @memory = resources.detect { |element| element[:'rasd:ResourceType']== HARDWARE_RESOURCE_TYPES[:memory] }[:'rasd:ElementName']
         end
 
         def extract_disks(resources)
-          disk_resources = resources.select { |element| element[:'rasd:Description']=='Hard disk' }
+          disk_resources = resources.select { |element| element[:'rasd:ResourceType']== HARDWARE_RESOURCE_TYPES[:hard_disk] }
           @disks = disk_resources.collect do |d|
             {:name => d[:'rasd:ElementName'], :size => d[:'rasd:HostResource'][:'ns12_capacity'].to_i}
           end
@@ -56,7 +63,7 @@ module Vcloud
 
         def extract_network_cards(resources)
           resources = resources.select {
-            |element| element[:'rasd:ResourceType'] == "10"
+            |element| element[:'rasd:ResourceType'] == HARDWARE_RESOURCE_TYPES[:network_adapter]
           }
           @network_cards = resources.collect do |r|
             {:name => r[:'rasd:ElementName'],
