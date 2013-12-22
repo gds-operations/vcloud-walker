@@ -37,7 +37,7 @@ module Vcloud
 
         it "should correctly pass organization" do
           test_array = [ "name" => "organization" ]
-          Vcloud::Walker::Resource::Organization.stub(:all).and_return(test_array)
+          Vcloud::Walker::Resource::Organization.stub(:organization).and_return(test_array)
           result_array = Vcloud::Walker.walk("organization")
           result_array.should include("name" => "organization")
         end

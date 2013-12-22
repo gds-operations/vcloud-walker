@@ -22,7 +22,7 @@ module Vcloud
           when 'edgegateways'
             Vcloud::Walker::Resource::Organization.edgegateways
           when 'organization'
-            Vcloud::Walker::Resource::Organization.all
+            Vcloud::Walker::Resource::Organization.organization
         end
       else
          puts "Possible options are '#{valid_options.join("','")}'."

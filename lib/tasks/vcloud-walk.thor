@@ -25,7 +25,7 @@ class VcloudWalk < Thor
 
   desc "organization", "describes entire organization"
   def organization
-    print_json Vcloud::Walker::Resource::Organization.all
+    print_json Vcloud::Walker::Resource::Organization.organization
   end
 
   private
