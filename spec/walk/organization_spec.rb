@@ -36,7 +36,7 @@ describe Vcloud::Walker::Resource::Organization do
     Vcloud::Walker::Resource::Organization.should_receive(:catalogs).and_return([:catalog => "Catalog 1"])
     Vcloud::Walker::Resource::Organization.should_receive(:networks).and_return([:network => "Network 1"])
 
-    Vcloud::Walker::Resource::Organization.all.should == {
+    Vcloud::Walker::Resource::Organization.organization.should == {
         :vdcs => [{ :vdc => "VDC 1" }],
         :networks => [{ :network => "Network 1" }],
         :catalogs => [{ :catalog => "Catalog 1" }],

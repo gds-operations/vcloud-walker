@@ -22,7 +22,7 @@ module Vcloud
           Networks.new(fog_networks).to_summary
         end
 
-        def self.all
+        def self.organization
           {
             :vdcs         => vdcs,
             :networks     => networks,
