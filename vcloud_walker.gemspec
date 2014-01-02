@@ -5,7 +5,7 @@ require "vcloud/walker/version"
 Gem::Specification.new do |s|
   s.name        = "vcloud-walker"
   s.version     = Vcloud::Walker::VERSION
-  s.authors     = ['Government Digital Services']
+  s.authors     = ['Government Digital Service']
   s.homepage    = "https://github.com/alphagov/vcloud-walker"
   s.summary     = %q{Command line tool to describe vCloud entities}
   s.description = %q{Vcloud-walker is a command line tool , to describe different vcloud entities.
