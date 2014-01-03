@@ -2,7 +2,6 @@
 
 require 'rubygems'
 require 'bundler/setup'
-require 'optparse'
 require 'methadone'
 
 require 'json'
