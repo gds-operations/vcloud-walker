@@ -6,9 +6,16 @@ require 'stringio'
 #  The intention of these tests are to ensure we have confdence that our tooling will
 #   function when used, and as integration tests to cover the areas that get mocked
 #   and so to uncover assumptions on how we use the fog libraries.
+#
 #  They are not there to test fog - that is the job of the fog tests, though
 #   this can be reconsidered if we get a of undetected bugs.
+#
 #  Most if not all edge cases should be caught by the unit tests or the Fog tests.
+#
+#  NB: These tests require that all EdgeGateways in the organisation have the
+#  following services configured with at least one rule:
+#    NatService
+#    LoadBalancerService
 #
 
 
