@@ -12,10 +12,13 @@ require 'stringio'
 #
 #  Most if not all edge cases should be caught by the unit tests or the Fog tests.
 #
-#  NB: These tests require that all EdgeGateways in the organisation have the
+#  NB: These tests require that all EdgeGateways in the organization have the
 #  following services configured with at least one rule:
 #    NatService
 #    LoadBalancerService
+#
+#  NB: Integration test also requires that at least one vApp is configured in
+#  the organization, otherwise tests fail with insufficient coverage.
 #
 
 
