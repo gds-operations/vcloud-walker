@@ -4,6 +4,6 @@ gemspec
 
 gem 'fog',
   :git => 'git@github.com:fog/fog.git', :branch => 'master'
-gem 'vcloud-tools',
-    :git => 'git@github.com:alphagov/vcloud-tools.git', :tag => 'v0.6.0'
+gem 'vcloud-core',
+    :git => 'git@github.com:alphagov/vcloud-core.git', :tag => 'v0.0.3'
 
