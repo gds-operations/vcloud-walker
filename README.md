@@ -52,4 +52,9 @@ To understand more about `.fog` files, visit the 'Credentials' section here => h
 
 ### Output
 
-The output is in JSON format. Find sample output look into docs/examples directory. 
+Walker can output data in JSON or YAML format. The default output format
+is JSON.
+You can use command line option ```--yaml``` for yaml output.
+
+Find sample json output in docs/examples directory.
+
