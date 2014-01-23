@@ -13,9 +13,12 @@ module Vcloud
         end
 
         def self.edgegateways
-          FogInterface.get_edge_gateways
+          fog_edge_gateways = FogInterface.get_edge_gateways
+          fog_edge_gateways.collect do |edge_gw|
+            edge_gw[:id] = edge_gw[:href].split('/').last
+            edge_gw
+          end
         end
-
 
         def self.networks
           fog_networks = FogInterface.get_networks
