@@ -25,9 +25,6 @@ def set_login_credential username = 'some-username', password = 'some-password'
   ENV['API_PASSWORD'] = password
 end
 
-RSpec.configure do |config|
-  config.include JsonSpec::Helpers
-end
 ACCEPTED_COVERAGE = 97
 SimpleCov.at_exit do
   SimpleCov.result.format!
