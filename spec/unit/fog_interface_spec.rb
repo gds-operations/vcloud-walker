@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'unit/spec_helper'
 require 'rspec/mocks'
 
 describe Vcloud::Walker::FogInterface do
