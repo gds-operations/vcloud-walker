@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'integration/spec_helper'
 require 'fog'
 require 'stringio'
 

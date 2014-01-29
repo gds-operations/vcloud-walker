@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'unit/spec_helper'
 require 'fog'
 
 describe Vcloud::Walker::Resource::Vdcs do

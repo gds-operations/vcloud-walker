@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'unit/spec_helper'
 
 describe Vcloud::Walker::Resource::Vm do
 
