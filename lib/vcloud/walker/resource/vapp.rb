@@ -2,7 +2,7 @@ module Vcloud
   module Walker
     module Resource
       class VApp < Entity
-        attr_reader :id, :name, :status, :description, :network_config, :vms, :deployed, :network_section
+        attr_reader :id, :name, :status, :description, :network_config, :vms, :deployed, :network_section, :metadata
 
         def initialize fog_vapp
           @name = fog_vapp[:name]
@@ -13,6 +13,7 @@ module Vcloud
           @network_config  = extract_network_config(fog_vapp[:NetworkConfigSection][:NetworkConfig])
           @network_section = fog_vapp[:'ovf:NetworkSection'][:'ovf:Network']
           @vms             = Resource::Vms.new(fog_vapp[:Children][:Vm])
+          @metadata = Vcloud::Core::Vapp.get_metadata(id)
         end
 
         private

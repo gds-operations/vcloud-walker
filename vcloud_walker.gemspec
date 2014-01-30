@@ -28,7 +28,8 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'json', '~> 1.8.0'
   s.add_runtime_dependency 'methadone'
   s.add_runtime_dependency 'thor', '~> 0.18.1'
-  s.add_runtime_dependency 'fog', '>= 1.18.0'
+  s.add_runtime_dependency 'fog', '>= 1.19.0'
+  s.add_runtime_dependency 'vcloud-core', '>= 0.0.5'
   s.add_development_dependency 'simplecov', '~> 0.8.2'
-  s.add_development_dependency "jeweler", "~> 1.8.8"
+  s.add_development_dependency "jeweler", "~> 2.0.1"
 end

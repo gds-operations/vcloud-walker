@@ -3,7 +3,7 @@ module Vcloud
     class VcloudSession
 
       def self.instance
-        Fog::Compute::VcloudDirector.new
+        ::Fog::Compute::VcloudDirector.new
       end
 
     end
