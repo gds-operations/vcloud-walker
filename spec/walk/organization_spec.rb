@@ -24,10 +24,10 @@ describe Vcloud::Walker::Resource::Organization do
   end
 
   it "should retrieve edgegateways" do
-    fog_edgegateways = [:edgegateway => 'Gateway 1']
+    fog_edgegateways = [{:id => 'urn:vcloud:gateway:1', :href => 'host/1', :name => 'Gateway 1'}]
     Vcloud::Walker::FogInterface.should_receive(:get_edge_gateways).and_return(fog_edgegateways)
 
-    Vcloud::Walker::Resource::Organization.edgegateways.should == [:edgegateway => 'Gateway 1']
+    Vcloud::Walker::Resource::Organization.edgegateways.should == [{:id => '1', name: 'Gateway 1', :href => 'host/1'} ]
   end
 
   it "should retrive entire organization" do

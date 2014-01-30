@@ -1,14 +1,16 @@
-require 'simplecov'
+if ENV['COVERAGE']
+  require 'simplecov'
 
-SimpleCov.profiles.define 'gem' do
-  add_filter '/spec/'
-  add_filter '/features/'
-  add_filter '/vendor/'
+  SimpleCov.profiles.define 'gem' do
+    add_filter '/spec/'
+    add_filter '/features/'
+    add_filter '/vendor/'
 
-  add_group 'Libraries', '/lib/'
+    add_group 'Libraries', '/lib/'
+  end
+
+  SimpleCov.start 'gem'
 end
-
-SimpleCov.start 'gem'
 
 $:.unshift File.expand_path("../../lib", __FILE__)
 
@@ -28,13 +30,16 @@ end
 RSpec.configure do |config|
   config.include JsonSpec::Helpers
 end
-ACCEPTED_COVERAGE = 97
-SimpleCov.at_exit do
-  SimpleCov.result.format!
-  # do not change the coverage percentage, instead add more unit tests to fix coverage failures.
-  if SimpleCov.result.covered_percent < ACCEPTED_COVERAGE
-    print "ERROR::BAD_CODE_COVERAGE\n"
-    print "Coverage is less than acceptable limit(#{ACCEPTED_COVERAGE}%). Please add more tests to improve the coverage"
-    exit(1)
+
+if ENV['COVERAGE']
+  ACCEPTED_COVERAGE = 97
+  SimpleCov.at_exit do
+    SimpleCov.result.format!
+    # do not change the coverage percentage, instead add more unit tests to fix coverage failures.
+    if SimpleCov.result.covered_percent < ACCEPTED_COVERAGE
+      print "ERROR::BAD_CODE_COVERAGE\n"
+      print "Coverage is less than acceptable limit(#{ACCEPTED_COVERAGE}%). Please add more tests to improve the coverage"
+      exit(1)
+    end
   end
 end
