@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'fog'
 require 'stringio'
+require 'vcloud/walker'
 
 #######################################################################################
 #  The intention of these tests are to ensure we have confdence that our tooling will
@@ -22,14 +23,12 @@ require 'stringio'
 #
 
 
-load File.join(File.expand_path('../../../lib/tasks/vcloud-walk.thor', __FILE__))
-
 describe Vcloud::Walker do
   context 'walk an organization' do
 
     it 'should integrate with fog to get vdcs' do
 
-      vdc_summaries = VcloudWalk.new.vdcs.to_json
+      vdc_summaries = Vcloud::Walker.walk('vdcs').to_json
 
       # assert that there are atleast one item and that includes the essencial sections
       vdc_summaries.should have_json_path('0/id')
@@ -41,7 +40,7 @@ describe Vcloud::Walker do
 
     it "should integrate with fog to get networks" do
 
-      network_summary = VcloudWalk.new.networks.to_json
+      network_summary = Vcloud::Walker.walk('networks').to_json
 
       # assert that there are atleast one item and that includes the essencial sections
       network_summary.should have_json_path('0/id')
@@ -52,7 +51,7 @@ describe Vcloud::Walker do
 
     it "should integrate with fog to get catalogs" do
 
-      catalogs_summary = VcloudWalk.new.catalogs
+      catalogs_summary = Vcloud::Walker.walk('catalogs')
       catalog_summary = catalogs_summary.detect{|c| !c[:items].empty? }.to_json
 
       # assert that there are atleast one item and that includes the essencial sections
@@ -64,7 +63,7 @@ describe Vcloud::Walker do
 
     it "should integrate with fog to get edge gateway data" do
 
-      result = VcloudWalk.new.edgegateways.to_json
+      result = Vcloud::Walker.walk('edgegateways').to_json
       # assert that there are atleast one item and that includes the essencial sections
       result.should have_json_path('0/Configuration/EdgeGatewayServiceConfiguration/FirewallService')
       result.should have_json_path('0/Configuration/EdgeGatewayServiceConfiguration/NatService')

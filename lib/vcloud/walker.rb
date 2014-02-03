@@ -1,4 +1,3 @@
-require 'thor'
 require 'fog'
 
 require 'vcloud/core'
