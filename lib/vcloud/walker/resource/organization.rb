@@ -16,6 +16,10 @@ module Vcloud
           fog_edge_gateways = FogInterface.get_edge_gateways
           fog_edge_gateways.collect do |edge_gw|
             edge_gw[:id] = edge_gw[:href].split('/').last
+            edgegw_service_configuration = edge_gw[:Configuration][:EdgeGatewayServiceConfiguration]
+            if edgegw_service_configuration[:GatewayIpsecVpnService]
+              edgegw_service_configuration[:GatewayIpsecVpnService] = GatewayIpsecVpnService.new(edgegw_service_configuration[:GatewayIpsecVpnService]).to_summary
+            end
             edge_gw
           end
         end
