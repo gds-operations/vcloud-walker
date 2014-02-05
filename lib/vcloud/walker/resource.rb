@@ -7,4 +7,5 @@ require 'vcloud/walker/resource/network'
 require 'vcloud/walker/resource/vapp'
 require 'vcloud/walker/resource/vdc'
 require 'vcloud/walker/resource/vm'
+require 'vcloud/walker/resource/gateway_ipsec_vpn_service'
 
