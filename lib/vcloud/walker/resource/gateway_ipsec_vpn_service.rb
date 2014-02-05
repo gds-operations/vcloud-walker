@@ -2,44 +2,43 @@ module Vcloud
   module Walker
     module Resource
       class GatewayIpsecVpnService < Entity
-        attr_reader :enabled, :tunnel
+        attr_reader :IsEnabled, :Tunnel
 
         def initialize fog_vpn_service
-          @enabled = fog_vpn_service[:IsEnabled]
-          @tunnel = Tunnel.new(fog_vpn_service[:Tunnel]) if fog_vpn_service[:Tunnel]
-        end
+          @IsEnabled = fog_vpn_service[:IsEnabled]
+          fog_vpn_tunnel = fog_vpn_service[:Tunnel]
 
-      end
-
-      class Tunnel < Entity
-        attr_reader :name, :description, :third_party_peer_id, :peer_id, :local_id, :peer_ip_address,
-                    :local_ip_address, :local_subnet, :peer_subnet, :mtu, :enabled, :operational,
-                    :error, :shared_secret, :shared_secret_encrypted, :encryption_protocol
-
-        def initialize fog_vpn_tunnel
-          @name = fog_vpn_tunnel[:Name]
-          @description = fog_vpn_tunnel[:Description]
-          @third_party_peer_id = fog_vpn_tunnel[:IpsecVpnThirdPartyPeer][:PeerId]
-          @peer_id = fog_vpn_tunnel[:PeerId]
-          @peer_ip_address = fog_vpn_tunnel[:PeerIpAddress]
-          @local_id = fog_vpn_tunnel[:LocalId]
-          @local_ip_address = fog_vpn_tunnel[:LocalIpAddress]
-          @peer_subnet = fog_vpn_tunnel[:PeerSubnet]
-          @local_subnet = fog_vpn_tunnel[:LocalSubnet]
-          @mtu = fog_vpn_tunnel[:Mtu]
-          @enabled = fog_vpn_tunnel[:IsEnabled]
-          @operational = fog_vpn_tunnel[:IsOperational]
-
-          mask_shared_secrets fog_vpn_tunnel
+          @Tunnel = populate_tunnel_info(fog_vpn_tunnel)
         end
 
         private
-        def mask_shared_secrets fog_vpn_tunnel
-          @shared_secret =  "*" * 65  if fog_vpn_tunnel[:SharedSecret]
-          @shared_secret_encrypted =  "******"  if fog_vpn_tunnel[:SharedSecretEncrypted]
-          @encryption_protocol =  "******"  if fog_vpn_tunnel[:EncryptionProtocol]
+        def populate_tunnel_info(fog_vpn_tunnel)
+          return unless fog_vpn_tunnel
+
+          @tunnel = {
+            :Name => fog_vpn_tunnel[:Name],
+            :Description => fog_vpn_tunnel[:Description],
+            :ThirdPartyPeerId => fog_vpn_tunnel[:IpsecVpnThirdPartyPeer][:PeerId],
+            :PeerId => fog_vpn_tunnel[:PeerId],
+            :LocalId => fog_vpn_tunnel[:LocalId],
+            :PeerIpAddress => fog_vpn_tunnel[:PeerIpAddress],
+            :LocalIpAddress => fog_vpn_tunnel[:LocalIpAddress],
+            :PeerSubnet => fog_vpn_tunnel[:PeerSubnet],
+            :LocalSubnet => fog_vpn_tunnel[:LocalSubnet],
+            :Mtu => fog_vpn_tunnel[:Mtu],
+            :IsEnabled => fog_vpn_tunnel[:IsEnabled],
+            :IsOperational => fog_vpn_tunnel[:IsOperational]
+          }
+
+          @tunnel[:SharedSecret] = "*" * 65 if fog_vpn_tunnel[:SharedSecret]
+          @tunnel[:SharedSecretEncrypted] = "******" if fog_vpn_tunnel[:SharedSecretEncrypted]
+          @tunnel[:EncryptionProtocol] = "******" if fog_vpn_tunnel[:EncryptionProtocol]
+          @tunnel
         end
+
+
       end
+
     end
   end
 end
