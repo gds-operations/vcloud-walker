@@ -38,6 +38,7 @@ describe Vcloud::Walker::Resource::GatewayIpsecVpnService do
   it "should report status of vpn service" do
      expect(@gateway_vpn_service.enabled).to eq(true)
   end
+
   context "report tunnel info" do
     before(:all) do
       @tunnel = @gateway_vpn_service.tunnel

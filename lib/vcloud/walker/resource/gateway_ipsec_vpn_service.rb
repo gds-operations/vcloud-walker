@@ -2,11 +2,10 @@ module Vcloud
   module Walker
     module Resource
       class GatewayIpsecVpnService < Entity
-        attr_reader :enabled, :end_point, :tunnel
+        attr_reader :enabled, :tunnel
 
         def initialize fog_vpn_service
           @enabled = fog_vpn_service[:IsEnabled]
-          @end_point = fog_vpn_service[:Endpoint] if fog_vpn_service[:Endpoint]
           @tunnel = Tunnel.new(fog_vpn_service[:Tunnel]) if fog_vpn_service[:Tunnel]
         end
 
