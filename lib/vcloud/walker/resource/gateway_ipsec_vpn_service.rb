@@ -15,7 +15,7 @@ module Vcloud
       class Tunnel < Entity
         attr_reader :name, :description, :third_party_peer_id, :peer_id, :local_id, :peer_ip_address,
                     :local_ip_address, :local_subnet, :peer_subnet, :mtu, :enabled, :operational,
-                    :error
+                    :error, :shared_secret, :shared_secret_encrypted, :encryption_protocol
 
         def initialize fog_vpn_tunnel
           @name = fog_vpn_tunnel[:Name]
@@ -30,6 +30,15 @@ module Vcloud
           @mtu = fog_vpn_tunnel[:Mtu]
           @enabled = fog_vpn_tunnel[:IsEnabled]
           @operational = fog_vpn_tunnel[:IsOperational]
+
+          mask_shared_secrets fog_vpn_tunnel
+        end
+
+        private
+        def mask_shared_secrets fog_vpn_tunnel
+          @shared_secret =  "*" * 65  if fog_vpn_tunnel[:SharedSecret]
+          @shared_secret_encrypted =  "******"  if fog_vpn_tunnel[:SharedSecretEncrypted]
+          @encryption_protocol =  "******"  if fog_vpn_tunnel[:EncryptionProtocol]
         end
       end
     end
