@@ -72,10 +72,14 @@ describe Vcloud::Walker::Resource::GatewayIpsecVpnService do
       expect(@tunnel[:Mtu]).to eq('1500')
     end
 
-    it "should mark vpn shared secret information if present" do
+    it "with masked vpn shared secret information" do
       expect(@tunnel[:SharedSecret]).to eq("*" * 65)
       expect(@tunnel[:SharedSecretEncrypted]).to eq("******")
       expect(@tunnel[:EncryptionProtocol]).to eq("******")
+    end
+
+    it "should skip any addditional vpn details provided by fog" do
+       expect(@tunnel[:AdditionalDetails]).to be_nil
     end
   end
 
