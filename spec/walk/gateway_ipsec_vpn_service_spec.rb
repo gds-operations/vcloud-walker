@@ -66,6 +66,12 @@ describe Vcloud::Walker::Resource::GatewayIpsecVpnService do
     it "with maximum transmission unit" do
       expect(@tunnel.mtu).to eq('1500')
     end
+
+    it "should mark vpn shared secret information if present" do
+      expect(@tunnel.shared_secret).to eq("*" * 65)
+      expect(@tunnel.shared_secret_encrypted).to eq("******")
+      expect(@tunnel.encryption_protocol).to eq("******")
+    end
   end
 
 end
