@@ -13,11 +13,3 @@ task.pattern = FileList['spec/integration/*_spec.rb']
 end
 
 task :default => :spec
-
-require 'jeweler'
-
-Jeweler::Tasks.new do |gem|
-  gem.name = 'vcloud_walker'
-  gem.version = Vcloud::Walker::VERSION
-end
-Jeweler::RubygemsDotOrgTasks.new
