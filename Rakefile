@@ -14,10 +14,8 @@ end
 
 task :default => :spec
 
-require 'jeweler'
-
-Jeweler::Tasks.new do |gem|
-  gem.name = 'vcloud_walker'
-  gem.version = Vcloud::Walker::VERSION
+require "gem_publisher"
+task :publish_gem do |t|
+  gem = GemPublisher.publish_if_updated("vcloud-walker.gemspec", :rubygems)
+  puts "Published #{gem}" if gem
 end
-Jeweler::RubygemsDotOrgTasks.new
