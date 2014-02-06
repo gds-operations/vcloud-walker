@@ -13,3 +13,9 @@ task.pattern = FileList['spec/integration/*_spec.rb']
 end
 
 task :default => :spec
+
+require "gem_publisher"
+task :publish_gem do |t|
+  gem = GemPublisher.publish_if_updated("vcloud-walker.gemspec", :rubygems)
+  puts "Published #{gem}" if gem
+end

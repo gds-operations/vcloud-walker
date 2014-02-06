@@ -27,4 +27,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'fog', '>= 1.19.0'
   s.add_runtime_dependency 'vcloud-core', '>= 0.0.5'
   s.add_development_dependency 'simplecov', '~> 0.8.2'
+  s.add_development_dependency 'gem_publisher', '1.2.0'
 end
