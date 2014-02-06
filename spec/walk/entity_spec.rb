@@ -31,6 +31,13 @@ module Vcloud
         end
       end
 
+      class TestNestedEntity < Entity
+        attr_accessor :test_data
+        def initialize data
+          self.test_data = TestData.new(data)
+        end
+      end
+
     end
   end
 
@@ -48,6 +55,12 @@ module Vcloud
       test_class.instance_variables.should eq([:@test_data, :@description])
       test_summary = test_class.to_summary
       test_summary.keys.should eq([:test_data, :description])
+    end
+
+    it 'should be able to nest entity inside entity' do
+      nested_entities = Vcloud::Walker::Resource::TestNestedEntity.new(double(:data, :name => 'Data 1'))
+      expect(nested_entities.to_summary).to eq({:test_data=>{:name=>"Data 1"}})
+
     end
 
   end
