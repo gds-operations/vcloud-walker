@@ -2,6 +2,20 @@
 
 Vcloud-walker is a command line tool, to describe different VMware vCloud Director 5.1 entities. It uses Fog under the hood.
 
+## Installation
+
+Add this line to your application's Gemfile:
+
+    gem 'vcloud-walker'
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install vcloud-walker
+
 ## Usage
 To find usage, run `vcloud-walk`.
 
