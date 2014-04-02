@@ -86,7 +86,7 @@ From the headers returned, select the header below
 
 Use token as ENV var FOG_VCLOUD_TOKEN
 
-    FOG_VCLOUD_TOKEN=AAAABBBBBCCCCCCDDDDDDEEEEEEFFFFF= bundle exec ...
+    FOG_VCLOUD_TOKEN=AAAABBBBBCCCCCCDDDDDDEEEEEEFFFFF= vcloud-walk organization
 
 ### Output
 
