@@ -64,12 +64,29 @@ default:
 
 To understand more about `.fog` files, visit the 'Credentials' section here => http://fog.io/about/getting_started.html.
 
-#### 2. Log on externally and supply your session token
+### 2. Log on externally and supply your session token
 
-You can choose to log on externally by interacting independently with the API directly and supplying your session token to the tool
-by setting the FOG_VCLOUD_TOKEN ENV variable.
+You can choose to log on externally by interacting independently with the API and supplying your session token to the
+tool by setting the `FOG_VCLOUD_TOKEN` ENV variable. This option reduces the risk footprint by allowing the user to
+store their credentials in safe storage. The default token lifetime is '30 minutes idle' - any activity extends the life by another 30 mins.
 
-See https://github.com/fog/fog/pull/2705 for more details on this option.
+A basic example of this would be the following:
+
+    curl
+       -D-
+       -d ''
+       -H 'Accept: application/*+xml;version=5.1' -u '<user>@<org>'
+       https://host.com/api/sessions
+
+This will prompt for your password.
+
+From the headers returned, select the header below
+
+     x-vcloud-authorization: AAAABBBBBCCCCCCDDDDDDEEEEEEFFFFF=
+
+Use token as ENV var FOG_VCLOUD_TOKEN
+
+    FOG_VCLOUD_TOKEN=AAAABBBBBCCCCCCDDDDDDEEEEEEFFFFF= bundle exec ...
 
 ### Output
 
