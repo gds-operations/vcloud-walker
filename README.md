@@ -48,9 +48,13 @@ describes the entire organization, which includes edgegateway, catalogs, network
 
 ### Credentials
 
-You will need to specify the credentials for your VMware environment. As Vcloud-walker uses fog to query the VMware api, you will need to create a `.fog` file containing these credentials.
+You will need to specify the credentials for your VMware environment. Vcloud-walker uses fog to query the VMware api,
+which offers two ways to do this.
+
+#### 1. Create a `.fog` file containing your credentials
 
 An example of .fog file is:
+
 ````
 default:
   vcloud_director_username: 'user_id@org_id'
@@ -59,6 +63,30 @@ default:
 ````
 
 To understand more about `.fog` files, visit the 'Credentials' section here => http://fog.io/about/getting_started.html.
+
+### 2. Log on externally and supply your session token
+
+You can choose to log on externally by interacting independently with the API and supplying your session token to the
+tool by setting the `FOG_VCLOUD_TOKEN` ENV variable. This option reduces the risk footprint by allowing the user to
+store their credentials in safe storage. The default token lifetime is '30 minutes idle' - any activity extends the life by another 30 mins.
+
+A basic example of this would be the following:
+
+    curl
+       -D-
+       -d ''
+       -H 'Accept: application/*+xml;version=5.1' -u '<user>@<org>'
+       https://host.com/api/sessions
+
+This will prompt for your password.
+
+From the headers returned, select the header below
+
+     x-vcloud-authorization: AAAABBBBBCCCCCCDDDDDDEEEEEEFFFFF=
+
+Use token as ENV var FOG_VCLOUD_TOKEN
+
+    FOG_VCLOUD_TOKEN=AAAABBBBBCCCCCCDDDDDDEEEEEEFFFFF= vcloud-walk organization
 
 ### Output
 
