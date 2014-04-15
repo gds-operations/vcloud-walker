@@ -66,14 +66,28 @@ module Fog
       RSpec::Mocks::Mock.new(:fog_vapp, :body => vapp_body)
     end
 
-    def self.hardware_resources
+    def self.vcloud_director_five_one_ids
+      {
+        :disk_capacity_label => :ns12_capacity
+      }
+    end
+
+    def self.vcloud_director_five_five_with_version_five_one_api_ids
+      {
+        :disk_capacity_label => :vcloud_capacity
+      }
+    end
+
+
+
+    def self.hardware_resources version_specific_ids
       [
           {
               :'rasd:ResourceType' =>:: Vcloud::Walker::Resource::Vm::HARDWARE_RESOURCE_TYPES[:hard_disk],
               :"rasd:AddressOnParent" => "0",
               :"rasd:Description" => "Hard disk",
               :"rasd:ElementName" => "Hard disk 1",
-              :"rasd:HostResource" => {:ns12_capacity => "11265", :ns12_busSubType => "lsilogic", :ns12_busType => "6"},
+              :"rasd:HostResource" => {version_specific_ids[:disk_capacity_label] => "11265", :ns12_busSubType => "lsilogic", :ns12_busType => "6"},
           },
 
           {
@@ -81,7 +95,7 @@ module Fog
               :"rasd:AddressOnParent" => "1",
               :"rasd:Description" => "Hard disk",
               :"rasd:ElementName" => "Hard disk 2",
-              :"rasd:HostResource" => {:ns12_capacity => "307200", :ns12_busSubType => "lsilogic", :ns12_busType => "6"}
+              :"rasd:HostResource" => {version_specific_ids[:disk_capacity_label] => "307200", :ns12_busSubType => "lsilogic", :ns12_busType => "6"}
           },
           {
               :'rasd:ResourceType' => ::Vcloud::Walker::Resource::Vm::HARDWARE_RESOURCE_TYPES[:cpu],

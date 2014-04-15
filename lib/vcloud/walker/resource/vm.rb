@@ -58,8 +58,12 @@ module Vcloud
         def extract_disks(resources)
           disk_resources = resources.select { |element| element[:'rasd:ResourceType']== HARDWARE_RESOURCE_TYPES[:hard_disk] }
           @disks = disk_resources.collect do |d|
-            {:name => d[:'rasd:ElementName'], :size => d[:'rasd:HostResource'][:'ns12_capacity'].to_i}
+            {:name => d[:'rasd:ElementName'], :size => extract_disk_capacity(d)}
           end
+        end
+
+        def extract_disk_capacity(d)
+          (d[:"rasd:HostResource"][:ns12_capacity] || d[:"rasd:HostResource"][:vcloud_capacity]).to_i
         end
 
         def extract_network_cards(resources)
