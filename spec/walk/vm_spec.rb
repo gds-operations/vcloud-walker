@@ -101,43 +101,48 @@ describe Vcloud::Walker::Resource::Vm do
 
   def assemble_sample_vm_data api_version
     {
-      :deployed                     => "true",
-      :status                       => "8",
-      :name                         => "ubuntu-testing-template",
-      :id                           => "urn:vcloud:vm:aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-      :href                         => 'https://myvdc.carrenza.net/api/vApp/vm-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee',
+      :deployed => "true",
+      :status => "8",
+      :name => "ubuntu-testing-template",
+      :id => "urn:vcloud:vm:aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+      :href => 'https://myvdc.carrenza.net/api/vApp/vm-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee',
       :"ovf:VirtualHardwareSection" =>
-        {:"ovf:Info"   => "Virtual hardware requirements",
-         :"ovf:System" => {:"vssd:ElementName" => "Virtual Hardware Family", :"vssd:VirtualSystemType" => "vmx-08"},
-         :'ovf:Item'   => Fog::ServiceLayerStub.hardware_resources(api_version)
+        {
+          :"ovf:Info" => "Virtual hardware requirements",
+          :"ovf:System" =>
+            {
+              :"vssd:ElementName" => "Virtual Hardware Family",
+              :"vssd:VirtualSystemType" => "vmx-08"
+            },
+          :'ovf:Item' => Fog::ServiceLayerStub.hardware_resources(api_version)
         },
       :"ovf:OperatingSystemSection" =>
         {
-          :vmw_osType        => "ubuntu64Guest",
-          :"ovf:Info"        => "Specifies the operating system installed",
+          :vmw_osType  => "ubuntu64Guest",
+          :"ovf:Info" => "Specifies the operating system installed",
           :"ovf:Description" => "Ubuntu Linux (64-bit)"
         },
-      :NetworkConnectionSection     =>
+      :NetworkConnectionSection =>
         {
-          :type                          => "application/vnd.vmware.vcloud.networkConnectionSection+xml",
-          :ovf_required                  => "false",
-          :"ovf:Info"                    => "Specifies the available VM network connections",
+          :type => "application/vnd.vmware.vcloud.networkConnectionSection+xml",
+          :ovf_required => "false",
+          :"ovf:Info" => "Specifies the available VM network connections",
           :PrimaryNetworkConnectionIndex => "0",
-          :NetworkConnection             =>
+          :NetworkConnection =>
             [
               {
-                :network                 => "Default",
-                :needsCustomization      => "true",
-                :NetworkConnectionIndex  => "0",
-                :IpAddress               => "192.168.254.100",
-                :IsConnected             => "true",
-                :MACAddress              => "00:50:56:00:00:01",
+                :network => "Default",
+                :needsCustomization => "true",
+                :NetworkConnectionIndex => "0",
+                :IpAddress => "192.168.254.100",
+                :IsConnected => "true",
+                :MACAddress => "00:50:56:00:00:01",
                 :IpAddressAllocationMode => "MANUAL"
               },
             ]
         },
-      :RuntimeInfoSection           => {:VMWareTools => {:version => "2147483647"}},
-      :StorageProfile               =>
+      :RuntimeInfoSection => {:VMWareTools => {:version => "2147483647"}},
+      :StorageProfile =>
         {
           :type => "application/vnd.vmware.vcloud.vdcStorageProfile+xml",
           :name => "TEST-STORAGE-PROFILE",
