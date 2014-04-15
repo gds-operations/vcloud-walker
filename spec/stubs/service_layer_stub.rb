@@ -72,7 +72,7 @@ module Fog
       }
     end
 
-    def self.vcloud_director_five_five_with_version_five_one_api_ids
+    def self.vcloud_director_5_5_with_v5_1_api_ids
       {
         :disk_capacity_label => :vcloud_capacity
       }
@@ -87,7 +87,9 @@ module Fog
               :"rasd:AddressOnParent" => "0",
               :"rasd:Description" => "Hard disk",
               :"rasd:ElementName" => "Hard disk 1",
-              :"rasd:HostResource" => {version_specific_ids[:disk_capacity_label] => "11265", :ns12_busSubType => "lsilogic", :ns12_busType => "6"},
+              :"rasd:HostResource" => {version_specific_ids[:disk_capacity_label] => "11265",
+                                                            :ns12_busSubType => "lsilogic",
+                                                            :ns12_busType => "6"},
           },
 
           {
@@ -95,7 +97,9 @@ module Fog
               :"rasd:AddressOnParent" => "1",
               :"rasd:Description" => "Hard disk",
               :"rasd:ElementName" => "Hard disk 2",
-              :"rasd:HostResource" => {version_specific_ids[:disk_capacity_label] => "307200", :ns12_busSubType => "lsilogic", :ns12_busType => "6"}
+              :"rasd:HostResource" => {version_specific_ids[:disk_capacity_label] => "307200",
+                                                            :ns12_busSubType => "lsilogic",
+                                                            :ns12_busType => "6"}
           },
           {
               :'rasd:ResourceType' => ::Vcloud::Walker::Resource::Vm::HARDWARE_RESOURCE_TYPES[:cpu],

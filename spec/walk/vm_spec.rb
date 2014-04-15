@@ -79,7 +79,7 @@ describe Vcloud::Walker::Resource::Vm do
 
   context 'populate summary vm model for 5.1 api on vcloud director 5.5' do
     before(:each) do
-      fog_vm = assemble_sample_vm_data  Fog::ServiceLayerStub.vcloud_director_five_five_with_version_five_one_api_ids
+      fog_vm = assemble_sample_vm_data  Fog::ServiceLayerStub.vcloud_director_5_5_with_v5_1_api_ids
 
       @metadata = {:name => 'web-app-1', :shutdown => true}
       Vcloud::Core::Vm.should_receive(:get_metadata).with("vm-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee").and_return(@metadata)
