@@ -2,55 +2,14 @@ require 'spec_helper'
 
 describe Vcloud::Walker::Resource::Vm do
 
-  context 'populate summary vm model' do
+  context 'populate summary vm model for 5.1' do
     before(:each) do
-      fog_vm = {
-          :deployed => "true",
-          :status => "8",
-          :name => "ubuntu-testing-template",
-          :id => "urn:vcloud:vm:aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-          :href => 'https://myvdc.carrenza.net/api/vApp/vm-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee',
-          :"ovf:VirtualHardwareSection" =>
-              {:"ovf:Info" => "Virtual hardware requirements",
-               :"ovf:System" => {:"vssd:ElementName" => "Virtual Hardware Family", :"vssd:VirtualSystemType" => "vmx-08"},
-               :'ovf:Item' => Fog::ServiceLayerStub.hardware_resources
-              },
-          :"ovf:OperatingSystemSection" =>
-              {
-                  :vmw_osType => "ubuntu64Guest",
-                  :"ovf:Info" => "Specifies the operating system installed",
-                  :"ovf:Description" => "Ubuntu Linux (64-bit)"
-              },
-          :NetworkConnectionSection =>
-              {
-                  :type => "application/vnd.vmware.vcloud.networkConnectionSection+xml",
-                  :ovf_required => "false",
-                  :"ovf:Info" => "Specifies the available VM network connections",
-                  :PrimaryNetworkConnectionIndex => "0",
-                  :NetworkConnection =>
-                      [
-                          {
-                              :network => "Default",
-                              :needsCustomization => "true",
-                              :NetworkConnectionIndex => "0",
-                              :IpAddress => "192.168.254.100",
-                              :IsConnected => "true",
-                              :MACAddress => "00:50:56:00:00:01",
-                              :IpAddressAllocationMode => "MANUAL"
-                          },
-                      ]
-              },
-          :RuntimeInfoSection => {:VMWareTools => {:version => "2147483647"}},
-          :StorageProfile =>
-              {
-                  :type=>"application/vnd.vmware.vcloud.vdcStorageProfile+xml",
-                  :name=>"TEST-STORAGE-PROFILE",
-                  :href=>"https://api.vcd.portal.examplecloud.com/api/vdcStorageProfile/00000000-aaaa-bbbb-aaaa-000000000000"
-              }
-      }
+      fog_vm = assemble_sample_vm_data Fog::ServiceLayerStub.vcloud_director_five_one_ids
 
       @metadata = {:name => 'web-app-1', :shutdown => true}
-      Vcloud::Core::Vm.should_receive(:get_metadata).with("vm-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee").and_return(@metadata)
+      Vcloud::Core::Vm.should_receive(:get_metadata)
+                      .with("vm-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee")
+                      .and_return(@metadata)
 
       @vm_summary = Vcloud::Walker::Resource::Vm.new(fog_vm)
     end
@@ -118,5 +77,80 @@ describe Vcloud::Walker::Resource::Vm do
     end
 
   end
+
+
+  context 'populate summary vm model for 5.1 api on vcloud director 5.5' do
+    before(:each) do
+      fog_vm = assemble_sample_vm_data  Fog::ServiceLayerStub.vcloud_director_5_5_with_v5_1_api_ids
+
+      @metadata = {:name => 'web-app-1', :shutdown => true}
+      Vcloud::Core::Vm.should_receive(:get_metadata)
+                      .with("vm-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee")
+                      .and_return(@metadata)
+
+      @vm_summary = Vcloud::Walker::Resource::Vm.new(fog_vm)
+    end
+
+    it "report disk info for 5.1 api on 5.5" do
+      @vm_summary.disks.count.should == 2
+      @vm_summary.disks.first.should == {:name => "Hard disk 1", :size => 11265}
+      @vm_summary.disks.last.should == {:name => "Hard disk 2", :size => 307200}
+    end
+
+  end
+
+  def assemble_sample_vm_data api_version
+    {
+      :deployed => "true",
+      :status => "8",
+      :name => "ubuntu-testing-template",
+      :id => "urn:vcloud:vm:aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+      :href => 'https://myvdc.carrenza.net/api/vApp/vm-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee',
+      :"ovf:VirtualHardwareSection" =>
+        {
+          :"ovf:Info" => "Virtual hardware requirements",
+          :"ovf:System" =>
+            {
+              :"vssd:ElementName" => "Virtual Hardware Family",
+              :"vssd:VirtualSystemType" => "vmx-08"
+            },
+          :'ovf:Item' => Fog::ServiceLayerStub.hardware_resources(api_version)
+        },
+      :"ovf:OperatingSystemSection" =>
+        {
+          :vmw_osType  => "ubuntu64Guest",
+          :"ovf:Info" => "Specifies the operating system installed",
+          :"ovf:Description" => "Ubuntu Linux (64-bit)"
+        },
+      :NetworkConnectionSection =>
+        {
+          :type => "application/vnd.vmware.vcloud.networkConnectionSection+xml",
+          :ovf_required => "false",
+          :"ovf:Info" => "Specifies the available VM network connections",
+          :PrimaryNetworkConnectionIndex => "0",
+          :NetworkConnection =>
+            [
+              {
+                :network => "Default",
+                :needsCustomization => "true",
+                :NetworkConnectionIndex => "0",
+                :IpAddress => "192.168.254.100",
+                :IsConnected => "true",
+                :MACAddress => "00:50:56:00:00:01",
+                :IpAddressAllocationMode => "MANUAL"
+              },
+            ]
+        },
+      :RuntimeInfoSection => {:VMWareTools => {:version => "2147483647"}},
+      :StorageProfile =>
+        {
+          :type => "application/vnd.vmware.vcloud.vdcStorageProfile+xml",
+          :name => "TEST-STORAGE-PROFILE",
+          :href => "https://api.vcd.portal.examplecloud.com/api/vdcStorageProfile/00000000-aaaa-bbbb-aaaa-000000000000"
+        }
+    }
+  end
+
+
 end
 
