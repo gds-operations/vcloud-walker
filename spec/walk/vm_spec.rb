@@ -7,7 +7,9 @@ describe Vcloud::Walker::Resource::Vm do
       fog_vm = assemble_sample_vm_data Fog::ServiceLayerStub.vcloud_director_five_one_ids
 
       @metadata = {:name => 'web-app-1', :shutdown => true}
-      Vcloud::Core::Vm.should_receive(:get_metadata).with("vm-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee").and_return(@metadata)
+      Vcloud::Core::Vm.should_receive(:get_metadata)
+                      .with("vm-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee")
+                      .and_return(@metadata)
 
       @vm_summary = Vcloud::Walker::Resource::Vm.new(fog_vm)
     end
@@ -82,7 +84,9 @@ describe Vcloud::Walker::Resource::Vm do
       fog_vm = assemble_sample_vm_data  Fog::ServiceLayerStub.vcloud_director_5_5_with_v5_1_api_ids
 
       @metadata = {:name => 'web-app-1', :shutdown => true}
-      Vcloud::Core::Vm.should_receive(:get_metadata).with("vm-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee").and_return(@metadata)
+      Vcloud::Core::Vm.should_receive(:get_metadata)
+                      .with("vm-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee")
+                      .and_return(@metadata)
 
       @vm_summary = Vcloud::Walker::Resource::Vm.new(fog_vm)
     end
