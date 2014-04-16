@@ -1,6 +1,7 @@
 # VCloud Walker
 
-Vcloud-walker is a command line tool, to describe different VMware vCloud Director 5.1 entities. It uses Fog under the hood.
+Vcloud-walker is a command line tool, to describe different VMware vCloud
+Director 5.1 entities. It uses Fog under the hood.
 
 ## Installation
 
@@ -24,7 +25,8 @@ You can perform following operations with walker.
 #### Walk vdcs:
    vcloud-walk vdcs
 
-describes all vdcs within given organization. This includes vapp, vm and network information.
+describes all vdcs within given organization. This includes vapp, vm and network
+information.
 
 #### Walk catalogs:
     vcloud-walk catalogs
@@ -39,16 +41,19 @@ describes all organization networks.
 #### Walk edgegateways:
     vcloud-walk edgegateways
 
-describes all edgegateway for given organization. Each edgegateway includes configuration for firewall, load balancer and nat services.
+describes all edgegateway for given organization. Each edgegateway includes
+configuration for firewall, load balancer and nat services.
 
 #### Walk entire organization:
      vcloud-walk organization
 
-describes the entire organization, which includes edgegateway, catalogs, networks and vdcs within an organization.
+describes the entire organization, which includes edgegateway, catalogs,
+networks and vdcs within an organization.
 
 ### Credentials
 
-You will need to specify the credentials for your VMware environment. Vcloud-walker uses fog to query the VMware api,
+You will need to specify the credentials for your VMware environment.
+Vcloud-walker uses fog to query the VMware api,
 which offers two ways to do this.
 
 #### 1. Create a `.fog` file containing your credentials
@@ -62,13 +67,16 @@ default:
   vcloud_director_host: 'api_endpoint'
 ````
 
-To understand more about `.fog` files, visit the 'Credentials' section here => http://fog.io/about/getting_started.html.
+To understand more about `.fog` files, visit the 'Credentials' section here
+=> http://fog.io/about/getting_started.html.
 
 ### 2. Log on externally and supply your session token
 
-You can choose to log on externally by interacting independently with the API and supplying your session token to the
-tool by setting the `FOG_VCLOUD_TOKEN` ENV variable. This option reduces the risk footprint by allowing the user to
-store their credentials in safe storage. The default token lifetime is '30 minutes idle' - any activity extends the life by another 30 mins.
+You can choose to log on externally by interacting independently with the API
+and supplying your session token to the tool by setting the `FOG_VCLOUD_TOKEN`
+ENV variable. This option reduces the risk footprint by allowing the user to
+store their credentials in safe storage. The default token lifetime is '30
+minutes idle' - any activity extends the life by another 30 mins.
 
 A basic example of this would be the following:
 
