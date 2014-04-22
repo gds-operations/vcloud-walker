@@ -1,3 +1,9 @@
+## 3.2.1 (2014-04-22)
+
+Bugfixes:
+
+  - Requires vCloud Core v0.0.12 which fixes issue with progress bar falling over when progress is not returned
+
 ## 3.2.0 (2014-04-14)
 
 Features:
