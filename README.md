@@ -81,11 +81,12 @@ that you wish to use.
 
 #### 2. Log on externally and supply your session token
 
-You can choose to log on externally by interacting independently with the API
-and supplying your session token to the tool by setting the `FOG_VCLOUD_TOKEN`
-environment variable. This option reduces the risk footprint by allowing the
-user to store their credentials in safe storage. The default token lifetime is
-'30 minutes idle' - any activity extends the life by another 30 mins.
+Rather than specifying your password in your `.fog` file, you can
+instead log on externally with the API and supply your session token
+to the tool via the `FOG_VCLOUD_TOKEN` environment variable. This
+option reduces risk by allowing the user to store their credentials in
+safe storage. The default token lifetime is '30 minutes idle' - any
+activity extends the life by another 30 mins.
 
 First create a `.fog` file in your home directory as above, but set the password
 to a empty string: `''`. The version of fog we currently use requires this key,
