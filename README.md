@@ -95,3 +95,8 @@ You can use command line option ```--yaml``` for yaml output.
 
 Find sample json output in docs/examples directory.
 
+## Debugging
+
+`export EXCON_DEBUG=true` - this will print out the API requests and responses.
+
+`export DEBUG=true` - this will show you the stack trace when there is an exception instead of just the message.
