@@ -72,8 +72,8 @@ test2:
   vcloud_director_host: 'api_endpoint2'
 ````
 
-To understand more about `.fog` files, visit the 'Credentials' section here
-=> http://fog.io/about/getting_started.html.
+To understand more about `.fog` files, visit the 'Credentials' section on
+[fog's 'getting started' page] (http://fog.io/about/getting_started.html).
 
 To use this you can either use a `default` credential set as above, or set the
 `FOG_CREDENTIAL` environmental variable to the credential set in the `.fog` file
