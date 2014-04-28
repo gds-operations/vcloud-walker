@@ -50,70 +50,43 @@ configuration for firewall, load balancer and nat services.
 describes the entire organization, which includes edgegateway, catalogs,
 networks and vdcs within an organization.
 
-### Credentials
+## Credentials
 
-You will need to specify the credentials for your VMware environment.
-Vcloud-walker uses fog to query the VMware api,
-which offers two ways to do this.
+vCloud Walker is based around [fog](http://fog.io/). To use it you'll need to give it
+credentials that allow it to talk to a vCloud Director environment.
 
-#### 1. Create a `.fog` file containing your credentials
+1. Create a '.fog' file in your home directory.
 
-An example of .fog file is:
+  For example:
 
-````
-default:
-  vcloud_director_username: 'user_id@org_id'
-  vcloud_director_password: 'password'
-  vcloud_director_host: 'api_endpoint'
+      test_credentials:
+        vcloud_director_host: 'host.api.example.com'
+        vcloud_director_username: 'username@org_name'
+        vcloud_director_password: ''
 
-test2:
-  vcloud_director_username: 'user_id@org_id2'
-  vcloud_director_password: ''
-  vcloud_director_host: 'api_endpoint2'
-````
+2. Obtain a session token. First, curl the API:
 
-To understand more about `.fog` files, visit the 'Credentials' section on
-[fog's 'getting started' page] (http://fog.io/about/getting_started.html).
+        curl -D- -d '' \
+            -H 'Accept: application/*+xml;version=5.1' -u '<username>@<org_name>' \
+            https://<host.api.example.com>/api/sessions
 
-To use this you can either use a `default` credential set as above, or set the
-`FOG_CREDENTIAL` environmental variable to the credential set in the `.fog` file
-that you wish to use.
+  This will prompt for your password.
 
-#### 2. Log on externally and supply your session token
+  From the headers returned, the value of the `x-vcloud-authorization` header is your
+  session token, and this will be valid for 30 minutes idle - any activity will extend
+  its life by another 30 minutes.
 
-Rather than specifying your password in your `.fog` file, you can
-instead log on externally with the API and supply your session token
-to the tool via the `FOG_VCLOUD_TOKEN` environment variable. This
-option reduces risk by allowing the user to store their credentials in
-safe storage. The default token lifetime is '30 minutes idle' - any
-activity extends the life by another 30 mins.
+3. Specify your credentials and session token at the beginning of the command. For example:
 
-First create a `.fog` file in your home directory as above, but set the password
-to a empty string: `''`. The version of fog we currently use requires this key,
-but we don't use it.
+        FOG_CREDENTIAL=test_credentials \
+            FOG_VCLOUD_TOKEN=AAAABBBBBCCCCCCDDDDDDEEEEEEFFFFF= \
+            vcloud-walk organization
 
-You then need to log on independently and get a session token. A basic example
-of this would be the following:
+  You may find it easier to export one or both of the values as environment variables.
 
-    curl -D- -d '' \
-       -H 'Accept: application/*+xml;version=5.1' -u '<user>@<org>' \
-       https://<host.com>/api/sessions
+  **NB** It is also possible to sidestep the need for the session token by saving your
+  password in the fog file. This is **not recommended**.
 
-This will prompt for your password.
-
-From the headers returned, select the header shown below and use it in the
-`FOG_VCLOUD_TOKEN` environment variable.
-
-     x-vcloud-authorization: AAAABBBBBCCCCCCDDDDDDEEEEEEFFFFF=
-
-
-You can either export the `FOG_VCLOUD_TOKEN` and `FOG_CREDENTIAL` environment
-variables or specify them at the start of your command. The value of the
-`FOG_CREDENTIAL` environment variable is the name of the credential set in your
-fog file which you wish to use.  For instance:
-
-    FOG_CREDENTIAL=test2 FOG_VCLOUD_TOKEN=AAAABBBBBCCCCCCDDDDDDEEEEEEFFFFF= \
-       vcloud-launch node.yaml
 
 ### Output
 
