@@ -1,3 +1,7 @@
+## 3.2.2 (2014-05-01)
+
+  - Use pessimistic version dependency for vcloud-core
+
 ## 3.2.1 (2014-04-22)
 
 Bugfixes:
