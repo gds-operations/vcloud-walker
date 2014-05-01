@@ -8,7 +8,7 @@ ENV['COVERAGE'] = 'true'
 task.pattern = FileList['spec/**/*_spec.rb'] - FileList['spec/integration/*_spec.rb']
 end
 
-RSpec::Core::RakeTask.new(:integration_test) do |task|
+RSpec::Core::RakeTask.new(:integration) do |task|
 task.pattern = FileList['spec/integration/*_spec.rb']
 end
 
