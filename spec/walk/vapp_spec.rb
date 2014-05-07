@@ -13,12 +13,12 @@ describe Vcloud::Walker::Resource::VApp do
     end
 
     it 'should report id from the href' do
-      @vapp_summary.id.should == 'vapp-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee'
+      expect(@vapp_summary.id).to eq('vapp-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee')
     end
 
     it "should report metadata" do
-      @vapp_summary.metadata.count.should == 2
-      @vapp_summary.metadata.should == @metadata
+      expect(@vapp_summary.metadata.count).to eq(2)
+      expect(@vapp_summary.metadata).to eq(@metadata)
     end
   end
 end

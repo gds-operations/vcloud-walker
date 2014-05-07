@@ -20,9 +20,9 @@ describe Vcloud::Walker::Resource::Catalogs do
         :catalog_items => double(:catalog_items, :all => [mock_fog_item])
       )
       catalog_summary = Vcloud::Walker::Resource::Catalogs.new([mock_fog_catalog]).to_summary
-      catalog_summary.count.should == 1
-      catalog_summary.first[:items].count.should == 1
-      catalog_summary.should == [{
+      expect(catalog_summary.count).to eq(1)
+      expect(catalog_summary.first[:items].count).to eq(1)
+      expect(catalog_summary).to eq([{
         :id => "catalog_id_1",
         :name => "Default catalog",
         :description => "default catalog for infrastructure",
@@ -32,7 +32,7 @@ describe Vcloud::Walker::Resource::Catalogs do
           :description => "image for ubuntu 11.04",
           :vapp_template_id => "vapp-template-01"
         }],
-      }]
+      }])
     end
 
 end

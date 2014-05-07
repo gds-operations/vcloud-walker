@@ -15,30 +15,25 @@ describe Vcloud::Walker::FogInterface do
     it "should get catalogs for given org id" do
       mock_catalogs = [double(:catalog1), double(:catalog2)]
       org.should_receive(:catalogs).and_return(double(:catalogs, :all => mock_catalogs))
-
       catalogs = Vcloud::Walker::FogInterface.get_catalogs
-
-      catalogs.count.should == 2
-      catalogs.should == mock_catalogs
-
+      expect(catalogs.count).to eq(2)
+      expect(catalogs).to eq(mock_catalogs)
     end
 
     it "should get networks for given org id" do
       mock_networks = [double(:network1), double(:network2)]
       org.should_receive(:networks).and_return(double(:networks, :all => mock_networks))
-
       networks = Vcloud::Walker::FogInterface.get_networks
-      networks.count.should == 2
-      networks.should == mock_networks
+      expect(networks.count).to eq(2)
+      expect(networks).to eq(mock_networks)
     end
 
     it "should get vdcs for given org id" do
       mock_vdcs = [double(:vdc1), double(:vdc2), double(:vdc3)]
       org.should_receive(:vdcs).and_return(double(:vdcs, :all => mock_vdcs))
-
       vdcs = Vcloud::Walker::FogInterface.get_vdcs
-      vdcs.count.should == 3
-      vdcs.should == mock_vdcs
+      expect(vdcs.count).to eq(3)
+      expect(vdcs).to eq(mock_vdcs)
     end
 
     it "should get edge gateways for given org" do
@@ -51,8 +46,8 @@ describe Vcloud::Walker::FogInterface do
 
       edge_gateways = Vcloud::Walker::FogInterface.get_edge_gateways
 
-      edge_gateways.count.should == 1
-      edge_gateways.should == [:eg1]
+      expect(edge_gateways.count).to eq(1)
+      expect(edge_gateways).to eq([:eg1])
     end
 
     it "should get edge gateways for given org with complex set up of 2 vdcs and 3 edge gateways" do
@@ -71,8 +66,8 @@ describe Vcloud::Walker::FogInterface do
 
       edge_gateways = Vcloud::Walker::FogInterface.get_edge_gateways
 
-      edge_gateways.count.should == 3
-      edge_gateways.should == [:eg1, :eg2, :eg3]
+      expect(edge_gateways.count).to eq(3)
+      expect(edge_gateways).to eq([:eg1, :eg2, :eg3])
     end
 
     it "get_edge_gateways should be happy if there are no edge gateways" do
@@ -86,7 +81,7 @@ describe Vcloud::Walker::FogInterface do
 
       edge_gateways = Vcloud::Walker::FogInterface.get_edge_gateways
 
-      edge_gateways.count.should == 0
+      expect(edge_gateways.count).to eq(0)
     end
 
   end

@@ -16,8 +16,8 @@ describe Vcloud::Walker::Resource::Vdcs do
       vdcs_summary = Vcloud::Walker::Resource::Vdcs.new(mock_fog_vdcs).to_summary
 
       vdc_summary = vdcs_summary.first
-      vdc_summary[:vapps].count.should == 1
-      vdc_summary[:vapps].first[:vms].count == 1
+      expect(vdc_summary[:vapps].count).to eq(1)
+      expect(vdc_summary[:vapps].first[:vms].count).to eq(1)
     end
 
     private
