@@ -36,7 +36,6 @@ module Vcloud
         VcloudSession.instance.get_vapp(vapp_id).body
       end
 
-      private
       def self.get_org
         vcloud = VcloudSession.instance
         vcloud.organizations.get_by_name(vcloud.org_name)
