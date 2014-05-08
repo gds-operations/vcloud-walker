@@ -15,7 +15,7 @@ end
 task :default => :spec
 
 require "gem_publisher"
-task :publish_gem do |t|
+task :publish_gem do
   gem = GemPublisher.publish_if_updated("vcloud-walker.gemspec", :rubygems)
   puts "Published #{gem}" if gem
 end
