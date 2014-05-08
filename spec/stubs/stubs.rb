@@ -1,5 +1,4 @@
 class StubVdc
-  @edge_gateways
 
   def initialize
     @edge_gateways = []
