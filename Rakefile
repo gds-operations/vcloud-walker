@@ -12,7 +12,7 @@ RSpec::Core::RakeTask.new(:integration) do |task|
 task.pattern = FileList['spec/integration/*_spec.rb']
 end
 
-task :default => :spec
+task :default => [ :rubocop, :spec ]
 
 require "gem_publisher"
 task :publish_gem do
