@@ -2,6 +2,10 @@
 
 Bugfixes:
 
+  - Fixed issue with partially configured vApps causing vdc walk to fail
+
+Bugfixes:
+
   - Rename Rake integration test from 'integration_test' to 'integration' for consistency with other vCloud Tools
 
 ## 3.2.2 (2014-05-01)
