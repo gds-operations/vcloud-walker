@@ -110,3 +110,13 @@ If you want to be sure you are pinning to 5.1, or use 5.5, you can set the API v
 `export EXCON_DEBUG=true` - this will print out the API requests and responses.
 
 `export DEBUG=true` - this will show you the stack trace when there is an exception instead of just the message.
+
+## Testing
+
+Run the default suite of tests (e.g. lint, unit, features):
+
+    bundle exec rake
+
+Run the integration tests (slower and requires a real environment):
+
+    bundle exec rake integration
