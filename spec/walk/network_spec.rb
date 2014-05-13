@@ -10,30 +10,21 @@ describe Vcloud::Walker::Resource::Networks do
     end
 
     it "should walk all networks within given org" do
-
       mock_fog_network = mock_fog_network_object
-
       networks = Vcloud::Walker::Resource::Networks.new([mock_fog_network, mock_fog_network])
-
-      networks.count.should == 2
+      expect(networks.count).to eq(2)
     end
 
-
     it "should be happy with one network" do
-
       mock_fog_network = mock_fog_network_object
-
       networks = Vcloud::Walker::Resource::Networks.new([mock_fog_network])
-
-      networks.count.should == 1
+      expect(networks.count).to eq(1)
     end
 
     it "should handle having no networks" do
       networks = Vcloud::Walker::Resource::Networks.new([])
-
-      networks.count.should == 0
+      expect(networks.count).to eq(0)
     end
-
 
     it "should map parameters of a network to the local entity" do
       mock_fog_network = mock_fog_network_object
@@ -41,12 +32,11 @@ describe Vcloud::Walker::Resource::Networks do
 
       networks = Vcloud::Walker::Resource::Networks.new([mock_fog_network])
 
-      networks.count.should == 1
-      networks.first.id.should == :network_id_1
-      networks.first.name.should == :name
-      networks.first.dns_suffix == :dns_suffix
-      networks.first.dns1 == 'sausage'
-
+      expect(networks.count).to eq(1)
+      expect(networks.first.id).to eq(:network_id_1)
+      expect(networks.first.name).to eq(:name)
+      expect(networks.first.dns_suffix).to eq(:dns_suffix)
+      expect(networks.first.dns1).to eq('sausage')
     end
 
   end

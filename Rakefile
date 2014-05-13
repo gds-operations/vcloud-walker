@@ -12,10 +12,15 @@ RSpec::Core::RakeTask.new(:integration) do |task|
 task.pattern = FileList['spec/integration/*_spec.rb']
 end
 
-task :default => :spec
+task :default => [ :rubocop, :spec ]
 
 require "gem_publisher"
-task :publish_gem do |t|
+task :publish_gem do
   gem = GemPublisher.publish_if_updated("vcloud-walker.gemspec", :rubygems)
   puts "Published #{gem}" if gem
+end
+
+require 'rubocop/rake_task'
+Rubocop::RakeTask.new(:rubocop) do |task|
+  task.options = ['--lint']
 end

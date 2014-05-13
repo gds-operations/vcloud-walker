@@ -15,65 +15,65 @@ describe Vcloud::Walker::Resource::Vm do
     end
 
     it 'should report id from the href' do
-      @vm_summary.id.should == 'vm-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee'
+      expect(@vm_summary.id).to eq('vm-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee')
     end
 
     it "should populate vmware tool version" do
-      @vm_summary.vmware_tools.should == {:version => "2147483647"}
+      expect(@vm_summary.vmware_tools).to eq({:version => "2147483647"})
     end
 
     it "should populate virtual system type" do
-      @vm_summary.virtual_system_type.should == "vmx-08"
+      expect(@vm_summary.virtual_system_type).to eq("vmx-08")
     end
 
     it "should populate operating system" do
-      @vm_summary.operating_system.should == 'Ubuntu Linux (64-bit)'
+      expect(@vm_summary.operating_system).to eq('Ubuntu Linux (64-bit)')
     end
 
     it "should populate network connection interface" do
-      @vm_summary.primary_network_connection_index.should == '0'
-      @vm_summary.network_connections.count.should == 1
-      @vm_summary.network_connections.first[:network].should == 'Default'
+      expect(@vm_summary.primary_network_connection_index).to eq('0')
+      expect(@vm_summary.network_connections.count).to eq(1)
+      expect(@vm_summary.network_connections.first[:network]).to eq('Default')
     end
 
     it "should populate storage profile" do
-      @vm_summary.storage_profile[:name].should == "TEST-STORAGE-PROFILE"
+      expect(@vm_summary.storage_profile[:name]).to eq("TEST-STORAGE-PROFILE")
     end
 
     it "should populate storage profile id" do
-      @vm_summary.storage_profile[:id].should == "00000000-aaaa-bbbb-aaaa-000000000000"
+      expect(@vm_summary.storage_profile[:id]).to eq("00000000-aaaa-bbbb-aaaa-000000000000")
     end
 
     context "hardware resource info" do
 
       it "report cpu" do
-        @vm_summary.cpu.should == '2 virtual CPU(s)'
+        expect(@vm_summary.cpu).to eq('2 virtual CPU(s)')
       end
 
       it "report memory" do
-        @vm_summary.memory.should == '4096 MB of memory'
+        expect(@vm_summary.memory).to eq('4096 MB of memory')
       end
 
       it "report disk info" do
-        @vm_summary.disks.count.should == 2
-        @vm_summary.disks.first.should == {:name => "Hard disk 1", :size => 11265}
-        @vm_summary.disks.last.should == {:name => "Hard disk 2", :size => 307200}
+        expect(@vm_summary.disks.count).to eq(2)
+        expect(@vm_summary.disks.first).to eq({:name => "Hard disk 1", :size => 11265})
+        expect(@vm_summary.disks.last).to eq({:name => "Hard disk 2", :size => 307200})
       end
 
       it "report network card info" do
-        @vm_summary.network_cards.count.should == 1
-        @vm_summary.network_cards[0].should == {
+        expect(@vm_summary.network_cards.count).to eq(1)
+        expect(@vm_summary.network_cards[0]).to eq({
           :mac_address => '00:50:56:00:00:01',
           :name => "Network adapter 0",
           :type => "E1000"
-        }
+        })
       end
 
     end
 
     it "report metadata" do
-      @vm_summary.metadata.count.should == 2
-      @vm_summary.metadata.should == @metadata
+      expect(@vm_summary.metadata.count).to eq(2)
+      expect(@vm_summary.metadata).to eq(@metadata)
     end
 
   end
@@ -92,9 +92,9 @@ describe Vcloud::Walker::Resource::Vm do
     end
 
     it "report disk info for 5.1 api on 5.5" do
-      @vm_summary.disks.count.should == 2
-      @vm_summary.disks.first.should == {:name => "Hard disk 1", :size => 11265}
-      @vm_summary.disks.last.should == {:name => "Hard disk 2", :size => 307200}
+      expect(@vm_summary.disks.count).to eq(2)
+      expect(@vm_summary.disks.first).to eq({:name => "Hard disk 1", :size => 11265})
+      expect(@vm_summary.disks.last).to eq({:name => "Hard disk 2", :size => 307200})
     end
 
   end
