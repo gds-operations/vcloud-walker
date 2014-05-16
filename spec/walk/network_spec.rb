@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'rspec/mocks'
-require 'fog'
 
 describe Vcloud::Walker::Resource::Networks do
 

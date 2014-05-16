@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'fog'
 require 'stringio'
 require 'vcloud/walker'
 

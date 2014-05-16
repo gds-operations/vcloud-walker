@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'fog'
 
 describe Vcloud::Walker::Resource::Vdcs do
   let(:api_session) { double(:fog_session) }

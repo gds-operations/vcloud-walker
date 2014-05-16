@@ -1,4 +1,4 @@
-require 'fog'
+require 'vcloud/fog'
 
 edge_gateway_id = ARGV[0]
 raise "please provide edgegateway id. usage: bx ruby ./configure_walker_ci_vse.rb <edgegateway-id>" unless edge_gateway_id
@@ -26,6 +26,5 @@ configuration = {
     }
 }
 
-vcloud = Fog::Compute::VcloudDirector.new
-task = vcloud.post_configure_edge_gateway_services edge_gateway_id, configuration
-vcloud.process_task(task.body)
+vcloud = Vcloud::Fog::ServiceInterface.new
+vcloud.post_configure_edge_gateway_services edge_gateway_id, configuration
