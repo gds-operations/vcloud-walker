@@ -23,7 +23,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-mocks', '~> 2.14.3'
   s.add_development_dependency 'json_spec', '~> 1.1.1'
   s.add_runtime_dependency 'json', '~> 1.8.0'
-  s.add_runtime_dependency 'methadone'
   s.add_runtime_dependency 'fog', '>= 1.21.0'
   s.add_runtime_dependency 'vcloud-core', '~> 0.0.12'
   s.add_development_dependency 'simplecov', '~> 0.8.2'
