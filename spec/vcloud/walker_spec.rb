@@ -45,12 +45,10 @@ module Vcloud
       end
 
       context "invalid resources" do
-
         it "should reject input that is not a valid resouce" do
-          result_array = Vcloud::Walker.walk("invalid")
-          result_array.should be_nil
+          expect{ Vcloud::Walker.walk("invalid") }.
+            to raise_error("Invalid resource 'invalid'. Possible options are 'catalogs','vdcs','networks','edgegateways','organization'.")
         end
-
       end
 
     end

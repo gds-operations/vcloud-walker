@@ -1,5 +1,11 @@
 ## Current
 
+API changes:
+
+  - Vcloud::Walker::walk now returns an exception if provided an invalid
+    resource type instead of returning a `nil` object and printing the valid
+    options to STDOUT.
+
 Bugfixes:
 
   - Rename Rake integration test from 'integration_test' to 'integration' for consistency with other vCloud Tools

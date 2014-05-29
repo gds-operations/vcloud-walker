@@ -8,15 +8,14 @@ require 'vcloud/walker/version'
 
 module Vcloud
   module Walker
+    VALID_RESOURCES = %w{catalogs vdcs networks edgegateways organization}
 
     def self.walk(resource_to_walk)
-      valid_options = ['catalogs', 'vdcs', 'networks',
-                        'edgegateways', 'organization']
-      if valid_options.include? resource_to_walk
-        Vcloud::Walker::Resource::Organization.send(resource_to_walk)
-      else
-         puts "Possible options are '#{valid_options.join("','")}'."
+      unless VALID_RESOURCES.include?(resource_to_walk)
+         raise "Invalid resource '#{resource_to_walk}'. Possible options are '#{VALID_RESOURCES.join("','")}'."
       end
+
+      Vcloud::Walker::Resource::Organization.send(resource_to_walk)
     end
 
   end
