@@ -1,5 +1,10 @@
 ## Current
 
+Bugfixes:
+
+  - Prevent an "undefined method for nil:Nilclass" exception when
+    encountering a vApp that has no networks attached.
+
 API changes:
 
   - Vcloud::Walker::walk now returns an exception if provided an invalid
