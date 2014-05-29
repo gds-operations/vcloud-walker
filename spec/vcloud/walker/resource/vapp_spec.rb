@@ -21,4 +21,22 @@ describe Vcloud::Walker::Resource::VApp do
       expect(@vapp_summary.metadata).to eq(@metadata)
     end
   end
+
+  context 'vApp with no networks attached' do
+    let(:fog_vapp) {
+      fog_vapp = Fog::ServiceLayerStub.vapp_body
+      fog_vapp[:"ovf:NetworkSection"].delete(:"ovf:Network")
+      fog_vapp[:NetworkConfigSection].delete(:NetworkConfig)
+      fog_vapp
+    }
+
+    it 'should report an empty network_config without any errors' do
+      Vcloud::Core::Vapp.stub(:get_metadata)
+      Vcloud::Walker::Resource::Vms.stub(:new)
+
+      vapp = Vcloud::Walker::Resource::VApp.new(fog_vapp)
+      expect(vapp.network_section).to eq(nil)
+      expect(vapp.network_config).to eq([])
+    end
+  end
 end
