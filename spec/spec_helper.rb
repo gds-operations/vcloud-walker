@@ -3,7 +3,6 @@ if ENV['COVERAGE']
 
   SimpleCov.profiles.define 'gem' do
     add_filter '/spec/'
-    add_filter '/features/'
     add_filter '/vendor/'
 
     add_group 'Libraries', '/lib/'

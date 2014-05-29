@@ -1,40 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
-require 'methadone'
-
-require 'json'
 require 'vcloud/walker'
 
-class App
-  include Methadone::Main
-  include Methadone::CLILogging
-  include Vcloud
-
-  main do |resource_to_walk|
-    walker_output = Vcloud::Walker.walk(resource_to_walk)
-    options[:yaml] ? print(walker_output.to_yaml)  :  print(JSON.pretty_generate walker_output)
-  end
-
-  on("--verbose", "Verbose output")
-  on("--debug",   "Debugging output")
-  on("--yaml",   "Yaml output")
-
-  arg :resource_to_walk
-
-  description '
-  Vcloud-walker is a command line tool, to describe different VMware vCloud Director 5.1 resources. It uses Fog under the hood.
-
-  Resources that can be walked using vcloud-walker are:
-    catalogs
-    vdcs
-    networks
-    edgegateways
-    organization
-
-  See https://github.com/alphagov/vcloud-walker for more info'
-
-  version Vcloud::Walker::VERSION
-
-  go!
-end
+Vcloud::Walker::Cli.new(ARGV).run
