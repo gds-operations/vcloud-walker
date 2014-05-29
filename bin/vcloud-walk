@@ -16,8 +16,6 @@ class App
     options[:yaml] ? print(walker_output.to_yaml)  :  print(JSON.pretty_generate walker_output)
   end
 
-  on("--verbose", "Verbose output")
-  on("--debug",   "Debugging output")
   on("--yaml",   "Yaml output")
 
   arg :resource_to_walk
