@@ -6,8 +6,8 @@ describe Vcloud::Walker::Resource::VApp do
     before(:each) do
       fog_vapp = Fog::ServiceLayerStub.vapp_body
       @metadata = {:name => 'web-app-1', :shutdown => true}
-      Vcloud::Core::Vapp.should_receive(:get_metadata).with("vapp-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee").and_return(@metadata)
-      Vcloud::Walker::Resource::Vms.should_receive(:new).with(fog_vapp[:Children][:Vm])
+      expect(Vcloud::Core::Vapp).to receive(:get_metadata).with("vapp-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee").and_return(@metadata)
+      expect(Vcloud::Walker::Resource::Vms).to receive(:new).with(fog_vapp[:Children][:Vm])
 
       @vapp_summary = Vcloud::Walker::Resource::VApp.new(fog_vapp)
     end
@@ -31,8 +31,8 @@ describe Vcloud::Walker::Resource::VApp do
     }
 
     it 'should report an empty network_config without any errors' do
-      Vcloud::Core::Vapp.stub(:get_metadata)
-      Vcloud::Walker::Resource::Vms.stub(:new)
+      allow(Vcloud::Core::Vapp).to receive(:get_metadata)
+      allow(Vcloud::Walker::Resource::Vms).to receive(:new)
 
       vapp = Vcloud::Walker::Resource::VApp.new(fog_vapp)
       expect(vapp.network_section).to eq(nil)

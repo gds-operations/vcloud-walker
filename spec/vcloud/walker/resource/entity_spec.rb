@@ -60,9 +60,9 @@ module Vcloud
       test_class = Vcloud::Walker::Resource::TestClass.new(
         double(:description => 'test class desc', :collection => collection)
       )
-      test_class.instance_variables.should eq([:@test_data, :@description])
+      expect(test_class.instance_variables).to eq([:@test_data, :@description])
       test_summary = test_class.to_summary
-      test_summary.keys.should eq([:test_data, :description])
+      expect(test_summary.keys).to eq([:test_data, :description])
     end
 
     it 'should be able to nest entity inside entity' do
