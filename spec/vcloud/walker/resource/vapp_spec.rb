@@ -22,21 +22,68 @@ describe Vcloud::Walker::Resource::VApp do
     end
   end
 
-  context 'vApp with no networks attached' do
-    let(:fog_vapp) {
-      fog_vapp = Fog::ServiceLayerStub.vapp_body
-      fog_vapp[:"ovf:NetworkSection"].delete(:"ovf:Network")
-      fog_vapp[:NetworkConfigSection].delete(:NetworkConfig)
-      fog_vapp
-    }
-
-    it 'should report an empty network_config without any errors' do
+  context 'malformed vApp with no networks attached' do
+    before(:each) {
       allow(Vcloud::Core::Vapp).to receive(:get_metadata)
       allow(Vcloud::Walker::Resource::Vms).to receive(:new)
+    }
 
-      vapp = Vcloud::Walker::Resource::VApp.new(fog_vapp)
-      expect(vapp.network_section).to eq({})
-      expect(vapp.network_config).to eq([])
+    describe "network_config" do
+      shared_examples "network_config" do
+        it 'should report an empty network_config without any errors' do
+          vapp = Vcloud::Walker::Resource::VApp.new(fog_vapp)
+          expect(vapp.network_config).to eq([])
+        end
+      end
+
+      context 'missing vapp[:NetworkConfigSection]' do
+        let(:fog_vapp) {
+          v = Fog::ServiceLayerStub.vapp_body
+          v.delete(:NetworkConfigSection)
+          v
+        }
+
+        include_examples "network_config"
+      end
+
+      context 'missing vapp[:NetworkConfigSection][:NetworkConfig]' do
+        let(:fog_vapp) {
+          v = Fog::ServiceLayerStub.vapp_body
+          v[:NetworkConfigSection].delete(:NetworkConfig)
+          v
+        }
+
+        include_examples "network_config"
+      end
+    end
+
+    describe "network_section" do
+      shared_examples "network_section" do
+        it 'should report an empty network_section without any errors' do
+          vapp = Vcloud::Walker::Resource::VApp.new(fog_vapp)
+          expect(vapp.network_section).to eq({})
+        end
+      end
+
+      context 'missing vapp[:"ovf:NetworkSection"]' do
+        let(:fog_vapp) {
+          v = Fog::ServiceLayerStub.vapp_body
+          v.delete(:"ovf:NetworkSection")
+          v
+        }
+
+        include_examples "network_section"
+      end
+
+      context 'missing vapp[:"ovf:NetworkSection"][:"ovf:Network"]' do
+        let(:fog_vapp) {
+          v = Fog::ServiceLayerStub.vapp_body
+          v[:"ovf:NetworkSection"].delete(:"ovf:Network")
+          v
+        }
+
+        include_examples "network_section"
+      end
     end
   end
 end
