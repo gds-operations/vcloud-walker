@@ -4,12 +4,12 @@ require 'rspec/core/rake_task'
 require 'vcloud/walker/version'
 
 RSpec::Core::RakeTask.new(:spec) do |task|
-ENV['COVERAGE'] = 'true'
-task.pattern = FileList['spec/**/*_spec.rb'] - FileList['spec/integration/*_spec.rb']
+  ENV['COVERAGE'] = 'true'
+  task.pattern = FileList['spec/**/*_spec.rb'] - FileList['spec/integration/*_spec.rb']
 end
 
 RSpec::Core::RakeTask.new(:integration) do |task|
-task.pattern = FileList['spec/integration/*_spec.rb']
+  task.pattern = FileList['spec/integration/*_spec.rb']
 end
 
 task :default => [ :rubocop, :spec ]
