@@ -10,14 +10,18 @@ module Vcloud
           @description = fog_vapp[:Description]
           @deployed = fog_vapp[:deployed]
           @id = extract_id(fog_vapp[:href])
-          @network_config  = extract_network_config(fog_vapp[:NetworkConfigSection].fetch(:NetworkConfig, []))
-          @network_section = fog_vapp[:'ovf:NetworkSection'][:'ovf:Network']
+          @network_config  = extract_network_config(fog_vapp)
+          @network_section = extract_network_section(fog_vapp)
           @vms             = Resource::Vms.new(fog_vapp[:Children][:Vm])
           @metadata = Vcloud::Core::Vapp.get_metadata(id)
         end
 
         private
-        def extract_network_config network_configs
+        def extract_network_config fog_vapp
+          return [] unless fog_vapp.key?(:NetworkConfigSection)
+          return [] unless fog_vapp[:NetworkConfigSection].key?(:NetworkConfig)
+
+          network_configs = fog_vapp[:NetworkConfigSection][:NetworkConfig]
           (network_configs.is_a?(Hash) ? [network_configs] : network_configs).collect do |network_config|
             {
               network_name:   network_config[:networkName],
@@ -31,6 +35,11 @@ module Vcloud
           end
         end
 
+        def extract_network_section fog_vapp
+          return {} unless fog_vapp.key?(:'ovf:NetworkSection')
+
+          fog_vapp[:'ovf:NetworkSection'].fetch(:'ovf:Network', {})
+        end
       end
 
       class VApps < Collection
