@@ -31,11 +31,11 @@ describe Vcloud::Walker do
       vdc_summaries = Vcloud::Walker.walk('vdcs').to_json
 
       # assert that there are atleast one item and that includes the essencial sections
-      vdc_summaries.should have_json_path('0/id')
-      vdc_summaries.should have_json_path('0/name')
-      vdc_summaries.should have_json_path('0/vapps')
-      vdc_summaries.should have_json_path('0/quotas')
-      vdc_summaries.should have_json_path('0/compute_capacity')
+      expect(vdc_summaries).to have_json_path('0/id')
+      expect(vdc_summaries).to have_json_path('0/name')
+      expect(vdc_summaries).to have_json_path('0/vapps')
+      expect(vdc_summaries).to have_json_path('0/quotas')
+      expect(vdc_summaries).to have_json_path('0/compute_capacity')
     end
 
     it "should integrate with fog to get networks" do
@@ -43,10 +43,10 @@ describe Vcloud::Walker do
       network_summary = Vcloud::Walker.walk('networks').to_json
 
       # assert that there are atleast one item and that includes the essencial sections
-      network_summary.should have_json_path('0/id')
-      network_summary.should have_json_path('0/name')
-      network_summary.should have_json_path('0/ip_ranges')
-      network_summary.should have_json_path('0/gateway')
+      expect(network_summary).to have_json_path('0/id')
+      expect(network_summary).to have_json_path('0/name')
+      expect(network_summary).to have_json_path('0/ip_ranges')
+      expect(network_summary).to have_json_path('0/gateway')
     end
 
     it "should integrate with fog to get catalogs" do
@@ -55,20 +55,20 @@ describe Vcloud::Walker do
       catalog_summary = catalogs_summary.detect{|c| !c[:items].empty? }.to_json
 
       # assert that there are atleast one item and that includes the essencial sections
-      catalog_summary.should have_json_path('id')
-      catalog_summary.should have_json_path('name')
-      catalog_summary.should have_json_path('items')
-      catalog_summary.should have_json_path('items/0/vapp_template_id')
+      expect(catalog_summary).to have_json_path('id')
+      expect(catalog_summary).to have_json_path('name')
+      expect(catalog_summary).to have_json_path('items')
+      expect(catalog_summary).to have_json_path('items/0/vapp_template_id')
     end
 
     it "should integrate with fog to get edge gateway data" do
 
       result = Vcloud::Walker.walk('edgegateways').to_json
       # assert that there are atleast one item and that includes the essencial sections
-      result.should have_json_path('0/Configuration/EdgeGatewayServiceConfiguration/FirewallService')
-      result.should have_json_path('0/Configuration/EdgeGatewayServiceConfiguration/NatService')
-      result.should have_json_path('0/Configuration/EdgeGatewayServiceConfiguration/LoadBalancerService')
-      result.should have_json_path('0/Configuration/GatewayInterfaces/GatewayInterface')
+      expect(result).to have_json_path('0/Configuration/EdgeGatewayServiceConfiguration/FirewallService')
+      expect(result).to have_json_path('0/Configuration/EdgeGatewayServiceConfiguration/NatService')
+      expect(result).to have_json_path('0/Configuration/EdgeGatewayServiceConfiguration/LoadBalancerService')
+      expect(result).to have_json_path('0/Configuration/GatewayInterfaces/GatewayInterface')
     end
   end
 end
