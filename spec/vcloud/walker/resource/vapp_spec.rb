@@ -35,7 +35,7 @@ describe Vcloud::Walker::Resource::VApp do
       allow(Vcloud::Walker::Resource::Vms).to receive(:new)
 
       vapp = Vcloud::Walker::Resource::VApp.new(fog_vapp)
-      expect(vapp.network_section).to eq(nil)
+      expect(vapp.network_section).to eq({})
       expect(vapp.network_config).to eq([])
     end
   end

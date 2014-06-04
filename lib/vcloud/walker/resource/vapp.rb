@@ -11,7 +11,7 @@ module Vcloud
           @deployed = fog_vapp[:deployed]
           @id = extract_id(fog_vapp[:href])
           @network_config  = extract_network_config(fog_vapp[:NetworkConfigSection].fetch(:NetworkConfig, []))
-          @network_section = fog_vapp[:'ovf:NetworkSection'][:'ovf:Network']
+          @network_section = fog_vapp[:'ovf:NetworkSection'].fetch(:'ovf:Network', {})
           @vms             = Resource::Vms.new(fog_vapp[:Children][:Vm])
           @metadata = Vcloud::Core::Vapp.get_metadata(id)
         end
