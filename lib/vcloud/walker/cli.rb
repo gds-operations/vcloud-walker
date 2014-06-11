@@ -43,7 +43,7 @@ Resources that can be walked using vcloud-walker are:
   edgegateways
   organization
 
-See https://github.com/alphagov/vcloud-walker for more info
+See https://github.com/gds-operations/vcloud-walker for more info
           EOS
 
           opts.on("--yaml",   "Yaml output") do
