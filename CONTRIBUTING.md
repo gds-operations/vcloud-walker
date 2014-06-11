@@ -6,7 +6,7 @@ We really welcome contributions.
 
 1. Clone the repo:
 
-        git clone git@github.com:alphagov/vcloud-walker.git
+        git clone git@github.com:gds-operations/vcloud-walker.git
 
 2. Run `bundle` to get the required dependecies
 
@@ -18,7 +18,7 @@ We really welcome contributions.
    If you have access to a live environment for testing, it would be great
    if you could run the integration tests too - for more details on the
    set-up for that, please see the [integration tests README]
-   (https://github.com/alphagov/vcloud-walker/blob/master/spec/integration/README.md)
+   (https://github.com/gds-operations/vcloud-walker/blob/master/spec/integration/README.md)
 
 4. Add your functionality or bug fix and a test for your change. Only refactoring and
    documentation changes do not require tests. If the functionality is at all complicated
@@ -27,7 +27,7 @@ We really welcome contributions.
 
 5. Make sure all the tests pass, including the integration tests if possible.
 
-6. Update the [CHANGELOG](https://github.com/alphagov/vcloud-walker/blob/master/CHANGELOG.md)
+6. Update the [CHANGELOG](https://github.com/gds-operations/vcloud-walker/blob/master/CHANGELOG.md)
    with a short description of what the change is. This may be a feature, a bugfix, or an
    API change. If your change is documenation or refactoring, you do not need to add a line
    to the CHANGELOG.
