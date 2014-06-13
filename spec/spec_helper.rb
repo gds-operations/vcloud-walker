@@ -9,7 +9,7 @@ if ENV['COVERAGE']
     end
   end
 
-  SimpleCov.profiles.define 'gem' do
+  SimpleCov.adapters.define 'gem' do
     add_filter '/spec/'
     add_filter '/vendor/'
 
