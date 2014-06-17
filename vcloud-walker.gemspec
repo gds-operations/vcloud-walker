@@ -18,6 +18,8 @@ Gem::Specification.new do |s|
   s.test_files    = s.files.grep(%r{^(test|spec|features)/})
   s.require_paths = ["lib"]
 
+  s.required_ruby_version = '>= 1.9.3'
+
   s.add_runtime_dependency 'fog', '>= 1.21.0'
   s.add_runtime_dependency 'json', '~> 1.8.0'
   s.add_runtime_dependency 'vcloud-core', '~> 0.0.12'
