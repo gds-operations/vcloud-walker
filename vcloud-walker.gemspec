@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'fog', '>= 1.21.0'
   s.add_runtime_dependency 'json', '~> 1.8.0'
-  s.add_runtime_dependency 'vcloud-core', '~> 0.5.0'
+  s.add_runtime_dependency 'vcloud-core', '~> 0.6.0'
   s.add_development_dependency 'gem_publisher', '1.2.0'
   s.add_development_dependency 'json_spec', '~> 1.1.1'
   s.add_development_dependency 'rake'
