@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 set -eu
 
 function cleanup {
@@ -22,5 +22,8 @@ git clean -fdx
 bundle install --path "${HOME}/bundles/${JOB_NAME}"
 bundle exec rake
 
+# Never log token to STDOUT.
+set +x
 eval $(printenv API_PASSWORD | bundle exec vcloud-login)
+
 bundle exec rake integration
