@@ -1,5 +1,5 @@
-#!/bin/bash -x
+#!/bin/bash
 set -e
-bundle install --path "${HOME}/bundles/${JOB_NAME}"
 
-RUBYOPT="-r ./tools/fog_credentials" bundle exec rake integration
+# FIXME: Change the Carrenza job to use the following script directly.
+./jenkins_tests.sh
