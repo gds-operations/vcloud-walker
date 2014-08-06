@@ -1,4 +1,4 @@
-## UNRELEASED (2014-XX-XX)
+## 3.3.0 (2014-07-29)
 
 Update to vCloud Core 0.7.0 for the following:
 
