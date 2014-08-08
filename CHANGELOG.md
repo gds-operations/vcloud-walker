@@ -1,12 +1,12 @@
-## 3.3.0 (2014-07-29)
+## 3.3.0 (2014-08-08)
 
-Update to vCloud Core 0.7.0 for the following:
+Depend on vCloud Core version 0.7.0, which:
 
-  - New vcloud-login tool for fetching session tokens without the need to
-    store your password in a plaintext FOG_RC file.
-  - Deprecate the use of :vcloud_director_password in a plaintext FOG_RC
-    file. A warning will be printed to STDERR at load time. Please use
-    vcloud-login instead.
+  - Includes a new vcloud-login tool for fetching session tokens without the
+    need to store your password in a plaintext FOG_RC file.
+  - Deprecates the use of :vcloud_director_password in a plaintext FOG_RC file.
+    A warning will be printed to STDERR at load time. Please use vcloud-login
+    instead.
 
 ## 3.2.3 (2014-07-14)
 
