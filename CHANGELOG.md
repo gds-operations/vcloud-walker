@@ -1,3 +1,13 @@
+## 3.5.0 (2014-10-15)
+
+Features:
+
+  - Upgrade dependency on vCloud Core to 0.13.0. An error will now be raised if
+    your `FOG_CREDENTIAL` environment variable does not match the information
+    stored against a vCloud Director session referred to by `FOG_VCLOUD_TOKEN`,
+    so as to guard against accidental changes to the wrong vCloud Director
+    organization.
+
 ## 3.4.0 (2014-09-11)
 
   - Upgrade dependency on vCloud Core to 0.11.0 which prevents plaintext
