@@ -19,7 +19,7 @@ module Vcloud
             @tunnel = {
               :Name => fog_vpn_tunnel[:Name],
               :Description => fog_vpn_tunnel[:Description],
-              :ThirdPartyPeerId => fog_vpn_tunnel[:IpsecVpnThirdPartyPeer][:PeerId],
+              :ThirdPartyPeerId => fog_vpn_tunnel[:PeerId],
               :PeerId => fog_vpn_tunnel[:PeerId],
               :LocalId => fog_vpn_tunnel[:LocalId],
               :PeerIpAddress => fog_vpn_tunnel[:PeerIpAddress],
