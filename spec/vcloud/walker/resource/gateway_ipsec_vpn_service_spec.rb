@@ -50,6 +50,7 @@ describe Vcloud::Walker::Resource::GatewayIpsecVpnService do
       end
 
       it "with peer details" do
+        expect(@tunnel[:ThirdPartyPeerId]).to eq('1')
         expect(@tunnel[:PeerId]).to eq('1')
         expect(@tunnel[:PeerIpAddress]).to eq('8.8.8.8')
         expect(@tunnel[:PeerSubnet]).to eq({
