@@ -19,7 +19,6 @@ module Vcloud
             @tunnel = {
               :Name => fog_vpn_tunnel[:Name],
               :Description => fog_vpn_tunnel[:Description],
-              :ThirdPartyPeerId => fog_vpn_tunnel[:IpsecVpnThirdPartyPeer][:PeerId],
               :PeerId => fog_vpn_tunnel[:PeerId],
               :LocalId => fog_vpn_tunnel[:LocalId],
               :PeerIpAddress => fog_vpn_tunnel[:PeerIpAddress],
@@ -30,6 +29,15 @@ module Vcloud
               :IsEnabled => fog_vpn_tunnel[:IsEnabled],
               :IsOperational => fog_vpn_tunnel[:IsOperational]
             }
+
+            if (third_party_peer = fog_vpn_tunnel.fetch(:IpsecVpnThirdPartyPeer, false))
+              @tunnel[:ThirdPartyPeerId] = third_party_peer[:PeerId]
+            end
+
+            if (local_peer = fog_vpn_tunnel.fetch(:IpsecVpnLocalPeer, false))
+              @tunnel[:LocalPeerId] = local_peer[:Id]
+              @tunnel[:LocalPeerName] = local_peer[:Name]
+            end
 
             @tunnel[:SharedSecret] = "*" * 65 if fog_vpn_tunnel[:SharedSecret]
             @tunnel[:SharedSecretEncrypted] = "******" if fog_vpn_tunnel[:SharedSecretEncrypted]

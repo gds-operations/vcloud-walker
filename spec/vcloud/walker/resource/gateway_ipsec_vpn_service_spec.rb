@@ -89,6 +89,55 @@ describe Vcloud::Walker::Resource::GatewayIpsecVpnService do
     end
   end
 
+  context "vpn service with inter-vDC tunnel" do
+    let(:fog_vpn_service) do
+      {
+        IsEnabled: true,
+        Tunnel: {
+          Name: "ss_one",
+          Description: "desc one",
+          IpsecVpnLocalPeer: {
+            Id: "1",
+            Name: "Foo",
+          },
+          PeerIpAddress: "8.8.8.8",
+          PeerId: "1",
+          LocalIpAddress: "192.0.2.1",
+          LocalId: "1",
+          LocalSubnet: {
+            Name: "Default",
+            Gateway: "192.168.0.1",
+            Netmask: "255.255.0.0"
+          },
+          PeerSubnet: [
+            {
+              Name: "Bar",
+              Gateway: "10.0.0.1",
+              Netmask: "255.255.255.0"
+            },
+          ],
+          SharedSecret: "DoNotDiscloseDoNotDiscloseDoNotDiscloseDoNotDiscloseDoNotDisclose",
+          SharedSecretEncrypted: "false",
+          EncryptionProtocol: "AES256",
+          Mtu: "1500",
+          IsEnabled: "true",
+          IsOperational: "false"
+        }
+      }
+    end
+
+    context "report tunnel info" do
+      let(:tunnel) {
+        gateway_vpn_service.Tunnels.first
+      }
+
+      it "returns accurate local peer details" do
+        expect(tunnel[:LocalPeerId]).to eq('1')
+        expect(tunnel[:LocalPeerName]).to eq('Foo')
+      end
+    end
+  end
+
   context "vpn service with multiple tunnels" do
 
     let(:fog_vpn_service) do
