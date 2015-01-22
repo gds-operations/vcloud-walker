@@ -1,5 +1,5 @@
 module Vcloud
   module Walker
-    VERSION = '3.6.0'
+    VERSION = '4.0.0'
   end
 end
