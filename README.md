@@ -23,7 +23,7 @@ To find usage, run `vcloud-walk`.
 You can perform following operations with walker.
 
 #### Walk vdcs:
-   vcloud-walk vdcs
+    vcloud-walk vdcs
 
 describes all vdcs within given organization. This includes vapp, vm and network
 information.
