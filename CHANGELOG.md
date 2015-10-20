@@ -1,3 +1,9 @@
+## 5.0.0 (2015-10-20)
+
+  - Remove support for Ruby 1.9.3.
+  - Relax dependency on vCloud Core to anything in the 1.x branch to
+    make installing this gem alongside other vCloud gems easier.
+
 ## 4.0.0 (2015-01-22)
 
   - Update dependency on vCloud Core to 1.0.0 since it is now stable.
