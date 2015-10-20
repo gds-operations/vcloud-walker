@@ -19,6 +19,9 @@ ${FOG_CREDENTIAL}:
 EOF
 
 rm -f Gemfile.lock
+
+source ./rbenv_version.sh
+
 git clean -fdx
 
 bundle install --path "${HOME}/bundles/${JOB_NAME}"
