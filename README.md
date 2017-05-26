@@ -88,4 +88,4 @@ See the [vCloud Tools website](http://gds-operations.github.io/vcloud-tools/test
 
 ## Contributing
 
-Please see [CONTRIBUTING.md].
+Please see [CONTRIBUTING.md](/CONTRIBUTING.md).
