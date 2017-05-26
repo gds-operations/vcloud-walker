@@ -1,6 +1,6 @@
 # Contributing to vCloud Walker
 
-We really welcome contributions.
+We now consider vCloud Tools feature complete for our purposes. We'd be happy to consider pull requests for new features but please discuss them with us in the issues first so we can let you know if it's something we'd be likely to merge. We will continue to make maintenance and bug fixes.
 
 ## A quick guide on how to contribute
 
@@ -36,11 +36,7 @@ We really welcome contributions.
 
 ## How soon will we respond?
 
-We will comment on your pull request within two working days. However, we might not be able to review it immediately.
-
-We may come back to you with comments and suggestions, and if we would like you to make changes, we will close the pull request as well as adding details of the changes we'd like you to make.
-
-If you feel your pull request has been outstanding too long, please feel free to bump it by making a comment on it.
+We will comment on your issue as soon as we can. If you feel your issue is important, please feel free to bump it by making a comment on it or raise your issue on the [mailing list](https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/#!forum/vcloud-tools).
 
 ## Guidelines for making a pull request
 

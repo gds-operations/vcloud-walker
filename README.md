@@ -86,3 +86,6 @@ Run the default suite of tests (e.g. lint, unit, features):
 There are also integration tests. These are slower and require a real environment.
 See the [vCloud Tools website](http://gds-operations.github.io/vcloud-tools/testing/) for details of how to set up and run the integration tests.
 
+## Contributing
+
+Please see [CONTRIBUTING.md].
