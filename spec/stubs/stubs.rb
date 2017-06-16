@@ -22,7 +22,7 @@ class StubVdc
   end
 
   def build
-    vdc = RSpec::Mocks::Mock.new(:vdc,
+    vdc = RSpec::Mocks::Double.new(:vdc,
                                  :id => 'vdc-1',
                                  :description => @description,
                                  :name => 'atomic reactor data centre',
