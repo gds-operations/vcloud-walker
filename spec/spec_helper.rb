@@ -9,11 +9,13 @@ if ENV['COVERAGE']
     end
   end
 
-  SimpleCov.adapters.define 'gem' do
-    add_filter '/spec/'
-    add_filter '/vendor/'
+  if SimpleCov.profiles[:gem].nil?
+    SimpleCov.profiles.define 'gem' do
+      add_filter '/spec/'
+      add_filter '/vendor/'
 
-    add_group 'Libraries', '/lib/'
+      add_group 'Libraries', '/lib/'
+    end
   end
 
   SimpleCov.minimum_coverage(99)

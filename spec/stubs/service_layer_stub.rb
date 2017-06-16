@@ -63,7 +63,7 @@ module Fog
     end
 
     def self.mock_vapp
-      RSpec::Mocks::Mock.new(:fog_vapp, :body => vapp_body)
+      RSpec::Mocks::Double.new(:fog_vapp, :body => vapp_body)
     end
 
     def self.vcloud_director_five_one_ids
