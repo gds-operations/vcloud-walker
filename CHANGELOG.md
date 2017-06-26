@@ -1,3 +1,10 @@
+## 5.1.0 (2017-06-23)
+
+  - Remove support for any Ruby older than v2.2.2.
+  - Add support for Ruby 2.3.0 and 2.4.0.
+  - Various bug fixes
+  - Updated dependencies
+
 ## 5.0.0 (2015-10-20)
 
   - Remove support for Ruby 1.9.3.

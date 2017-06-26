@@ -18,12 +18,12 @@ Gem::Specification.new do |s|
   s.test_files    = s.files.grep(%r{^(test|spec|features)/})
   s.require_paths = ["lib"]
 
-  s.required_ruby_version = '>= 2.0.0'
+  s.required_ruby_version = '>= 2.2.2'
 
-  s.add_runtime_dependency 'fog', '>= 1.21.0'
+  s.add_runtime_dependency 'fog', '>= 1.40.0'
   s.add_runtime_dependency 'json', '~> 1.8.0'
   s.add_runtime_dependency 'nokogiri', '~> 1.6.8.1'
-  s.add_runtime_dependency 'vcloud-core', '~> 2.0'
+  s.add_runtime_dependency 'vcloud-core', '~> 2.1.0'
   s.add_development_dependency 'gem_publisher', '1.2.0'
   s.add_development_dependency 'json_spec', '~> 1.1.1'
   s.add_development_dependency 'rake', '>= 12'
