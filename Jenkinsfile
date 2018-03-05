@@ -16,7 +16,7 @@ node {
     }
 
     stage("bundle install") {
-      govuk.setEnvar("RBENV_VERSION", "2.2.2")
+      govuk.setEnvar("RBENV_VERSION", "2.2")
       govuk.bundleGem()
     }
 
